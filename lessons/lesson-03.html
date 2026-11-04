@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Інтерактивний аркуш: Комп’ютерні мережі та Інтернет</title>
+  
+  <!-- Google Fonts: Fredoka & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti CDN (Виправлено: додано бібліотеку) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .font-fredoka {
+      font-family: 'Fredoka', cursive, sans-serif !important;
+    }
+    
+    @keyframes pulse-custom {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    
+    .pulse-btn {
+      animation: pulse-custom 2s infinite ease-in-out;
+    }
+
+    .custom-shadow {
+      box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(124, 58, 237, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen font-sans text-slate-800 pb-16">
+
+  <!-- MAIN CONTAINER -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8">
+
+    <!-- 1. HEADER -->
+    <header class="w-full rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-700 py-10 px-6 text-center flex flex-col items-center custom-shadow text-white relative overflow-hidden">
+      <div class="absolute -top-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+      <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-xl pointer-events-none"></div>
+
+      <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+        <span>💻 Інформатика</span>
+        <span>•</span>
+        <span>3 Клас</span>
+      </div>
+
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-wide drop-shadow-sm font-fredoka">
+        Комп’ютерні мережі та Інтернет 🌐✨
+      </h1>
+
+      <p class="text-white/90 text-base md:text-lg font-normal max-w-xl mt-3 leading-relaxed">
+        Вирушай у захопливу подорож цифровим павутинням! Дізнайся, як комп'ютери спілкуються між собою, та виконай усі завдання космічної місії! 🚀
+      </p>
+    </header>
+
+    <!-- 2. PRESENTATION / THEORY SECTION -->
+    <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-2xl">📹</span>
+        <h2 class="text-2xl font-bold font-fredoka text-purple-900">Навчальна презентація</h2>
+      </div>
+      <p class="text-slate-600 text-sm md:text-base mb-6">
+        Переглянь навчальні матеріали перед виконанням інтерактивних завдань:
+      </p>
+
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-900">
+        <iframe loading="lazy" 
+                class="absolute inset-0 w-full h-full border-0 m-0 p-0"
+                src="https://www.canva.com/design/DAHZrw6zN-k/uZKUFPW_W32embaFg2yL0Q/view?embed" 
+                allowfullscreen="allowfullscreen" 
+                allow="fullscreen">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- 3. INTERACTIVE TASKS SECTION -->
+    <div class="space-y-8">
+
+      <!-- TASK 1: Single Choice -->
+      <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100 relative">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-700 font-bold font-fredoka flex items-center justify-center text-lg">
+              1
+            </div>
+            <h3 class="text-xl font-bold font-fredoka text-slate-800">Що таке Інтернет?</h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">
+            Вибір відповіді
+          </span>
+        </div>
+
+        <p class="text-slate-600 mb-6">Обери один найвлучніший варіант, який пояснює значення Всесвітньої мережі:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="t1-options">
+          <button onclick="selectTask1(this, 0)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 text-left font-medium hover:border-purple-300 transition-all text-slate-700">
+            📺 Велика телевізійна програма для мультфільмів
+          </button>
+          <button onclick="selectTask1(this, 1)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 text-left font-medium hover:border-purple-300 transition-all text-slate-700">
+            🌍 Всесвітня мережа, яка з'єднує комп'ютери по всьому світу
+          </button>
+          <button onclick="selectTask1(this, 2)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 text-left font-medium hover:border-purple-300 transition-all text-slate-700">
+            🔌 Комп'ютерна мишка, підключена до системного блоку
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="checkTask1()" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-2xl shadow-md active:scale-95 transition-all font-fredoka">
+            Перевірити завдання 1
+          </button>
+          <button onclick="resetTask1()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+
+        <div id="feedback-1" class="hidden mt-4 p-4 rounded-2xl text-sm font-semibold"></div>
+      </section>
+
+      <!-- TASK 2: Matching Pairs -->
+      <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100 relative">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 font-bold font-fredoka flex items-center justify-center text-lg">
+              2
+            </div>
+            <h3 class="text-xl font-bold font-fredoka text-slate-800">З'єднай поняття та його призначення</h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full">
+            З'єднання пар
+          </span>
+        </div>
+
+        <p class="text-slate-600 mb-6">Обери поняття з лівого стовпчика, а потім його правильну пару з правого:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="space-y-3" id="t2-left">
+            <button onclick="clickPairLeft(this, 'browser')" class="t2-l-btn w-full p-4 rounded-2xl border-2 border-slate-200 text-left font-semibold text-slate-700 hover:border-indigo-400 transition-all">
+              🌐 Браузер
+            </button>
+            <button onclick="clickPairLeft(this, 'wifi')" class="t2-l-btn w-full p-4 rounded-2xl border-2 border-slate-200 text-left font-semibold text-slate-700 hover:border-indigo-400 transition-all">
+              📡 Wi-Fi
+            </button>
+            <button onclick="clickPairLeft(this, 'site')" class="t2-l-btn w-full p-4 rounded-2xl border-2 border-slate-200 text-left font-semibold text-slate-700 hover:border-indigo-400 transition-all">
+              📄 Веб-сайт
+            </button>
+          </div>
+
+          <div class="space-y-3" id="t2-right">
+            <button onclick="clickPairRight(this, 'site')" class="t2-r-btn w-full p-4 rounded-2xl border-2 border-slate-200 text-left font-medium text-slate-700 hover:border-indigo-400 transition-all">
+              Сукупність пов'язаних веб-сторінок з інформацією
+            </button>
+            <button onclick="clickPairRight(this, 'browser')" class="t2-r-btn w-full p-4 rounded-2xl border-2 border-slate-200 text-left font-medium text-slate-700 hover:border-indigo-400 transition-all">
+              Програма для перегляду сторінок в Інтернеті
+            </button>
+            <button onclick="clickPairRight(this, 'wifi')" class="t2-r-btn w-full p-4 rounded-2xl border-2 border-slate-200 text-left font-medium text-slate-700 hover:border-indigo-400 transition-all">
+              Бездротове підключення пристроїв до мережі
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="checkTask2()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md active:scale-95 transition-all font-fredoka">
+            Перевірити завдання 2
+          </button>
+          <button onclick="resetTask2()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+
+        <div id="feedback-2" class="hidden mt-4 p-4 rounded-2xl text-sm font-semibold"></div>
+      </section>
+
+      <!-- TASK 3: True / False Flashcards -->
+      <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100 relative">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-pink-100 text-pink-700 font-bold font-fredoka flex items-center justify-center text-lg">
+              3
+            </div>
+            <h3 class="text-xl font-bold font-fredoka text-slate-800">Правила безпеки в Інтернеті</h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-pink-100 text-pink-700 rounded-full">
+            Вірно / Невірно
+          </span>
+        </div>
+
+        <p class="text-slate-600 mb-6">Прочитай твердження та визнач, чи безпечна ця дія:</p>
+
+        <div class="space-y-4 mb-6">
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <span class="font-medium text-slate-700">1) Ніколи не повідомляти незнайомцям свій пароль, домашню адресу та телефон.</span>
+            <div class="flex gap-2 shrink-0">
+              <button onclick="setT3(0, true, this)" class="t3-btn-0 px-4 py-2 rounded-xl font-bold border border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition-all">Так 👍</button>
+              <button onclick="setT3(0, false, this)" class="t3-btn-0 px-4 py-2 rounded-xl font-bold border border-rose-300 text-rose-700 hover:bg-rose-50 transition-all">Ні 👎</button>
+            </div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <span class="font-medium text-slate-700">2) Якщо в Інтернеті пропонують безкоштовний подарунок, треба одразу сказати дані банківської карти батьків.</span>
+            <div class="flex gap-2 shrink-0">
+              <button onclick="setT3(1, true, this)" class="t3-btn-1 px-4 py-2 rounded-xl font-bold border border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition-all">Так 👍</button>
+              <button onclick="setT3(1, false, this)" class="t3-btn-1 px-4 py-2 rounded-xl font-bold border border-rose-300 text-rose-700 hover:bg-rose-50 transition-all">Ні 👎</button>
+            </div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <span class="font-medium text-slate-700">3) Якщо щось в Інтернеті злякало або засмутило, обов'язково розказати батькам або вчителю.</span>
+            <div class="flex gap-2 shrink-0">
+              <button onclick="setT3(2, true, this)" class="t3-btn-2 px-4 py-2 rounded-xl font-bold border border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition-all">Так 👍</button>
+              <button onclick="setT3(2, false, this)" class="t3-btn-2 px-4 py-2 rounded-xl font-bold border border-rose-300 text-rose-700 hover:bg-rose-50 transition-all">Ні 👎</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="checkTask3()" class="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-2xl shadow-md active:scale-95 transition-all font-fredoka">
+            Перевірити завдання 3
+          </button>
+          <button onclick="resetTask3()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+
+        <div id="feedback-3" class="hidden mt-4 p-4 rounded-2xl text-sm font-semibold"></div>
+      </section>
+
+      <!-- TASK 4: Fill in the Blanks -->
+      <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100 relative">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-violet-100 text-violet-700 font-bold font-fredoka flex items-center justify-center text-lg">
+              4
+            </div>
+            <h3 class="text-xl font-bold font-fredoka text-slate-800">Заповни пропуски у тексті</h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-violet-100 text-violet-700 rounded-full">
+            Вибір із списку
+          </span>
+        </div>
+
+        <p class="text-slate-600 mb-6">Обери відповідні слова у спадних списках, щоб утворилося правильне твердження:</p>
+
+        <div class="p-6 bg-violet-50/50 rounded-2xl border border-violet-100 leading-xl font-medium text-slate-800 text-base md:text-lg space-y-4">
+          <p>
+            1. Для з'єднання комп'ютерів у школі чи вдома використовують 
+            <select id="t4-select-1" class="mx-1 px-3 py-1.5 rounded-xl border-2 border-violet-200 bg-white font-semibold text-purple-800 focus:outline-none focus:border-purple-500">
+              <option value="">-- обрати --</option>
+              <option value="локальну">локальну</option>
+              <option value="космічну">космічну</option>
+              <option value="ігрову">ігрову</option>
+            </select>
+            мережу.
+          </p>
+          <p>
+            2. Щоб знайти потрібну інформацію, ми використовуємо пошукову 
+            <select id="t4-select-2" class="mx-1 px-3 py-1.5 rounded-xl border-2 border-violet-200 bg-white font-semibold text-purple-800 focus:outline-none focus:border-purple-500">
+              <option value="">-- обрати --</option>
+              <option value="гру">гру</option>
+              <option value="систему">систему</option>
+              <option value="клавіатуру">клавіатуру</option>
+            </select>.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 mt-6">
+          <button onclick="checkTask4()" class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-2xl shadow-md active:scale-95 transition-all font-fredoka">
+            Перевірити завдання 4
+          </button>
+          <button onclick="resetTask4()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+
+        <div id="feedback-4" class="hidden mt-4 p-4 rounded-2xl text-sm font-semibold"></div>
+      </section>
+
+      <!-- TASK 5: Category Bucket Click -->
+      <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100 relative">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 font-bold font-fredoka flex items-center justify-center text-lg">
+              5
+            </div>
+            <h3 class="text-xl font-bold font-fredoka text-slate-800">Розподіли об'єкти по кошиках</h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">
+            Сортування
+          </span>
+        </div>
+
+        <p class="text-slate-600 mb-4">Натисни спочатку на об'єкт, а потім на потрібний кошик:</p>
+
+        <!-- ITEMS TO SORT -->
+        <div class="flex flex-wrap gap-3 mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 min-h-[70px]" id="t5-items">
+          <button onclick="selectT5Item(this, 'browser')" class="t5-item font-semibold px-4 py-2 bg-white border-2 border-slate-200 rounded-xl shadow-sm hover:border-teal-400 text-slate-700 transition-all">
+            🔴 Google Chrome
+          </button>
+          <button onclick="selectT5Item(this, 'site')" class="t5-item font-semibold px-4 py-2 bg-white border-2 border-slate-200 rounded-xl shadow-sm hover:border-teal-400 text-slate-700 transition-all">
+            📚 Вікіпедія (uk.wikipedia.org)
+          </button>
+          <button onclick="selectT5Item(this, 'browser')" class="t5-item font-semibold px-4 py-2 bg-white border-2 border-slate-200 rounded-xl shadow-sm hover:border-teal-400 text-slate-700 transition-all">
+            🦊 Firefox
+          </button>
+          <button onclick="selectT5Item(this, 'site')" class="t5-item font-semibold px-4 py-2 bg-white border-2 border-slate-200 rounded-xl shadow-sm hover:border-teal-400 text-slate-700 transition-all">
+            🎥 YouTube Kids
+          </button>
+        </div>
+
+        <!-- BUCKETS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div onclick="placeInBucket('browser')" class="cursor-pointer border-2 border-dashed border-teal-300 bg-teal-50/50 rounded-2xl p-4 min-h-[120px] transition-all hover:bg-teal-50">
+            <h4 class="font-bold text-teal-800 mb-2 font-fredoka flex items-center gap-2">
+              🖥️ Браузери (Програми)
+            </h4>
+            <div id="bucket-browser" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <div onclick="placeInBucket('site')" class="cursor-pointer border-2 border-dashed border-purple-300 bg-purple-50/50 rounded-2xl p-4 min-h-[120px] transition-all hover:bg-purple-50">
+            <h4 class="font-bold text-purple-800 mb-2 font-fredoka flex items-center gap-2">
+              🌐 Веб-сайти (Сторінки)
+            </h4>
+            <div id="bucket-site" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="checkTask5()" class="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-2xl shadow-md active:scale-95 transition-all font-fredoka">
+            Перевірити завдання 5
+          </button>
+          <button onclick="resetTask5()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+
+        <div id="feedback-5" class="hidden mt-4 p-4 rounded-2xl text-sm font-semibold"></div>
+      </section>
+
+    </div>
+
+    <!-- 4. FINAL RESULT SECTION -->
+    <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-purple-100 text-center flex flex-col items-center">
+      <h3 class="text-2xl font-bold font-fredoka text-slate-800 mb-2">Підсумок твоєї місії</h3>
+      <p class="text-slate-600 mb-6">Перевір усі завдання вище та натисни кнопку, щоб отримати свою нагороду!</p>
+
+      <button onclick="calculateFinalResult()" class="pulse-btn px-8 py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 hover:from-amber-500 hover:to-orange-600 text-white font-extrabold text-lg rounded-2xl shadow-lg active:scale-95 transition-all font-fredoka">
+        🌟 Отримати свій значок! 🌟
+      </button>
+
+      <!-- RESULT CARD -->
+      <div id="final-card" class="hidden mt-8 w-full max-w-xl p-6 bg-gradient-to-b from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-3xl text-center shadow-inner">
+        <div id="final-badge-icon" class="text-6xl mb-3">🏅</div>
+        <h4 id="final-title" class="text-2xl font-bold font-fredoka text-purple-900 mb-2">
+          Рівень: Юний учень
+        </h4>
+        <div id="final-score" class="text-3xl font-extrabold text-amber-500 font-fredoka mb-3">
+          0 / 5 балів
+        </div>
+        <p id="final-desc" class="text-slate-600 text-sm md:text-base">
+          Чудова спроба! Спробуй перевірити всі завдання ще раз, щоб отримати максимальний результат.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. PRACTICAL CREATIVE TASK -->
+    <section class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white rounded-3xl p-6 md:p-8 shadow-lg relative overflow-hidden">
+      <div class="relative z-10">
+        <div class="inline-block bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold mb-3">
+          🎨 Творча майстерня
+        </div>
+        <h3 class="text-2xl md:text-3xl font-bold font-fredoka mb-3">
+          🚀 Практичний челендж: «Мій супер-сайт майбутнього»
+        </h3>
+        <p class="text-white/90 text-sm md:text-base mb-4 leading-relaxed max-w-2xl">
+          Уяви, що ти розробник власного веб-сайту! Візьми аркуш паперу та кольорові олівці. Намалюй головну сторінку сайту своєї мрії (наприклад, про космос, домашніх улюбленців чи супергероїв). 
+        </p>
+        <ul class="list-disc list-inside text-white/80 text-sm md:text-base space-y-1 mb-4">
+          <li>Придумай яскравий заголовок та логотип сайту.</li>
+          <li>Намалюй 3 кнопки меню (наприклад: «Головна», «Ігри», «Фото»).</li>
+          <li>Покажи свій малюнок вчителю або батькам!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="text-center text-slate-500 text-sm py-4">
+      © 2026 | Інформатика — 3 клас | Автор: Юрій Шроль
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let t1Selected = null;
+    let t2SelectedLeft = null;
+    let t2SelectedLeftKey = null;
+    let t2Pairs = {};
+    let t3Answers = { 0: null, 1: null, 2: null };
+    let t5SelectedElement = null;
+
+    function showFeedback(id, type, message) {
+      const fb = document.getElementById(`feedback-${id}`);
+      fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+      
+      if (type === 'success') {
+        fb.classList.add('bg-emerald-100', 'text-emerald-800');
+      } else if (type === 'error') {
+        fb.classList.add('bg-rose-100', 'text-rose-800');
+      } else {
+        fb.classList.add('bg-amber-100', 'text-amber-800');
+      }
+      fb.textContent = message;
+    }
+
+    function hideFeedback(id) {
+      const fb = document.getElementById(`feedback-${id}`);
+      if (fb) fb.classList.add('hidden');
+    }
+
+    // --- TASK 1 ---
+    function selectTask1(btn, index) {
+      t1Selected = index;
+      document.querySelectorAll('.t1-btn').forEach(b => {
+        b.classList.remove('border-purple-600', 'bg-purple-50', 'ring-2', 'ring-purple-400');
+      });
+      btn.classList.add('border-purple-600', 'bg-purple-50', 'ring-2', 'ring-purple-400');
+    }
+
+    function checkTask1() {
+      if (t1Selected === null) {
+        showFeedback(1, 'warning', '⚠️ Залишилося трошки подумати — обери один із варіантів!');
+        return false;
+      }
+      if (t1Selected === 1) {
+        showFeedback(1, 'success', '🎉 Чудово! Інтернет — це дійсно Всесвітня мережа, яка об’єднує комп’ютери!');
+        return true;
+      } else {
+        showFeedback(1, 'error', '❌ Подумай ще! Інтернет з\'єднує мільйони комп\'ютерів по всьому світу.');
+        return false;
+      }
+    }
+
+    function resetTask1() {
+      t1Selected = null;
+      document.querySelectorAll('.t1-btn').forEach(b => {
+        b.classList.remove('border-purple-600', 'bg-purple-50', 'ring-2', 'ring-purple-400');
+      });
+      hideFeedback(1);
+    }
+
+    // --- TASK 2 ---
+    function clickPairLeft(btn, key) {
+      document.querySelectorAll('.t2-l-btn').forEach(b => b.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50'));
+      t2SelectedLeft = btn;
+      t2SelectedLeftKey = key;
+      btn.classList.add('ring-2', 'ring-indigo-500', 'bg-indigo-50');
+    }
+
+    function clickPairRight(btn, key) {
+      if (!t2SelectedLeft) return;
+      
+      t2Pairs[t2SelectedLeftKey] = key;
+      
+      t2SelectedLeft.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50');
+      t2SelectedLeft.classList.add('bg-indigo-100', 'border-indigo-400');
+      btn.classList.add('bg-indigo-100', 'border-indigo-400');
+
+      t2SelectedLeft = null;
+      t2SelectedLeftKey = null;
+    }
+
+    function checkTask2() {
+      const keys = Object.keys(t2Pairs);
+      if (keys.length < 3) {
+        showFeedback(2, 'warning', '⚠️ Залишилося трошки подумати — з’єднай усі 3 пари!');
+        return false;
+      }
+      
+      let correct = 0;
+      if (t2Pairs['browser'] === 'browser') correct++;
+      if (t2Pairs['wifi'] === 'wifi') correct++;
+      if (t2Pairs['site'] === 'site') correct++;
+
+      if (correct === 3) {
+        showFeedback(2, 'success', '🌟 Відмінно! Усі терміни з’єднано абсолютно правильно!');
+        return true;
+      } else {
+        showFeedback(2, 'error', '❌ Деякі пари з\'єднано невірно. Спробуй ще раз!');
+        return false;
+      }
+    }
+
+    function resetTask2() {
+      t2SelectedLeft = null;
+      t2SelectedLeftKey = null;
+      t2Pairs = {};
+      document.querySelectorAll('.t2-l-btn, .t2-r-btn').forEach(b => {
+        b.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50', 'bg-indigo-100', 'border-indigo-400');
+      });
+      hideFeedback(2);
+    }
+
+    // --- TASK 3 ---
+    function setT3(index, val, btn) {
+      t3Answers[index] = val;
+      const parent = btn.parentElement;
+      parent.querySelectorAll('button').forEach(b => {
+        b.classList.remove('bg-emerald-600', 'text-white', 'bg-rose-600');
+      });
+      if (val) {
+        btn.classList.add('bg-emerald-600', 'text-white');
+      } else {
+        btn.classList.add('bg-rose-600', 'text-white');
+      }
+    }
+
+    function checkTask3() {
+      if (t3Answers[0] === null || t3Answers[1] === null || t3Answers[2] === null) {
+        showFeedback(3, 'warning', '⚠️ Залишилося трошки подумати — дай відповідь на всі 3 запитання!');
+        return false;
+      }
+
+      if (t3Answers[0] === true && t3Answers[1] === false && t3Answers[2] === true) {
+        showFeedback(3, 'success', '🛡️ Супер! Ти чудово знаєш правила безпеки в Інтернеті!');
+        return true;
+      } else {
+        showFeedback(3, 'error', '❌ Подумай ще! Паролі та дані карти не можна передавати стороннім.');
+        return false;
+      }
+    }
+
+    function resetTask3() {
+      t3Answers = { 0: null, 1: null, 2: null };
+      document.querySelectorAll('[class*="t3-btn-"]').forEach(b => {
+        b.classList.remove('bg-emerald-600', 'text-white', 'bg-rose-600');
+      });
+      hideFeedback(3);
+    }
+
+    // --- TASK 4 ---
+    function checkTask4() {
+      const v1 = document.getElementById('t4-select-1').value;
+      const v2 = document.getElementById('t4-select-2').value;
+
+      if (!v1 || !v2) {
+        showFeedback(4, 'warning', '⚠️ Залишилося трошки подумати — вибери слова у кожному пропуску!');
+        return false;
+      }
+
+      if (v1 === 'локальну' && v2 === 'систему') {
+        showFeedback(4, 'success', '🎉 Молодець! Усі слова підібрано правильно!');
+        return true;
+      } else {
+        showFeedback(4, 'error', '❌ Подумай ще! У школі мережа локальна, а шукаємо інформацію через пошукову систему.');
+        return false;
+      }
+    }
+
+    function resetTask4() {
+      document.getElementById('t4-select-1').value = '';
+      document.getElementById('t4-select-2').value = '';
+      hideFeedback(4);
+    }
+
+    // --- TASK 5 ---
+    function selectT5Item(btn, type) {
+      document.querySelectorAll('.t5-item').forEach(i => i.classList.remove('ring-2', 'ring-teal-500', 'bg-teal-50'));
+      t5SelectedElement = { btn, type };
+      btn.classList.add('ring-2', 'ring-teal-500', 'bg-teal-50');
+    }
+
+    function placeInBucket(bucketType) {
+      if (!t5SelectedElement) return;
+
+      const { btn, type } = t5SelectedElement;
+      const targetBucket = document.getElementById(`bucket-${bucketType}`);
+      
+      targetBucket.appendChild(btn);
+      btn.classList.remove('ring-2', 'ring-teal-500', 'bg-teal-50');
+      btn.dataset.currentBucket = bucketType;
+      btn.dataset.correctType = type;
+
+      t5SelectedElement = null;
+    }
+
+    function checkTask5() {
+      const itemsContainer = document.getElementById('t5-items');
+      if (itemsContainer.children.length > 0) {
+        showFeedback(5, 'warning', '⚠️ Залишилося трошки подумати — розподіли всі елементи по кошиках!');
+        return false;
+      }
+
+      let allCorrect = true;
+      document.querySelectorAll('#bucket-browser .t5-item, #bucket-site .t5-item').forEach(btn => {
+        if (btn.dataset.currentBucket !== btn.dataset.correctType) {
+          allCorrect = false;
+        }
+      });
+
+      if (allCorrect) {
+        showFeedback(5, 'success', '🌈 Супер! Браузери та веб-сайти успішно розсортовано!');
+        return true;
+      } else {
+        showFeedback(5, 'error', '❌ Подумай ще! Зверни увагу: Google Chrome та Firefox — це програми (браузери).');
+        return false;
+      }
+    }
+
+    function resetTask5() {
+      const itemsContainer = document.getElementById('t5-items');
+      document.querySelectorAll('.t5-item').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-teal-500', 'bg-teal-50');
+        delete btn.dataset.currentBucket;
+        itemsContainer.appendChild(btn);
+      });
+      t5SelectedElement = null;
+      hideFeedback(5);
+    }
+
+    // --- FINAL RESULT LOGIC ---
+    function calculateFinalResult() {
+      const res1 = checkTask1();
+      const res2 = checkTask2();
+      const res3 = checkTask3();
+      const res4 = checkTask4();
+      const res5 = checkTask5();
+
+      const totalScore = [res1, res2, res3, res4, res5].filter(Boolean).length;
+
+      const card = document.getElementById('final-card');
+      const title = document.getElementById('final-title');
+      const score = document.getElementById('final-score');
+      const desc = document.getElementById('final-desc');
+      const badgeIcon = document.getElementById('final-badge-icon');
+
+      card.classList.remove('hidden');
+      score.textContent = `${totalScore} / 5 балів`;
+
+      if (totalScore === 5) {
+        badgeIcon.textContent = '🏆';
+        title.textContent = 'Рівень: Гранд-майстер Мережі!';
+        desc.textContent = 'Фантастично! Ти ідеально знаєш все про комп\'ютерні мережі та безпеку в Інтернеті!';
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+        }
+      } else if (totalScore >= 3) {
+        badgeIcon.textContent = '🚀';
+        title.textContent = 'Рівень: Дослідник Інтернету';
+        desc.textContent = 'Дуже хороший результат! Ти майже на самому верху. Виправ помилки та отримай 5/5!';
+      } else {
+        badgeIcon.textContent = '🌱';
+        title.textContent = 'Рівень: Юний учень';
+        desc.textContent = 'Не засмучуйся! Переглянь презентацію ще раз та спробуй виконати завдання знову.';
+      }
+
+      card.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
