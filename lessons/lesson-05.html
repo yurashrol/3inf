@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="uk" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Файли й папки. Зберігання та впорядкування інформації — 3 клас</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .font-fredoka {
+            font-family: 'Fredoka', cursive, sans-serif !important;
+        }
+        
+        @keyframes customPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse-btn {
+            animation: customPulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-slate-50 to-sky-50 font-sans text-slate-800 min-h-full flex flex-col antialiased">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 pb-12 w-full flex-grow">
+        
+        <!-- HEADER -->
+        <header class="rounded-3xl shadow-xl py-10 px-6 text-center flex flex-col items-center bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-600 relative overflow-hidden">
+            <!-- Background decorative light shapes -->
+            <div class="absolute -top-12 -left-12 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-cyan-300/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+                <span>💻</span> Інформатика • 3 клас
+            </div>
+            
+            <h1 class="font-fredoka text-3xl md:text-4xl text-white font-extrabold tracking-wide drop-shadow-sm">
+                Файли й папки. Зберігання та впорядкування інформації 📁📂
+            </h1>
+            
+            <p class="text-white/90 text-base md:text-lg font-normal max-w-xl mt-3 leading-relaxed">
+                Привіт, юний досліднику! Розгадай секрети цифрового світу, навчися впорядковувати файли та розкладати все по поличках!
+            </p>
+        </header>
+
+        <!-- PRESENTATION SECTION -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                <h2 class="font-fredoka text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    📹 Навчальна презентація
+                </h2>
+                <p class="text-sm font-medium text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 w-fit">
+                    Переглянь навчальні матеріали перед виконанням завдань
+                </p>
+            </div>
+            
+            <div class="relative w-full rounded-2xl overflow-hidden bg-slate-900 shadow-inner" style="padding-top: 56.25%;">
+                <iframe loading="lazy" 
+                        class="absolute inset-0 w-full h-full border-0 m-0 p-0"
+                        src="https://www.canva.com/design/DAGX_placeholder/view?embed" 
+                        allowfullscreen="allowfullscreen" 
+                        allow="fullscreen">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- TASKS CONTAINER -->
+        <main class="space-y-8">
+
+            <!-- TASK 1: SINGLE CHOICE -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 relative space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                            1
+                        </div>
+                        <h3 class="font-fredoka text-xl font-semibold text-slate-800">
+                            Головне сховище
+                        </h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full border border-indigo-100">
+                        Вибір однієї відповіді
+                    </span>
+                </div>
+
+                <p class="text-slate-700 font-medium text-lg">
+                    Що з переліченого призначене для зберігання і групування інших файлів?
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="task1-options">
+                    <button type="button" onclick="selectTask1('A')" id="t1-opt-A" class="t1-option p-4 text-left rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 transition font-medium text-slate-700 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-white border border-slate-300 flex items-center justify-center font-fredoka text-slate-500 font-bold">A</span>
+                        Текстовий файл (.txt)
+                    </button>
+                    <button type="button" onclick="selectTask1('B')" id="t1-opt-B" class="t1-option p-4 text-left rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 transition font-medium text-slate-700 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-white border border-slate-300 flex items-center justify-center font-fredoka text-slate-500 font-bold">Б</span>
+                        Жовта папка
+                    </button>
+                    <button type="button" onclick="selectTask1('C')" id="t1-opt-C" class="t1-option p-4 text-left rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 transition font-medium text-slate-700 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-white border border-slate-300 flex items-center justify-center font-fredoka text-slate-500 font-bold">В</span>
+                        Малюнок (.jpg)
+                    </button>
+                    <button type="button" onclick="selectTask1('D')" id="t1-opt-D" class="t1-option p-4 text-left rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 transition font-medium text-slate-700 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-white border border-slate-300 flex items-center justify-center font-fredoka text-slate-500 font-bold">Г</span>
+                        Музичний файл (.mp3)
+                    </button>
+                </div>
+
+                <div id="feedback-1" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <button type="button" onclick="checkTask1()" class="font-fredoka px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition font-semibold">
+                        Перевірити завдання 1
+                    </button>
+                    <button type="button" onclick="resetTask1()" class="font-fredoka px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition font-semibold">
+                        Спочатку 🔄
+                    </button>
+                </div>
+            </article>
+
+            <!-- TASK 2: MATCHING PAIRS -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 relative space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                            2
+                        </div>
+                        <h3 class="font-fredoka text-xl font-semibold text-slate-800">
+                            Тип файла та його вміст
+                        </h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full border border-indigo-100">
+                        З'єднання пар
+                    </span>
+                </div>
+
+                <p class="text-slate-700 font-medium">
+                    Обери розширення з лівого стовпчика, а потім натисни на відповідний тип даних з правого стовпчика:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left Column -->
+                    <div class="space-y-3" id="t2-left-list">
+                        <button type="button" data-key="txt" onclick="clickTask2Left('txt')" id="t2-l-txt" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-bold font-fredoka text-indigo-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>📄 .txt</span>
+                            <span class="t2-badge text-xs font-normal px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Обери</span>
+                        </button>
+                        <button type="button" data-key="jpg" onclick="clickTask2Left('jpg')" id="t2-l-jpg" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-bold font-fredoka text-emerald-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>🖼️ .jpg</span>
+                            <span class="t2-badge text-xs font-normal px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Обери</span>
+                        </button>
+                        <button type="button" data-key="mp3" onclick="clickTask2Left('mp3')" id="t2-l-mp3" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-bold font-fredoka text-amber-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>🎵 .mp3</span>
+                            <span class="t2-badge text-xs font-normal px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Обери</span>
+                        </button>
+                        <button type="button" data-key="mp4" onclick="clickTask2Left('mp4')" id="t2-l-mp4" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-bold font-fredoka text-purple-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>🎬 .mp4</span>
+                            <span class="t2-badge text-xs font-normal px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Обери</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="space-y-3" id="t2-right-list">
+                        <button type="button" data-key="mp3" onclick="clickTask2Right('mp3')" id="t2-r-mp3" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-medium text-slate-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>🎶 Звуковий файл / музика</span>
+                            <span class="t2-r-badge text-xs px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Пара?</span>
+                        </button>
+                        <button type="button" data-key="txt" onclick="clickTask2Right('txt')" id="t2-r-txt" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-medium text-slate-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>📝 Текстовий документ</span>
+                            <span class="t2-r-badge text-xs px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Пара?</span>
+                        </button>
+                        <button type="button" data-key="mp4" onclick="clickTask2Right('mp4')" id="t2-r-mp4" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-medium text-slate-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>🎥 Відеофільм чи мультфільм</span>
+                            <span class="t2-r-badge text-xs px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Пара?</span>
+                        </button>
+                        <button type="button" data-key="jpg" onclick="clickTask2Right('jpg')" id="t2-r-jpg" class="w-full p-4 text-left rounded-2xl border-2 border-slate-200 bg-slate-50 font-medium text-slate-700 flex items-center justify-between transition hover:border-indigo-300">
+                            <span>🎨 Малюнок чи фотографія</span>
+                            <span class="t2-r-badge text-xs px-2 py-1 bg-slate-200 text-slate-600 rounded-lg">Пара?</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="feedback-2" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <button type="button" onclick="checkTask2()" class="font-fredoka px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition font-semibold">
+                        Перевірити завдання 2
+                    </button>
+                    <button type="button" onclick="resetTask2()" class="font-fredoka px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition font-semibold">
+                        Спочатку 🔄
+                    </button>
+                </div>
+            </article>
+
+            <!-- TASK 3: CATEGORY BUCKET CLICK -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 relative space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                            3
+                        </div>
+                        <h3 class="font-fredoka text-xl font-semibold text-slate-800">
+                            Розподіл по кошиках
+                        </h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full border border-indigo-100">
+                        Сортування по категоріях
+                    </span>
+                </div>
+
+                <p class="text-slate-700 font-medium">
+                    Визнач для кожного елемента, що це: контейнер-папка чи окремий файл. Натисни відповідні кнопки:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="task3-items">
+                    <!-- Item 1 -->
+                    <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="item1">
+                        <span class="font-bold text-slate-700 font-fredoka">📸 Фото_з_свята.jpg</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="setBucket('item1', 'folder')" id="t3-btn-item1-folder" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition">📁 Папка</button>
+                            <button type="button" onclick="setBucket('item1', 'file')" id="t3-btn-item1-file" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition">📄 Файл</button>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="item2">
+                        <span class="font-bold text-slate-700 font-fredoka">📂 Навчальні_матеріали</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="setBucket('item2', 'folder')" id="t3-btn-item2-folder" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition">📁 Папка</button>
+                            <button type="button" onclick="setBucket('item2', 'file')" id="t3-btn-item2-file" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition">📄 Файл</button>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="item3">
+                        <span class="font-bold text-slate-700 font-fredoka">📂 Музика_для_релаксу</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="setBucket('item3', 'folder')" id="t3-btn-item3-folder" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition">📁 Папка</button>
+                            <button type="button" onclick="setBucket('item3', 'file')" id="t3-btn-item3-file" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition">📄 Файл</button>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="item4">
+                        <span class="font-bold text-slate-700 font-fredoka">📘 Казка_про_дракона.docx</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="setBucket('item4', 'folder')" id="t3-btn-item4-folder" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition">📁 Папка</button>
+                            <button type="button" onclick="setBucket('item4', 'file')" id="t3-btn-item4-file" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition">📄 Файл</button>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="item5">
+                        <span class="font-bold text-slate-700 font-fredoka">📂 Улюблені_ігри</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="setBucket('item5', 'folder')" id="t3-btn-item5-folder" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition">📁 Папка</button>
+                            <button type="button" onclick="setBucket('item5', 'file')" id="t3-btn-item5-file" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition">📄 Файл</button>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="item6">
+                        <span class="font-bold text-slate-700 font-fredoka">🎧 Пісня.mp3</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="setBucket('item6', 'folder')" id="t3-btn-item6-folder" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition">📁 Папка</button>
+                            <button type="button" onclick="setBucket('item6', 'file')" id="t3-btn-item6-file" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition">📄 Файл</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="feedback-3" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <button type="button" onclick="checkTask3()" class="font-fredoka px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition font-semibold">
+                        Перевірити завдання 3
+                    </button>
+                    <button type="button" onclick="resetTask3()" class="font-fredoka px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition font-semibold">
+                        Спочатку 🔄
+                    </button>
+                </div>
+            </article>
+
+            <!-- TASK 4: ORDERING / SEQUENCING -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 relative space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                            4
+                        </div>
+                        <h3 class="font-fredoka text-xl font-semibold text-slate-800">
+                            Алгоритм створення нової папки
+                        </h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full border border-indigo-100">
+                        Впорядкування кроків
+                    </span>
+                </div>
+
+                <p class="text-slate-700 font-medium">
+                    Розстав кроки у правильній послідовності за допомогою стрілок 🔼 та 🔽:
+                </p>
+
+                <div class="space-y-3" id="task4-container">
+                    <!-- Items rendered dynamically via JavaScript -->
+                </div>
+
+                <div id="feedback-4" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <button type="button" onclick="checkTask4()" class="font-fredoka px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition font-semibold">
+                        Перевірити завдання 4
+                    </button>
+                    <button type="button" onclick="resetTask4()" class="font-fredoka px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition font-semibold">
+                        Спочатку 🔄
+                    </button>
+                </div>
+            </article>
+
+            <!-- TASK 5: FILL IN THE BLANKS -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 relative space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                            5
+                        </div>
+                        <h3 class="font-fredoka text-xl font-semibold text-slate-800">
+                            Знавець файлової системи
+                        </h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full border border-indigo-100">
+                        Заповнення пропусків
+                    </span>
+                </div>
+
+                <p class="text-slate-700 font-medium">
+                    Обери правильні слова з випадаючих списків, щоб заповнити пропущені місця:
+                </p>
+
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 leading-loose text-slate-800 space-y-4">
+                    <p>
+                        1. Файл — це впорядкована інформація, що зберігається на диску під певною 
+                        <select id="t5-blank1" class="px-3 py-1.5 bg-white border border-slate-300 rounded-xl font-medium text-indigo-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            <option value="">-- обрати --</option>
+                            <option value="грою">грою</option>
+                            <option value="назвою">назвою</option>
+                            <option value="кнопкою">кнопкою</option>
+                        </select>.
+                    </p>
+                    <p>
+                        2. Для зручного групування файлів за темами використовують 
+                        <select id="t5-blank2" class="px-3 py-1.5 bg-white border border-slate-300 rounded-xl font-medium text-indigo-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            <option value="">-- обрати --</option>
+                            <option value="папки">папки</option>
+                            <option value="вікна">вікна</option>
+                            <option value="мишки">мишки</option>
+                        </select>.
+                    </p>
+                    <p>
+                        3. Кожен файл має розширення з 3-4 символів, яке вказує на його 
+                        <select id="t5-blank3" class="px-3 py-1.5 bg-white border border-slate-300 rounded-xl font-medium text-indigo-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            <option value="">-- обрати --</option>
+                            <option value="колір">колір</option>
+                            <option value="розмір екрана">розмір екрана</option>
+                            <option value="тип">тип</option>
+                        </select>.
+                    </p>
+                </div>
+
+                <div id="feedback-5" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <button type="button" onclick="checkTask5()" class="font-fredoka px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition font-semibold">
+                        Перевірити завдання 5
+                    </button>
+                    <button type="button" onclick="resetTask5()" class="font-fredoka px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition font-semibold">
+                        Спочатку 🔄
+                    </button>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- FINAL SCORE & BADGE SECTION -->
+        <section class="rounded-3xl shadow-xl p-8 text-center bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-600 text-white relative overflow-hidden space-y-6">
+            <h2 class="font-fredoka text-2xl md:text-3xl font-extrabold tracking-wide">
+                Підсумок ваших досягнень 🎖️
+            </h2>
+            
+            <p class="text-white/90 max-w-lg mx-auto text-base">
+                Перевірте всі виконані завдання вище та натисніть кнопку, щоб підрахувати бали й отримати свій значок!
+            </p>
+
+            <div>
+                <button type="button" onclick="calculateFinalResult()" class="pulse-btn font-fredoka px-8 py-4 bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold text-lg rounded-2xl shadow-xl shadow-amber-500/30 active:scale-95 transition">
+                    🌟 Отримати свій значок! 🌟
+                </button>
+            </div>
+
+            <!-- RESULT CARD DISPLAY -->
+            <div id="final-result-card" class="hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 max-w-md mx-auto space-y-3">
+                <div id="final-badge-icon" class="text-5xl">🏆</div>
+                <h3 id="final-badge-title" class="font-fredoka text-2xl font-bold"></h3>
+                <p id="final-badge-score" class="text-xl font-semibold text-amber-300"></p>
+                <p id="final-badge-desc" class="text-sm text-white/90"></p>
+            </div>
+        </section>
+
+        <!-- PRACTICAL MISSION SECTION -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-lg shadow-indigo-100/50 border border-slate-100 space-y-4">
+            <h2 class="font-fredoka text-2xl font-bold text-indigo-600 flex items-center gap-2">
+                🚀 Практична місія: Впорядкуй свій цифровий робочий стіл!
+            </h2>
+            <div class="space-y-3 text-slate-700 leading-relaxed font-medium">
+                <p>Виконай цікаве завдання на своєму комп'ютері або ноутбуці:</p>
+                <ol class="list-decimal list-inside space-y-2 bg-indigo-50/60 p-4 rounded-2xl border border-indigo-100">
+                    <li>Створи на Робочому столі нову папку та назви її <span class="font-bold text-indigo-700">«Мої_Матеріали_3_Клас»</span>.</li>
+                    <li>Всередині цієї папки створи дві підпапки: <span class="font-bold text-amber-600">«Малюнки»</span> та <span class="font-bold text-emerald-600">«Документи»</span>.</li>
+                    <li>Збережи або перетягни свій улюблений малюнок у папку «Малюнки».</li>
+                    <li>Покажи свій впорядкований робочий стіл вчителю чи батькам! 🎉</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-slate-500 text-sm font-medium pt-4">
+            © 2026 | Інформатика — 2 клас | Автор: Юрій Шроль
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ================= TASK 1 LOGIC ================= */
+        let task1Selected = null;
+
+        function selectTask1(option) {
+            task1Selected = option;
+            const options = ['A', 'B', 'C', 'D'];
+            options.forEach(opt => {
+                const btn = document.getElementById(`t1-opt-${opt}`);
+                if (opt === option) {
+                    btn.classList.remove('border-slate-200', 'bg-slate-50');
+                    btn.classList.add('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-200');
+                } else {
+                    btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-200');
+                    btn.classList.add('border-slate-200', 'bg-slate-50');
+                }
+            });
+        }
+
+        function checkTask1() {
+            const feedback = document.getElementById('feedback-1');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+            
+            if (!task1Selected) {
+                feedback.classList.add('bg-amber-100', 'text-amber-800');
+                feedback.textContent = '💡 Будь ласка, обери один із варіантів відповідей!';
+                return false;
+            }
+
+            if (task1Selected === 'B') {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                feedback.textContent = '🌟 Чудово! Саме папка призначена для зберігання та групування інших файлів.';
+                return true;
+            } else {
+                feedback.classList.add('bg-rose-100', 'text-rose-800');
+                feedback.textContent = '🤔 Спробуй ще раз! Файли зберігаються всередині жовтої папки.';
+                return false;
+            }
+        }
+
+        function resetTask1() {
+            task1Selected = null;
+            const options = ['A', 'B', 'C', 'D'];
+            options.forEach(opt => {
+                const btn = document.getElementById(`t1-opt-${opt}`);
+                btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-200');
+                btn.classList.add('border-slate-200', 'bg-slate-50');
+            });
+            const feedback = document.getElementById('feedback-1');
+            feedback.classList.add('hidden');
+        }
+
+        /* ================= TASK 2 LOGIC ================= */
+        let task2SelectedLeft = null;
+        let task2Pairs = {}; // leftKey -> rightKey
+
+        function clickTask2Left(key) {
+            task2SelectedLeft = key;
+            const keys = ['txt', 'jpg', 'mp3', 'mp4'];
+            keys.forEach(k => {
+                const el = document.getElementById(`t2-l-${k}`);
+                if (k === key) {
+                    el.classList.add('ring-2', 'ring-indigo-500', 'border-indigo-500');
+                } else {
+                    el.classList.remove('ring-2', 'ring-indigo-500', 'border-indigo-500');
+                }
+            });
+        }
+
+        function clickTask2Right(key) {
+            if (!task2SelectedLeft) {
+                const feedback = document.getElementById('feedback-2');
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800');
+                feedback.classList.add('bg-amber-100', 'text-amber-800');
+                feedback.textContent = '💡 Спочатку обери розширення з лівого стовпчика!';
+                return;
+            }
+
+            task2Pairs[task2SelectedLeft] = key;
+            
+            // Update UI badges
+            const leftEl = document.getElementById(`t2-l-${task2SelectedLeft}`);
+            const leftBadge = leftEl.querySelector('.t2-badge');
+            leftBadge.textContent = 'З\'єднано ✓';
+            leftBadge.className = 't2-badge text-xs font-semibold px-2 py-1 bg-indigo-100 text-indigo-700 rounded-lg';
+
+            const rightEl = document.getElementById(`t2-r-${key}`);
+            const rightBadge = rightEl.querySelector('.t2-r-badge');
+            rightBadge.textContent = 'З\'єднано ✓';
+            rightBadge.className = 't2-r-badge text-xs font-semibold px-2 py-1 bg-indigo-100 text-indigo-700 rounded-lg';
+
+            // Reset left selection highlight
+            leftEl.classList.remove('ring-2', 'ring-indigo-500');
+            task2SelectedLeft = null;
+        }
+
+        function checkTask2() {
+            const feedback = document.getElementById('feedback-2');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            const keys = ['txt', 'jpg', 'mp3', 'mp4'];
+            let matchedCount = Object.keys(task2Pairs).length;
+
+            if (matchedCount < 4) {
+                feedback.classList.add('bg-amber-100', 'text-amber-800');
+                feedback.textContent = 'Залишилося трошки подумати! Утворено не всі пари.';
+                return false;
+            }
+
+            let correct = true;
+            keys.forEach(k => {
+                if (task2Pairs[k] !== k) correct = false;
+            });
+
+            if (correct) {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                feedback.textContent = '🌟 Молодець! Усі види файлів з\'єднано абсолютно правильно!';
+                return true;
+            } else {
+                feedback.classList.add('bg-rose-100', 'text-rose-800');
+                feedback.textContent = '🤔 Деякі пари утворено невірно. Натисни «Спочатку 🔄» та спробуй ще раз!';
+                return false;
+            }
+        }
+
+        function resetTask2() {
+            task2SelectedLeft = null;
+            task2Pairs = {};
+            const keys = ['txt', 'jpg', 'mp3', 'mp4'];
+            keys.forEach(k => {
+                const lEl = document.getElementById(`t2-l-${k}`);
+                lEl.classList.remove('ring-2', 'ring-indigo-500', 'border-indigo-500');
+                const lBadge = lEl.querySelector('.t2-badge');
+                lBadge.textContent = 'Обери';
+                lBadge.className = 't2-badge text-xs font-normal px-2 py-1 bg-slate-200 text-slate-600 rounded-lg';
+
+                const rEl = document.getElementById(`t2-r-${k}`);
+                const rBadge = rEl.querySelector('.t2-r-badge');
+                rBadge.textContent = 'Пара?';
+                rBadge.className = 't2-r-badge text-xs px-2 py-1 bg-slate-200 text-slate-600 rounded-lg';
+            });
+            const feedback = document.getElementById('feedback-2');
+            feedback.classList.add('hidden');
+        }
+
+        /* ================= TASK 3 LOGIC ================= */
+        const task3Selections = {
+            item1: null, // file
+            item2: null, // folder
+            item3: null, // folder
+            item4: null, // file
+            item5: null, // folder
+            item6: null  // file
+        };
+
+        const task3Answers = {
+            item1: 'file',
+            item2: 'folder',
+            item3: 'folder',
+            item4: 'file',
+            item5: 'folder',
+            item6: 'file'
+        };
+
+        function setBucket(itemId, type) {
+            task3Selections[itemId] = type;
+            const btnFolder = document.getElementById(`t3-btn-${itemId}-folder`);
+            const btnFile = document.getElementById(`t3-btn-${itemId}-file`);
+
+            if (type === 'folder') {
+                btnFolder.className = 'px-3 py-1.5 text-xs font-bold rounded-xl border border-amber-500 bg-amber-500 text-white transition';
+                btnFile.className = 'px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white text-slate-600 transition';
+            } else {
+                btnFile.className = 'px-3 py-1.5 text-xs font-bold rounded-xl border border-indigo-600 bg-indigo-600 text-white transition';
+                btnFolder.className = 'px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white text-slate-600 transition';
+            }
+        }
+
+        function checkTask3() {
+            const feedback = document.getElementById('feedback-3');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            let answeredCount = 0;
+            let correct = true;
+
+            for (let key in task3Selections) {
+                if (task3Selections[key] !== null) answeredCount++;
+                if (task3Selections[key] !== task3Answers[key]) correct = false;
+            }
+
+            if (answeredCount < 6) {
+                feedback.classList.add('bg-amber-100', 'text-amber-800');
+                feedback.textContent = 'Залишилося трошки подумати! Розподіли всі об’єкти.';
+                return false;
+            }
+
+            if (correct) {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                feedback.textContent = '🌟 Супер! Всі файли та папки правильно розсортовано!';
+                return true;
+            } else {
+                feedback.classList.add('bg-rose-100', 'text-rose-800');
+                feedback.textContent = '🤔 Є помилки у розподілі. Зверни увагу на розширення файлів (.jpg, .docx, .mp3)!';
+                return false;
+            }
+        }
+
+        function resetTask3() {
+            for (let key in task3Selections) {
+                task3Selections[key] = null;
+                const btnFolder = document.getElementById(`t3-btn-${key}-folder`);
+                const btnFile = document.getElementById(`t3-btn-${key}-file`);
+                btnFolder.className = 'px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-amber-50 text-slate-600 transition';
+                btnFile.className = 'px-3 py-1.5 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-indigo-50 text-slate-600 transition';
+            }
+            const feedback = document.getElementById('feedback-3');
+            feedback.classList.add('hidden');
+        }
+
+        /* ================= TASK 4 LOGIC ================= */
+        let task4Items = [
+            { id: 2, text: '2. Обрати у меню пункт «Створити»' },
+            { id: 4, text: '4. Ввести назву папки та натиснути Enter' },
+            { id: 1, text: '1. Клікнути правою кнопкою миші на вільному місці' },
+            { id: 3, text: '3. Вибрати зі списку пункт «Папку»' }
+        ];
+
+        function renderTask4() {
+            const container = document.getElementById('task4-container');
+            container.innerHTML = '';
+
+            task4Items.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'p-4 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-3';
+                
+                const textSpan = document.createElement('span');
+                textSpan.className = 'font-medium text-slate-700 text-sm sm:text-base';
+                textSpan.textContent = item.text;
+
+                const btnGroup = document.createElement('div');
+                btnGroup.className = 'flex items-center gap-1 shrink-0';
+
+                const upBtn = document.createElement('button');
+                upBtn.type = 'button';
+                upBtn.className = 'w-9 h-9 rounded-xl bg-white border border-slate-300 hover:bg-indigo-50 text-slate-600 font-bold flex items-center justify-center transition disabled:opacity-30';
+                upBtn.innerHTML = '🔼';
+                upBtn.disabled = index === 0;
+                upBtn.onclick = () => moveTask4(index, -1);
+
+                const downBtn = document.createElement('button');
+                downBtn.type = 'button';
+                downBtn.className = 'w-9 h-9 rounded-xl bg-white border border-slate-300 hover:bg-indigo-50 text-slate-600 font-bold flex items-center justify-center transition disabled:opacity-30';
+                downBtn.innerHTML = '🔽';
+                downBtn.disabled = index === task4Items.length - 1;
+                downBtn.onclick = () => moveTask4(index, 1);
+
+                btnGroup.appendChild(upBtn);
+                btnGroup.appendChild(downBtn);
+
+                row.appendChild(textSpan);
+                row.appendChild(btnGroup);
+
+                container.appendChild(row);
+            });
+        }
+
+        function moveTask4(index, direction) {
+            const newIndex = index + direction;
+            if (newIndex < 0 || newIndex >= task4Items.length) return;
+            const temp = task4Items[index];
+            task4Items[index] = task4Items[newIndex];
+            task4Items[newIndex] = temp;
+            renderTask4();
+        }
+
+        function checkTask4() {
+            const feedback = document.getElementById('feedback-4');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800');
+
+            const correctOrder = [1, 2, 3, 4];
+            let isCorrect = true;
+
+            for (let i = 0; i < task4Items.length; i++) {
+                if (task4Items[i].id !== correctOrder[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                feedback.textContent = '🌟 Правильно! Всі кроки створення папки впорядковано ідеально!';
+                return true;
+            } else {
+                feedback.classList.add('bg-rose-100', 'text-rose-800');
+                feedback.textContent = '🤔 Порядок кроків не зовсім вірний. Спробуй поміняти місцями!';
+                return false;
+            }
+        }
+
+        function resetTask4() {
+            task4Items = [
+                { id: 2, text: '2. Обрати у меню пункт «Створити»' },
+                { id: 4, text: '4. Ввести назву папки та натиснути Enter' },
+                { id: 1, text: '1. Клікнути правою кнопкою миші на вільному місці' },
+                { id: 3, text: '3. Вибрати зі списку пункт «Папку»' }
+            ];
+            renderTask4();
+            const feedback = document.getElementById('feedback-4');
+            feedback.classList.add('hidden');
+        }
+
+        /* ================= TASK 5 LOGIC ================= */
+        function checkTask5() {
+            const feedback = document.getElementById('feedback-5');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            const val1 = document.getElementById('t5-blank1').value;
+            const val2 = document.getElementById('t5-blank2').value;
+            const val3 = document.getElementById('t5-blank3').value;
+
+            if (!val1 || !val2 || !val3) {
+                feedback.classList.add('bg-amber-100', 'text-amber-800');
+                feedback.textContent = 'Залишилося трошки подумати! Заповни всі 3 пропуски.';
+                return false;
+            }
+
+            if (val1 === 'назвою' && val2 === 'папки' && val3 === 'тип') {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                feedback.textContent = '🌟 Бездоганно! Усі пропущені слова обрано вірно!';
+                return true;
+            } else {
+                feedback.classList.add('bg-rose-100', 'text-rose-800');
+                feedback.textContent = '🤔 Деякі слова обрані невірно. Перечитай уважно речення!';
+                return false;
+            }
+        }
+
+        function resetTask5() {
+            document.getElementById('t5-blank1').value = '';
+            document.getElementById('t5-blank2').value = '';
+            document.getElementById('t5-blank3').value = '';
+            const feedback = document.getElementById('feedback-5');
+            feedback.classList.add('hidden');
+        }
+
+        /* ================= FINAL SCORE & BADGE LOGIC ================= */
+        function calculateFinalResult() {
+            const res1 = checkTask1();
+            const res2 = checkTask2();
+            const res3 = checkTask3();
+            const res4 = checkTask4();
+            const res5 = checkTask5();
+
+            let score = 0;
+            if (res1) score++;
+            if (res2) score++;
+            if (res3) score++;
+            if (res4) score++;
+            if (res5) score++;
+
+            const card = document.getElementById('final-result-card');
+            const icon = document.getElementById('final-badge-icon');
+            const title = document.getElementById('final-badge-title');
+            const scoreText = document.getElementById('final-badge-score');
+            const desc = document.getElementById('final-badge-desc');
+
+            card.classList.remove('hidden');
+
+            if (score === 5) {
+                icon.textContent = '🏆';
+                title.textContent = 'Гранд-майстер впорядкування';
+                scoreText.textContent = `Результат: ${score} / 5 балів`;
+                desc.textContent = 'Вітаємо! Ти справжній експерт із файлів та папок! Твій цифровий простір завжди буде в повному порядку!';
+                
+                // Launch Confetti Effect
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+            } else if (score >= 3) {
+                icon.textContent = '🥈';
+                title.textContent = 'Дослідник файлової системи';
+                scoreText.textContent = `Результат: ${score} / 5 балів`;
+                desc.textContent = 'Чудова робота! Ти гарно орієнтуєшся у файлах, спробуй виправити помилки для досягнення кубка!';
+            } else {
+                icon.textContent = '🥉';
+                title.textContent = 'Юний учень';
+                scoreText.textContent = `Результат: ${score} / 5 балів`;
+                desc.textContent = 'Гарна спроба! Передивись презентацію ще раз та спробуй пройти завдання повторно!';
+            }
+
+            card.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize dynamic renders on load
+        window.onload = function() {
+            renderTask4();
+        };
+    </script>
+</body>
+</html>
