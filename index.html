@@ -194,16 +194,10 @@
       <div class="hero-icon" aria-hidden="true">💻</div>
       <h1>Інформатика — 3 клас</h1>
       <p>Навчайся, досліджуй, створюй!</p>
-      <div class="hero-note">Навчальні матеріали • Презентації • Практичні завдання</div>
+      <div class="hero-note">Презентації • Інтерактивні вправи • Практичні завдання</div>
     </header>
 
-    <div class="toolbar">
-      <div class="counter">📘 У курсі: <span id="topicCount">34</span> теми</div>
-      <label class="search-wrap">
-        <span aria-hidden="true">🔎</span>
-        <input id="search" type="search" placeholder="Знайти тему..." aria-label="Пошук тем">
-      </label>
-    </div>
+    
 
     <section class="unit" aria-labelledby="unit1">
       <h2 class="unit-heading" id="unit1"><span class="unit-icon">🌐</span> Інформація та цифровий світ</h2>
@@ -258,32 +252,11 @@
       </div>
     </section>
 
-    <div class="empty" id="empty">За вашим запитом тем не знайдено. Спробуйте інші ключові слова.</div>
+    
 
-    <footer>Навчальний сайт з інформатики для <strong>3 класу</strong></footer>
+    <footer>© 2026 | Інформатика — 3 клас | Автор: Юрій Шроль</footer>
   </main>
 
-  <script>
-    const search = document.getElementById('search');
-    const cards = [...document.querySelectorAll('.topic-card')];
-    const units = [...document.querySelectorAll('.unit')];
-    const count = document.getElementById('topicCount');
-    const empty = document.getElementById('empty');
-
-    search.addEventListener('input', () => {
-      const query = search.value.trim().toLocaleLowerCase('uk');
-      let visible = 0;
-      cards.forEach(card => {
-        const match = card.textContent.toLocaleLowerCase('uk').includes(query);
-        card.hidden = !match;
-        if (match) visible++;
-      });
-      units.forEach(unit => {
-        unit.hidden = ![...unit.querySelectorAll('.topic-card')].some(card => !card.hidden);
-      });
-      count.textContent = query ? `${visible} із ${cards.length}` : cards.length;
-      empty.style.display = visible ? 'none' : 'block';
-    });
-  </script>
+  
 </body>
 </html>
