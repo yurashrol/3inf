@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторське право та відповідальне використання матеріалів | Інформатика 3 клас</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Fixes & Animations -->
+    <style>
+        .font-fredoka {
+            font-family: 'Fredoka', cursive, sans-serif !important;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+        .pulse-btn {
+            animation: pulse-slow 2s infinite ease-in-out;
+        }
+        .drag-over {
+            border-color: #0d9488 !important;
+            background-color: #ccfbf1 !important;
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-teal-50 via-sky-50 to-emerald-50 min-h-screen pb-16 font-sans text-slate-800 antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8">
+
+        <!-- 1. HEADER SECTION -->
+        <header class="rounded-3xl shadow-xl py-10 px-6 bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-700 text-center flex flex-col items-center text-white relative overflow-hidden">
+            <!-- Background Decorative Blur Elements -->
+            <div class="absolute -top-10 -left-10 w-36 h-36 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -right-10 w-44 h-44 bg-cyan-300/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- Subject & Grade Badge -->
+            <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner font-fredoka">
+                📖 Інформатика • 3 клас
+            </div>
+
+            <!-- Main Topic Title -->
+            <h1 class="text-3xl md:text-4xl text-white font-extrabold tracking-wide drop-shadow-sm font-fredoka mb-3">
+                Авторське право та відповідальне використання матеріалів 📜💡
+            </h1>
+
+            <!-- Description -->
+            <p class="text-white/90 text-base md:text-lg font-normal max-w-xl mt-3 leading-relaxed font-sans">
+                Дізнайся, як чесно та безпечно використовувати чужі тексти, зображення й музику та захисти свої власні творчі здобутки!
+            </p>
+        </header>
+
+
+        <!-- 2. PRESENTATION / THEORY SECTION -->
+        <section class="bg-white rounded-3xl p-6 shadow-lg border border-teal-100">
+            <h2 class="text-2xl font-bold font-fredoka text-teal-900 mb-1 flex items-center gap-2">
+                📹 Навчальна презентація
+            </h2>
+            <p class="text-slate-600 text-sm mb-4">Переглянь навчальні матеріали перед виконанням завдань</p>
+            
+            <!-- Embed Presentation Box -->
+            <div class="relative w-full overflow-hidden rounded-2xl shadow-md pt-[56.25%] bg-teal-50 border border-teal-100">
+                <iframe loading="lazy" 
+                        class="absolute inset-0 w-full h-full border-0 m-0 p-0" 
+                        src="https://www.canva.com/design/заглушка/view?embed" 
+                        allowfullscreen="allowfullscreen" 
+                        allow="fullscreen">
+                </iframe>
+            </div>
+        </section>
+
+
+        <!-- 3. MAIN INTERACTIVE TASKS SECTION -->
+        <main class="space-y-8">
+
+            <!-- TASK 1: SINGLE CHOICE -->
+            <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-teal-100 relative" id="task1-card">
+                <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center font-fredoka text-lg">1</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-800 font-fredoka">Хто вважається автором фотографії або малюнка?</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">Одиночний вибір 🎯</span>
+                </div>
+
+                <p class="text-slate-600 mb-6">Обери одну правильну відповідь із трьох варіантів:</p>
+
+                <div class="space-y-3" id="t1-options">
+                    <button onclick="selectTask1(0)" class="t1-opt-btn w-full text-left p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 hover:bg-teal-50/50 transition-all font-medium text-slate-700 flex items-center justify-between group">
+                        <span>А) Той, хто створив або сфотографував цей твір власними руками</span>
+                        <span class="w-6 h-6 rounded-full border-2 border-slate-300 group-hover:border-teal-500 flex items-center justify-center text-xs text-transparent">✓</span>
+                    </button>
+                    <button onclick="selectTask1(1)" class="t1-opt-btn w-full text-left p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 hover:bg-teal-50/50 transition-all font-medium text-slate-700 flex items-center justify-between group">
+                        <span>Б) Будь-хто, хто завантажив файли з інтернету на свій комп'ютер</span>
+                        <span class="w-6 h-6 rounded-full border-2 border-slate-300 group-hover:border-teal-500 flex items-center justify-center text-xs text-transparent">✓</span>
+                    </button>
+                    <button onclick="selectTask1(2)" class="t1-opt-btn w-full text-left p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 hover:bg-teal-50/50 transition-all font-medium text-slate-700 flex items-center justify-between group">
+                        <span>В) Людина, яка просто роздрукувала малюнок на принтері</span>
+                        <span class="w-6 h-6 rounded-full border-2 border-slate-300 group-hover:border-teal-500 flex items-center justify-center text-xs text-transparent">✓</span>
+                    </button>
+                </div>
+
+                <div id="feedback-1" class="hidden mt-6 p-4 rounded-2xl text-sm font-semibold border flex items-center gap-3"></div>
+
+                <div class="mt-6 flex items-center gap-3 flex-wrap">
+                    <button onclick="checkTask1()" class="bg-teal-600 hover:bg-teal-700 text-white rounded-2xl shadow-md active:scale-95 transition-all font-semibold py-2.5 px-6 flex items-center gap-2">
+                        <span>Перевірити завдання 1</span> 🔍
+                    </button>
+                    <button onclick="resetTask1()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition-all font-semibold py-2.5 px-5 flex items-center gap-2">
+                        <span>Спочатку 🔄</span>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- TASK 2: MULTIPLE SELECT (CHECKBOXES) -->
+            <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-teal-100 relative" id="task2-card">
+                <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center font-fredoka text-lg">2</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-800 font-fredoka">Чесне використання матеріалів</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">Множинний вибір ☑️</span>
+                </div>
+
+                <p class="text-slate-600 mb-6">Познач УСІ дії, які є <b>ДОРЕЧНИМИ та чесними</b> при використанні чужих матеріалів:</p>
+
+                <div class="space-y-3" id="t2-options">
+                    <label onclick="toggleTask2Option(0)" class="t2-item cursor-pointer block p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 transition-all font-medium text-slate-700 flex items-center justify-between">
+                        <span class="pr-2">1) Вказати прізвище автора та посилання на оригінал</span>
+                        <input type="checkbox" class="t2-cb w-5 h-5 accent-teal-600 rounded cursor-pointer">
+                    </label>
+                    <label onclick="toggleTask2Option(1)" class="t2-item cursor-pointer block p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 transition-all font-medium text-slate-700 flex items-center justify-between">
+                        <span class="pr-2">2) Використовувати фото з безкоштовних стоків (з вільною ліцензією)</span>
+                        <input type="checkbox" class="t2-cb w-5 h-5 accent-teal-600 rounded cursor-pointer">
+                    </label>
+                    <label onclick="toggleTask2Option(2)" class="t2-item cursor-pointer block p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 transition-all font-medium text-slate-700 flex items-center justify-between">
+                        <span class="pr-2">3) Видалити чужий підпис з картинки і підписатися своїм ім'ям</span>
+                        <input type="checkbox" class="t2-cb w-5 h-5 accent-teal-600 rounded cursor-pointer">
+                    </label>
+                    <label onclick="toggleTask2Option(3)" class="t2-item cursor-pointer block p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 transition-all font-medium text-slate-700 flex items-center justify-between">
+                        <span class="pr-2">4) Запитати особистий дозвіл у автора перед публікацією його роботи</span>
+                        <input type="checkbox" class="t2-cb w-5 h-5 accent-teal-600 rounded cursor-pointer">
+                    </label>
+                    <label onclick="toggleTask2Option(4)" class="t2-item cursor-pointer block p-4 rounded-2xl border-2 border-slate-100 hover:border-teal-300 transition-all font-medium text-slate-700 flex items-center justify-between">
+                        <span class="pr-2">5) Продавати чужу комп'ютерну програму від свого імені</span>
+                        <input type="checkbox" class="t2-cb w-5 h-5 accent-teal-600 rounded cursor-pointer">
+                    </label>
+                </div>
+
+                <div id="feedback-2" class="hidden mt-6 p-4 rounded-2xl text-sm font-semibold border flex items-center gap-3"></div>
+
+                <div class="mt-6 flex items-center gap-3 flex-wrap">
+                    <button onclick="checkTask2()" class="bg-teal-600 hover:bg-teal-700 text-white rounded-2xl shadow-md active:scale-95 transition-all font-semibold py-2.5 px-6 flex items-center gap-2">
+                        <span>Перевірити завдання 2</span> 🔍
+                    </button>
+                    <button onclick="resetTask2()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition-all font-semibold py-2.5 px-5 flex items-center gap-2">
+                        <span>Спочатку 🔄</span>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- TASK 3: MATCHING PAIRS -->
+            <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-teal-100 relative" id="task3-card">
+                <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center font-fredoka text-lg">3</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-800 font-fredoka">З'єднай поняття та їх пояснення</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">Відповідність 🔗</span>
+                </div>
+
+                <p class="text-slate-600 mb-6">Натисни спочатку на картку в лівому стовпчику, а потім на відповідну картку в правому:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left Column -->
+                    <div class="space-y-3" id="t3-left-col">
+                        <div data-id="1" onclick="handleMatchLeftClick(1)" class="t3-left-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative">
+                            <span class="font-bold text-slate-800 text-base">1. Автор 🎨</span>
+                            <span class="t3-status text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full absolute top-3 right-3 hidden">З'єднано</span>
+                        </div>
+                        <div data-id="2" onclick="handleMatchLeftClick(2)" class="t3-left-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative">
+                            <span class="font-bold text-slate-800 text-base">2. Плагіат ⚠️</span>
+                            <span class="t3-status text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full absolute top-3 right-3 hidden">З'єднано</span>
+                        </div>
+                        <div data-id="3" onclick="handleMatchLeftClick(3)" class="t3-left-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative">
+                            <span class="font-bold text-slate-800 text-base">3. Знак © 📜</span>
+                            <span class="t3-status text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full absolute top-3 right-3 hidden">З'єднано</span>
+                        </div>
+                        <div data-id="4" onclick="handleMatchLeftClick(4)" class="t3-left-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative">
+                            <span class="font-bold text-slate-800 text-base">4. Вільна ліцензія 🔓</span>
+                            <span class="t3-status text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full absolute top-3 right-3 hidden">З'єднано</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="space-y-3" id="t3-right-col">
+                        <div data-target="2" onclick="handleMatchRightClick(2)" class="t3-right-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-700">A. Видавання чужого малюнка чи тексту за свій власний</span>
+                            <button onclick="disconnectPair(event, 2)" class="t3-remove-btn hidden text-rose-500 hover:bg-rose-100 w-7 h-7 rounded-full text-xs font-bold items-center justify-center ml-2" title="Роз'єднати">✕</button>
+                        </div>
+                        <div data-target="1" onclick="handleMatchRightClick(1)" class="t3-right-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-700">B. Людина, яка створила оригінальний твір чи картинку</span>
+                            <button onclick="disconnectPair(event, 1)" class="t3-remove-btn hidden text-rose-500 hover:bg-rose-100 w-7 h-7 rounded-full text-xs font-bold items-center justify-center ml-2" title="Роз'єднати">✕</button>
+                        </div>
+                        <div data-target="4" onclick="handleMatchRightClick(4)" class="t3-right-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-700">C. Правило, що дозволяє безкоштовно та чесно використовувати твір</span>
+                            <button onclick="disconnectPair(event, 4)" class="t3-remove-btn hidden text-rose-500 hover:bg-rose-100 w-7 h-7 rounded-full text-xs font-bold items-center justify-center ml-2" title="Роз'єднати">✕</button>
+                        </div>
+                        <div data-target="3" onclick="handleMatchRightClick(3)" class="t3-right-item cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition-all relative flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-700">D. Позначка, яка нагадує про охорону авторських прав</span>
+                            <button onclick="disconnectPair(event, 3)" class="t3-remove-btn hidden text-rose-500 hover:bg-rose-100 w-7 h-7 rounded-full text-xs font-bold items-center justify-center ml-2" title="Роз'єднати">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="feedback-3" class="hidden mt-6 p-4 rounded-2xl text-sm font-semibold border flex items-center gap-3"></div>
+
+                <div class="mt-6 flex items-center gap-3 flex-wrap">
+                    <button onclick="checkTask3()" class="bg-teal-600 hover:bg-teal-700 text-white rounded-2xl shadow-md active:scale-95 transition-all font-semibold py-2.5 px-6 flex items-center gap-2">
+                        <span>Перевірити завдання 3</span> 🔍
+                    </button>
+                    <button onclick="resetTask3()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition-all font-semibold py-2.5 px-5 flex items-center gap-2">
+                        <span>Спочатку 🔄</span>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- TASK 4: TRUE OR FALSE FLASHCARDS -->
+            <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-teal-100 relative" id="task4-card">
+                <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center font-fredoka text-lg">4</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-800 font-fredoka">Вікторина «Вірно чи Ні»</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">Так / Ні 👍👎</span>
+                </div>
+
+                <p class="text-slate-600 mb-6">Прочитай кожне твердження та обери правильну відповідь:</p>
+
+                <div class="space-y-4" id="t4-cards">
+                    <!-- Card 1 -->
+                    <div class="p-4 sm:p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4" data-index="0">
+                        <p class="text-slate-800 font-medium text-sm sm:text-base">1. Якщо картинка є в Google Пошуку, її можна брати й підписувати своїм ім'ям.</p>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="setTask4Answer(0, true)" class="t4-btn-true flex-1 sm:flex-none px-4 py-2 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold text-xs sm:text-sm transition-all">Так 👍</button>
+                            <button onclick="setTask4Answer(0, false)" class="t4-btn-false flex-1 sm:flex-none px-4 py-2 rounded-xl border border-rose-300 text-rose-700 bg-rose-50 hover:bg-rose-100 font-semibold text-xs sm:text-sm transition-all">Ні 👎</button>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="p-4 sm:p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4" data-index="1">
+                        <p class="text-slate-800 font-medium text-sm sm:text-base">2. Завантажувати музику з офіційних безкоштовних фотостоків безпечно й дозволено.</p>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="setTask4Answer(1, true)" class="t4-btn-true flex-1 sm:flex-none px-4 py-2 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold text-xs sm:text-sm transition-all">Так 👍</button>
+                            <button onclick="setTask4Answer(1, false)" class="t4-btn-false flex-1 sm:flex-none px-4 py-2 rounded-xl border border-rose-300 text-rose-700 bg-rose-50 hover:bg-rose-100 font-semibold text-xs sm:text-sm transition-all">Ні 👎</button>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="p-4 sm:p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4" data-index="2">
+                        <p class="text-slate-800 font-medium text-sm sm:text-base">3. Використання короткого речення з книжки із посиланням на автора є чесним цитуванням.</p>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="setTask4Answer(2, true)" class="t4-btn-true flex-1 sm:flex-none px-4 py-2 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-semibold text-xs sm:text-sm transition-all">Так 👍</button>
+                            <button onclick="setTask4Answer(2, false)" class="t4-btn-false flex-1 sm:flex-none px-4 py-2 rounded-xl border border-rose-300 text-rose-700 bg-rose-50 hover:bg-rose-100 font-semibold text-xs sm:text-sm transition-all">Ні 👎</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="feedback-4" class="hidden mt-6 p-4 rounded-2xl text-sm font-semibold border flex items-center gap-3"></div>
+
+                <div class="mt-6 flex items-center gap-3 flex-wrap">
+                    <button onclick="checkTask4()" class="bg-teal-600 hover:bg-teal-700 text-white rounded-2xl shadow-md active:scale-95 transition-all font-semibold py-2.5 px-6 flex items-center gap-2">
+                        <span>Перевірити завдання 4</span> 🔍
+                    </button>
+                    <button onclick="resetTask4()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition-all font-semibold py-2.5 px-5 flex items-center gap-2">
+                        <span>Спочатку 🔄</span>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- TASK 5: PURE CATEGORY BUCKET SORTING (DRAG & DROP ONLY) -->
+            <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-teal-100 relative" id="task5-card">
+                <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center font-fredoka text-lg">5</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-800 font-fredoka">Сортування по кошиках</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">Перетягування 🧺</span>
+                </div>
+
+                <p class="text-slate-600 mb-4">Перетягни кожну картку з вчинком у потрібний кошик:</p>
+
+                <!-- Unsorted Pool Container -->
+                <div id="t5-pool-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'pool')" class="mb-6 p-4 bg-teal-50/50 rounded-2xl border border-teal-100 transition-all">
+                    <p class="text-xs font-bold uppercase tracking-wider text-teal-800 mb-3">Нерозподілені вчинки:</p>
+                    <div id="t5-pool" class="flex flex-wrap gap-3 min-h-[55px] items-center">
+                        <div id="t5-item-1" draggable="true" ondragstart="handleDragStart(event, 1)" class="t5-item bg-white px-4 py-3 rounded-2xl shadow-sm border-2 border-slate-200 text-sm font-medium text-slate-700 cursor-grab active:cursor-grabbing hover:border-teal-400 transition-all">
+                            1. Вказати автора фотографії під малюнком
+                        </div>
+                        <div id="t5-item-2" draggable="true" ondragstart="handleDragStart(event, 2)" class="t5-item bg-white px-4 py-3 rounded-2xl shadow-sm border-2 border-slate-200 text-sm font-medium text-slate-700 cursor-grab active:cursor-grabbing hover:border-teal-400 transition-all">
+                            2. Видати чужий малюнок за власний
+                        </div>
+                        <div id="t5-item-3" draggable="true" ondragstart="handleDragStart(event, 3)" class="t5-item bg-white px-4 py-3 rounded-2xl shadow-sm border-2 border-slate-200 text-sm font-medium text-slate-700 cursor-grab active:cursor-grabbing hover:border-teal-400 transition-all">
+                            3. Використати картинку з безкоштовного фотостоку
+                        </div>
+                        <div id="t5-item-4" draggable="true" ondragstart="handleDragStart(event, 4)" class="t5-item bg-white px-4 py-3 rounded-2xl shadow-sm border-2 border-slate-200 text-sm font-medium text-slate-700 cursor-grab active:cursor-grabbing hover:border-teal-400 transition-all">
+                            4. Скопіювати чужий текст без дозволу
+                        </div>
+                        <div id="t5-item-5" draggable="true" ondragstart="handleDragStart(event, 5)" class="t5-item bg-white px-4 py-3 rounded-2xl shadow-sm border-2 border-slate-200 text-sm font-medium text-slate-700 cursor-grab active:cursor-grabbing hover:border-teal-400 transition-all">
+                            5. Запитати дозвіл у художника перед публікацією
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Target Buckets -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div id="bucket-honest" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'honest')" class="bucket-zone border-2 border-dashed border-emerald-300 bg-emerald-50/40 rounded-2xl p-5 min-h-[160px] flex flex-col transition-all">
+                        <div class="flex items-center gap-2 mb-3 text-emerald-800 font-bold font-fredoka text-lg pointer-events-none">
+                            <span>✅ Чесне використання</span>
+                        </div>
+                        <div class="bucket-content space-y-2.5 flex-grow pointer-events-none"></div>
+                    </div>
+
+                    <div id="bucket-violator" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'violator')" class="bucket-zone border-2 border-dashed border-rose-300 bg-rose-50/40 rounded-2xl p-5 min-h-[160px] flex flex-col transition-all">
+                        <div class="flex items-center gap-2 mb-3 text-rose-800 font-bold font-fredoka text-lg pointer-events-none">
+                            <span>❌ Порушення прав</span>
+                        </div>
+                        <div class="bucket-content space-y-2.5 flex-grow pointer-events-none"></div>
+                    </div>
+                </div>
+
+                <div id="feedback-5" class="hidden mt-6 p-4 rounded-2xl text-sm font-semibold border flex items-center gap-3"></div>
+
+                <div class="mt-6 flex items-center gap-3 flex-wrap">
+                    <button onclick="checkTask5()" class="bg-teal-600 hover:bg-teal-700 text-white rounded-2xl shadow-md active:scale-95 transition-all font-semibold py-2.5 px-6 flex items-center gap-2">
+                        <span>Перевірити завдання 5</span> 🔍
+                    </button>
+                    <button onclick="resetTask5()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-2xl active:scale-95 transition-all font-semibold py-2.5 px-5 flex items-center gap-2">
+                        <span>Спочатку 🔄</span>
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+
+        <!-- 4. FINAL RESULT & BADGE SECTION -->
+        <section class="rounded-3xl shadow-xl p-8 text-center text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-700 space-y-6 relative overflow-hidden">
+            <h2 class="text-2xl sm:text-3xl font-bold font-fredoka">Підсумок та свій значок</h2>
+            <p class="text-white/90 max-w-lg mx-auto text-sm sm:text-base">
+                Виконай усі завдання вище та натисни кнопку нижче для підрахунку балів!
+            </p>
+
+            <button onclick="calculateFinalResult()" class="pulse-btn bg-amber-400 hover:bg-amber-300 text-teal-950 font-bold font-fredoka text-xl px-8 py-4 rounded-2xl shadow-lg active:scale-95 transition-all inline-flex items-center gap-3 border-2 border-white/30">
+                <span>🌟 Отримати свій значок! 🌟</span>
+            </button>
+
+            <!-- Result Card -->
+            <div id="final-result-box" class="hidden p-6 sm:p-8 bg-white/15 backdrop-blur-md border border-white/30 rounded-3xl max-w-xl mx-auto space-y-4 text-white mt-6">
+                <div id="final-badge-icon" class="text-5xl sm:text-6xl animate-bounce">🏆</div>
+                <h3 id="final-title" class="text-2xl sm:text-3xl font-extrabold font-fredoka"></h3>
+                <p id="final-score" class="text-lg font-bold text-amber-200"></p>
+                <p id="final-desc" class="text-white/90 text-sm sm:text-base leading-relaxed"></p>
+            </div>
+        </section>
+
+
+        <!-- 5. PRACTICAL CREATIVE TASK SECTION -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-teal-100">
+            <h2 class="text-xl sm:text-2xl font-bold font-fredoka text-teal-900 mb-3 flex items-center gap-2">
+                🎨 Творча лабораторія: Твій авторський знак!
+            </h2>
+
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
+                Створи в графічному редакторі або у звичайному зошиті власний малюнок (наприклад, веселого робота чи космічну станцію) та правильно підпиши його за правилами авторського права.
+            </p>
+
+            <div class="bg-teal-50 border border-teal-100 p-4 sm:p-5 rounded-2xl space-y-2">
+                <h4 class="font-bold text-teal-900 text-sm sm:text-base">Чек-лист правильного автора:</h4>
+                <ul class="list-disc list-inside text-sm text-slate-700 space-y-1 font-medium">
+                    <li>Малюнок повинен бути твоєю власною вигадкою.</li>
+                    <li>У нижньому кутку розмісти запис: <code class="bg-white px-2 py-0.5 rounded border border-teal-200 text-teal-800 font-bold">© [Твоє Ім'я], 2026</code>.</li>
+                    <li>Тепер твоя творча робота захищена! ✨</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- 6. FOOTER -->
+        <footer class="text-center text-slate-500 text-sm mt-12 mb-6 font-medium">
+            © 2026 | Інформатика — 3 клас | Автор: Юрій Шроль
+        </footer>
+
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ----------------------------------------------------
+           TASK 1: SINGLE CHOICE LOGIC
+        ---------------------------------------------------- */
+        let t1Selected = null;
+        const t1CorrectIndex = 0;
+
+        function selectTask1(index) {
+            t1Selected = index;
+            const btns = document.querySelectorAll('.t1-opt-btn');
+            btns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('border-teal-600', 'bg-teal-50');
+                    btn.classList.remove('border-slate-100');
+                    btn.querySelector('span:last-child').classList.remove('text-transparent');
+                    btn.querySelector('span:last-child').classList.add('bg-teal-600', 'text-white');
+                } else {
+                    btn.classList.remove('border-teal-600', 'bg-teal-50');
+                    btn.classList.add('border-slate-100');
+                    btn.querySelector('span:last-child').classList.add('text-transparent');
+                    btn.querySelector('span:last-child').classList.remove('bg-teal-600', 'text-white');
+                }
+            });
+        }
+
+        function checkTask1() {
+            const fb = document.getElementById('feedback-1');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+
+            if (t1Selected === null) {
+                fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+                fb.innerHTML = `<span>⚠️ Залишилося трошки подумати: обери один із варіантів!</span>`;
+                return false;
+            }
+
+            if (t1Selected === t1CorrectIndex) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+                fb.innerHTML = `<span>🎉 Чудово! Автором є саме той, хто створив твір своїми руками!</span>`;
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+                fb.innerHTML = `<span>🤔 Спробуй ще! Згадай, хто насправді створює оригінал.</span>`;
+                return false;
+            }
+        }
+
+        function resetTask1() {
+            t1Selected = null;
+            document.querySelectorAll('.t1-opt-btn').forEach(btn => {
+                btn.classList.remove('border-teal-600', 'bg-teal-50');
+                btn.classList.add('border-slate-100');
+                btn.querySelector('span:last-child').classList.add('text-transparent');
+            });
+            document.getElementById('feedback-1').classList.add('hidden');
+        }
+
+
+        /* ----------------------------------------------------
+           TASK 2: MULTIPLE SELECT LOGIC
+        ---------------------------------------------------- */
+        const t2Correct = [true, true, false, true, false];
+
+        function toggleTask2Option(index) {
+            const items = document.querySelectorAll('#t2-options .t2-item');
+            const cb = items[index].querySelector('.t2-cb');
+            if (cb.checked) {
+                items[index].classList.add('border-teal-500', 'bg-teal-50/60');
+            } else {
+                items[index].classList.remove('border-teal-500', 'bg-teal-50/60');
+            }
+        }
+
+        function checkTask2() {
+            const fb = document.getElementById('feedback-2');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+
+            const cbs = document.querySelectorAll('#t2-options .t2-cb');
+            let isSelectedAny = Array.from(cbs).some(cb => cb.checked);
+
+            if (!isSelectedAny) {
+                fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+                fb.innerHTML = `<span>⚠️ Познач хоча б один правильний варіант!</span>`;
+                return false;
+            }
+
+            let isCorrect = true;
+            cbs.forEach((cb, idx) => {
+                if (cb.checked !== t2Correct[idx]) {
+                    isCorrect = false;
+                }
+            });
+
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+                fb.innerHTML = `<span>🎉 Супер! Ти відмітив усі чесні та доречні вчинки!</span>`;
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+                fb.innerHTML = `<span>🤔 Є помилка. Пам'ятай: вказувати автора та питати дозвіл — це чесно, а присвоювати чужу роботу — ні.</span>`;
+                return false;
+            }
+        }
+
+        function resetTask2() {
+            const items = document.querySelectorAll('#t2-options .t2-item');
+            items.forEach(item => {
+                const cb = item.querySelector('.t2-cb');
+                cb.checked = false;
+                item.classList.remove('border-teal-500', 'bg-teal-50/60');
+            });
+            document.getElementById('feedback-2').classList.add('hidden');
+        }
+
+
+        /* ----------------------------------------------------
+           TASK 3: MATCHING PAIRS LOGIC
+        ---------------------------------------------------- */
+        let t3ActiveLeft = null;
+        let t3Pairs = {};
+
+        const pairColors = {
+            1: { border: 'border-teal-500', bg: 'bg-teal-50' },
+            2: { border: 'border-rose-400', bg: 'bg-rose-50' },
+            3: { border: 'border-amber-500', bg: 'bg-amber-50' },
+            4: { border: 'border-sky-500', bg: 'bg-sky-50' }
+        };
+
+        function handleMatchLeftClick(leftId) {
+            t3ActiveLeft = leftId;
+            document.querySelectorAll('.t3-left-item').forEach(el => {
+                if (parseInt(el.dataset.id) === leftId) {
+                    el.classList.add('ring-4', 'ring-teal-200', 'border-teal-500');
+                } else {
+                    el.classList.remove('ring-4', 'ring-teal-200');
+                }
+            });
+        }
+
+        function handleMatchRightClick(targetId) {
+            if (!t3ActiveLeft) return;
+
+            delete t3Pairs[t3ActiveLeft];
+            for (let lId in t3Pairs) {
+                if (t3Pairs[lId] === targetId) {
+                    delete t3Pairs[lId];
+                }
+            }
+
+            t3Pairs[t3ActiveLeft] = targetId;
+            t3ActiveLeft = null;
+            renderMatchingState();
+        }
+
+        function disconnectPair(event, targetId) {
+            event.stopPropagation();
+            for (let lId in t3Pairs) {
+                if (t3Pairs[lId] === targetId) {
+                    delete t3Pairs[lId];
+                }
+            }
+            renderMatchingState();
+        }
+
+        function renderMatchingState() {
+            document.querySelectorAll('.t3-left-item').forEach(el => {
+                const lId = parseInt(el.dataset.id);
+                el.classList.remove('ring-4', 'ring-teal-200', 'border-teal-500', 'border-rose-400', 'border-amber-500', 'border-sky-500', 'bg-teal-50', 'bg-rose-50', 'bg-amber-50', 'bg-sky-50');
+                const statusSpan = el.querySelector('.t3-status');
+
+                if (t3Pairs[lId]) {
+                    const col = pairColors[lId];
+                    el.classList.add(col.border, col.bg);
+                    statusSpan.classList.remove('hidden');
+                } else {
+                    statusSpan.classList.add('hidden');
+                }
+            });
+
+            document.querySelectorAll('.t3-right-item').forEach(el => {
+                const targetId = parseInt(el.dataset.target);
+                el.classList.remove('border-teal-500', 'border-rose-400', 'border-amber-500', 'border-sky-500', 'bg-teal-50', 'bg-rose-50', 'bg-amber-50', 'bg-sky-50');
+                const removeBtn = el.querySelector('.t3-remove-btn');
+
+                let pairedLeftId = null;
+                for (let lId in t3Pairs) {
+                    if (t3Pairs[lId] === targetId) {
+                        pairedLeftId = parseInt(lId);
+                        break;
+                    }
+                }
+
+                if (pairedLeftId) {
+                    const col = pairColors[pairedLeftId];
+                    el.classList.add(col.border, col.bg);
+                    removeBtn.classList.remove('hidden');
+                    removeBtn.classList.add('flex');
+                } else {
+                    removeBtn.classList.add('hidden');
+                    removeBtn.classList.remove('flex');
+                }
+            });
+        }
+
+        function checkTask3() {
+            const fb = document.getElementById('feedback-3');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+
+            if (Object.keys(t3Pairs).length < 4) {
+                fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+                fb.innerHTML = `<span>⚠️ З'єднай усі 4 пари карток!</span>`;
+                return false;
+            }
+
+            let isCorrect = (t3Pairs[1] === 1 && t3Pairs[2] === 2 && t3Pairs[3] === 3 && t3Pairs[4] === 4);
+
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+                fb.innerHTML = `<span>🎉 Молодець! Усі поняття з'єднано правильно!</span>`;
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+                fb.innerHTML = `<span>🤔 Перевірте пари. Плагіат — це присвоєння чужого малюнка!</span>`;
+                return false;
+            }
+        }
+
+        function resetTask3() {
+            t3ActiveLeft = null;
+            t3Pairs = {};
+            renderMatchingState();
+            document.getElementById('feedback-3').classList.add('hidden');
+        }
+
+
+        /* ----------------------------------------------------
+           TASK 4: TRUE OR FALSE FLASHCARDS LOGIC
+        ---------------------------------------------------- */
+        let t4Answers = { 0: null, 1: null, 2: null };
+        const t4Correct = { 0: false, 1: true, 2: true };
+
+        function setTask4Answer(cardIndex, value) {
+            t4Answers[cardIndex] = value;
+            const card = document.querySelector(`#t4-cards [data-index="${cardIndex}"]`);
+            const btnTrue = card.querySelector('.t4-btn-true');
+            const btnFalse = card.querySelector('.t4-btn-false');
+
+            if (value === true) {
+                btnTrue.classList.add('bg-emerald-600', 'text-white', 'shadow-md');
+                btnTrue.classList.remove('bg-emerald-50', 'text-emerald-700');
+                btnFalse.classList.remove('bg-rose-600', 'text-white', 'shadow-md');
+                btnFalse.classList.add('bg-rose-50', 'text-rose-700');
+            } else {
+                btnFalse.classList.add('bg-rose-600', 'text-white', 'shadow-md');
+                btnFalse.classList.remove('bg-rose-50', 'text-rose-700');
+                btnTrue.classList.remove('bg-emerald-600', 'text-white', 'shadow-md');
+                btnTrue.classList.add('bg-emerald-50', 'text-emerald-700');
+            }
+        }
+
+        function checkTask4() {
+            const fb = document.getElementById('feedback-4');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+
+            if (t4Answers[0] === null || t4Answers[1] === null || t4Answers[2] === null) {
+                fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+                fb.innerHTML = `<span>⚠️ Оціни всі 3 твердження!</span>`;
+                return false;
+            }
+
+            const isAllCorrect = (t4Answers[0] === t4Correct[0] && t4Answers[1] === t4Correct[1] && t4Answers[2] === t4Correct[2]);
+
+            if (isAllCorrect) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+                fb.innerHTML = `<span>🎉 Чудово! Ти чудово відрізняєш правду від помилкових дій!</span>`;
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+                fb.innerHTML = `<span>🤔 Є неточність у першому твердженні. Зображення з Google не стає твоїм!</span>`;
+                return false;
+            }
+        }
+
+        function resetTask4() {
+            t4Answers = { 0: null, 1: null, 2: null };
+            document.querySelectorAll('#t4-cards [data-index]').forEach(card => {
+                const btnTrue = card.querySelector('.t4-btn-true');
+                const btnFalse = card.querySelector('.t4-btn-false');
+                btnTrue.classList.remove('bg-emerald-600', 'text-white', 'shadow-md');
+                btnTrue.classList.add('bg-emerald-50', 'text-emerald-700');
+                btnFalse.classList.remove('bg-rose-600', 'text-white', 'shadow-md');
+                btnFalse.classList.add('bg-rose-50', 'text-rose-700');
+            });
+            document.getElementById('feedback-4').classList.add('hidden');
+        }
+
+
+        /* ----------------------------------------------------
+           TASK 5: PURE CATEGORY BUCKETS DRAG & DROP LOGIC
+        ---------------------------------------------------- */
+        const t5Correct = { 1: 'honest', 2: 'violator', 3: 'honest', 4: 'violator', 5: 'honest' };
+        let t5Assignments = {}; // { itemId: 'honest' | 'violator' | 'pool' }
+
+        function handleDragStart(e, itemId) {
+            e.dataTransfer.setData('text/plain', itemId.toString());
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e, targetZone) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const itemId = parseInt(e.dataTransfer.getData('text/plain'));
+            if (itemId) {
+                if (targetZone === 'pool') {
+                    delete t5Assignments[itemId];
+                } else {
+                    t5Assignments[itemId] = targetZone;
+                }
+                renderTask5();
+            }
+        }
+
+        function renderTask5() {
+            const pool = document.getElementById('t5-pool');
+            const honestContent = document.querySelector('#bucket-honest .bucket-content');
+            const violatorContent = document.querySelector('#bucket-violator .bucket-content');
+
+            [1, 2, 3, 4, 5].forEach(itemId => {
+                const el = document.getElementById(`t5-item-${itemId}`);
+                const assigned = t5Assignments[itemId];
+
+                if (!assigned || assigned === 'pool') {
+                    pool.appendChild(el);
+                } else if (assigned === 'honest') {
+                    honestContent.appendChild(el);
+                } else if (assigned === 'violator') {
+                    violatorContent.appendChild(el);
+                }
+            });
+        }
+
+        function checkTask5() {
+            const fb = document.getElementById('feedback-5');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+
+            if (Object.keys(t5Assignments).length < 5) {
+                fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+                fb.innerHTML = `<span>⚠️ Перетягни всі 5 вчинків по кошиках!</span>`;
+                return false;
+            }
+
+            let isCorrect = true;
+            for (let id in t5Correct) {
+                if (t5Assignments[id] !== t5Correct[id]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+                fb.innerHTML = `<span>🎉 Ідеально! Всі 5 карт перетягнуто в правильні кошики!</span>`;
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+                fb.innerHTML = `<span>🤔 Є помилка. Вказувати автора та питати дозвіл — це чесне використання!</span>`;
+                return false;
+            }
+        }
+
+        function resetTask5() {
+            t5Assignments = {};
+            renderTask5();
+            document.getElementById('feedback-5').classList.add('hidden');
+        }
+
+
+        /* ----------------------------------------------------
+           FINAL RESULT EVALUATION & CONFETTI
+        ---------------------------------------------------- */
+        function calculateFinalResult() {
+            const r1 = checkTask1();
+            const r2 = checkTask2();
+            const r3 = checkTask3();
+            const r4 = checkTask4();
+            const r5 = checkTask5();
+
+            let score = 0;
+            if (r1) score++;
+            if (r2) score++;
+            if (r3) score++;
+            if (r4) score++;
+            if (r5) score++;
+
+            const box = document.getElementById('final-result-box');
+            const icon = document.getElementById('final-badge-icon');
+            const title = document.getElementById('final-title');
+            const scoreText = document.getElementById('final-score');
+            const desc = document.getElementById('final-desc');
+
+            box.classList.remove('hidden');
+            scoreText.innerText = `Твій результат: ${score} із 5 балів`;
+
+            if (score === 5) {
+                icon.innerText = '🏆';
+                title.innerText = 'Гранд-майстер Авторського Права!';
+                desc.innerText = 'Вітаємо! Ти показав найвищий рівень знань! Ти досконало знаєш, як поважати чужу працелюбність та захищати власну!';
+                
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 160,
+                        spread: 100,
+                        origin: { y: 0.6 }
+                    });
+                }
+            } else if (score >= 3) {
+                icon.innerText = '🔍';
+                title.innerText = 'Дослідник Творчості!';
+                desc.innerText = 'Чудовий результат! Ти знаєш основні правила. Перевір помилки в завданнях та спробуй вибити 5/5!';
+            } else {
+                icon.innerText = '📚';
+                title.innerText = 'Юний учень!';
+                desc.innerText = 'Не засмучуйся! Переглянь презентацію на початку та спробуй виконати вправи ще раз!';
+            }
+
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
