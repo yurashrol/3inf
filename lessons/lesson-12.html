@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="uk" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтерактивний робочий аркуш: Безпека в Інтернеті</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .font-fredoka { font-family: 'Fredoka', cursive, sans-serif !important; }
+        .custom-shadow { box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.05); }
+        @keyframes pulse-subtle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+        .pulse-btn { animation: pulse-subtle 2s infinite; }
+        
+        /* Smooth transitions for interactive elements */
+        .option-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .option-card:hover {
+            transform: translateY(-2px);
+        }
+        .option-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 min-h-screen text-slate-800 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 pb-16">
+
+        <!-- HEADER SECTION -->
+        <header class="bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-600 rounded-3xl shadow-xl py-10 px-6 text-center flex flex-col items-center text-white relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-cyan-400/20 rounded-full blur-xl pointer-events-none"></div>
+
+            <span class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+                💻 Інформатика • 3 клас
+            </span>
+            <h1 class="font-fredoka text-3xl md:text-5xl text-white font-extrabold tracking-wide drop-shadow-sm max-w-3xl leading-tight">
+                Безпечна поведінка та спілкування в Інтернеті 🛡️🌐
+            </h1>
+            <p class="text-white/90 text-base md:text-lg font-normal max-w-xl mt-3 leading-relaxed">
+                Дізнайся, як правильно користуватися Інтернетом, захищати власні дані та бути безпечним у мережі!
+            </p>
+        </header>
+
+        <!-- PRESENTATION / THEORY SECTION -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="text-2xl">📷</span>
+                <h2 class="font-fredoka text-2xl text-indigo-900 font-bold">Навчальна презентація</h2>
+            </div>
+            <p class="text-slate-600 text-sm sm:text-base mb-6 font-medium">
+                Переглянь навчальні матеріали перед виконанням завдань
+            </p>
+            
+            <!-- Embed Canva Frame -->
+            <div class="relative w-full pb-[56.25%] overflow-hidden rounded-2xl shadow-md bg-slate-100 border border-slate-200">
+                <iframe loading="lazy" class="absolute inset-0 w-full h-full border-0 m-0 p-0" src="https://www.canva.com/design/DAGX_sample/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+        </section>
+
+        <!-- TASK 1: SINGLE CHOICE -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100 relative">
+            <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-fredoka font-bold text-lg flex items-center justify-center shadow-sm">
+                        1
+                    </div>
+                    <h3 class="font-fredoka text-xl text-slate-800 font-bold">Запитання з вибором відповіді</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full border border-indigo-100">
+                    Одна відповідь
+                </span>
+            </div>
+
+            <p class="text-slate-700 text-base md:text-lg mb-6 font-medium leading-relaxed">
+                Що потрібно зробити, якщо незнайомець в Інтернеті запитує твоє прізвище та домашню адресу?
+            </p>
+
+            <div id="t1-options" class="grid grid-cols-1 gap-3 mb-6">
+                <button onclick="selectTask1(0)" class="t1-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 text-slate-700 font-medium flex items-center gap-3">
+                    <span class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0 font-bold text-xs font-fredoka text-indigo-600 t1-radio">A</span>
+                    <span>Одразу повідомити батькам або вчителю</span>
+                </button>
+                <button onclick="selectTask1(1)" class="t1-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 text-slate-700 font-medium flex items-center gap-3">
+                    <span class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0 font-bold text-xs font-fredoka text-indigo-600 t1-radio">Б</span>
+                    <span>Одразу надіслати адресу, щоб бути ввічливим</span>
+                </button>
+                <button onclick="selectTask1(2)" class="t1-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 text-slate-700 font-medium flex items-center gap-3">
+                    <span class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0 font-bold text-xs font-fredoka text-indigo-600 t1-radio">В</span>
+                    <span>Попросити подарунок за адресу</span>
+                </button>
+            </div>
+
+            <!-- Feedback banner -->
+            <div id="feedback-1" class="hidden p-4 rounded-2xl mb-6 font-medium text-sm sm:text-base"></div>
+
+            <!-- Action buttons -->
+            <div class="flex flex-wrap gap-3">
+                <button onclick="checkTask1()" class="font-fredoka bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold px-6 py-3 rounded-2xl shadow-md transition-all">
+                    Перевірити завдання 1
+                </button>
+                <button onclick="resetTask1()" class="font-fredoka bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 font-semibold px-5 py-3 rounded-2xl transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 2: MULTIPLE SELECT -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100">
+            <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-2xl bg-cyan-100 text-cyan-600 font-fredoka font-bold text-lg flex items-center justify-center shadow-sm">
+                        2
+                    </div>
+                    <h3 class="font-fredoka text-xl text-slate-800 font-bold">Таємниці мережі</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-cyan-50 text-cyan-600 rounded-full border border-cyan-100">
+                    Кілька відповідей
+                </span>
+            </div>
+
+            <p class="text-slate-700 text-base md:text-lg mb-6 font-medium leading-relaxed">
+                Обери <strong class="text-cyan-700">ВСІ</strong> речі, які <strong class="text-rose-600">НЕ МОЖНА</strong> розголошувати незнайомцям у мережі:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <button onclick="toggleTask2(0)" id="t2-btn-0" class="t2-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-cyan-400 text-slate-700 font-medium flex items-center gap-3 bg-slate-50">
+                    <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center shrink-0 t2-box text-white bg-white">✓</div>
+                    <span>Твій пароль від акаунту</span>
+                </button>
+                <button onclick="toggleTask2(1)" id="t2-btn-1" class="t2-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-cyan-400 text-slate-700 font-medium flex items-center gap-3 bg-slate-50">
+                    <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center shrink-0 t2-box text-white bg-white">✓</div>
+                    <span>Домашня адреса та номер телефону</span>
+                </button>
+                <button onclick="toggleTask2(2)" id="t2-btn-2" class="t2-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-cyan-400 text-slate-700 font-medium flex items-center gap-3 bg-slate-50">
+                    <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center shrink-0 t2-box text-white bg-white">✓</div>
+                    <span>Фото улюбленої дитячої книги</span>
+                </button>
+                <button onclick="toggleTask2(3)" id="t2-btn-3" class="t2-opt option-card text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-cyan-400 text-slate-700 font-medium flex items-center gap-3 bg-slate-50">
+                    <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center shrink-0 t2-box text-white bg-white">✓</div>
+                    <span>Точний розклад твоїх гуртків та тренувань</span>
+                </button>
+            </div>
+
+            <!-- Feedback banner -->
+            <div id="feedback-2" class="hidden p-4 rounded-2xl mb-6 font-medium text-sm sm:text-base"></div>
+
+            <div class="flex flex-wrap gap-3">
+                <button onclick="checkTask2()" class="font-fredoka bg-cyan-600 hover:bg-cyan-700 active:scale-95 text-white font-semibold px-6 py-3 rounded-2xl shadow-md transition-all">
+                    Перевірити завдання 2
+                </button>
+                <button onclick="resetTask2()" class="font-fredoka bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 font-semibold px-5 py-3 rounded-2xl transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 3: MATCHING PAIRS -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100">
+            <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 font-fredoka font-bold text-lg flex items-center justify-center shadow-sm">
+                        3
+                    </div>
+                    <h3 class="font-fredoka text-xl text-slate-800 font-bold">З'єднай пари термінів</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-600 rounded-full border border-purple-100">
+                    Відповідність
+                </span>
+            </div>
+
+            <p class="text-slate-700 text-base md:text-lg mb-6 font-medium leading-relaxed">
+                Натисни на термін ліворуч, а потім обере відповідне значення праворуч:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Left Column -->
+                <div class="space-y-3">
+                    <p class="font-fredoka text-slate-500 font-semibold text-sm uppercase tracking-wider mb-1">Поняття</p>
+                    <div id="t3-left-0" onclick="clickTask3Left(0)" class="t3-left p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer font-medium text-slate-700 bg-slate-50 flex items-center justify-between transition-all">
+                        <span>🔑 Надійний пароль</span>
+                        <span class="t3-left-badge text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-semibold hidden">З’єднано</span>
+                    </div>
+                    <div id="t3-left-1" onclick="clickTask3Left(1)" class="t3-left p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer font-medium text-slate-700 bg-slate-50 flex items-center justify-between transition-all">
+                        <span>🦸 Нікнейм</span>
+                        <span class="t3-left-badge text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-semibold hidden">З’єднано</span>
+                    </div>
+                    <div id="t3-left-2" onclick="clickTask3Left(2)" class="t3-left p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer font-medium text-slate-700 bg-slate-50 flex items-center justify-between transition-all">
+                        <span>👤 Незнайомець в чаті</span>
+                        <span class="t3-left-badge text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-semibold hidden">З’єднано</span>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-3">
+                    <p class="font-fredoka text-slate-500 font-semibold text-sm uppercase tracking-wider mb-1">Пояснення</p>
+                    <div id="t3-right-0" onclick="clickTask3Right(0)" class="t3-right p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer font-medium text-slate-700 bg-slate-50 flex items-center justify-between transition-all">
+                        <span>Вигадане ім'я для безпечного спілкування</span>
+                        <button onclick="event.stopPropagation(); disconnectTask3Right(0)" class="t3-right-del hidden w-6 h-6 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-600 font-bold flex items-center justify-center text-xs">✕</button>
+                    </div>
+                    <div id="t3-right-1" onclick="clickTask3Right(1)" class="t3-right p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer font-medium text-slate-700 bg-slate-50 flex items-center justify-between transition-all">
+                        <span>Не спілкуватися та не ділитися секретами</span>
+                        <button onclick="event.stopPropagation(); disconnectTask3Right(1)" class="t3-right-del hidden w-6 h-6 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-600 font-bold flex items-center justify-center text-xs">✕</button>
+                    </div>
+                    <div id="t3-right-2" onclick="clickTask3Right(2)" class="t3-right p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer font-medium text-slate-700 bg-slate-50 flex items-center justify-between transition-all">
+                        <span>Складний набір букв, цифр і знаків</span>
+                        <button onclick="event.stopPropagation(); disconnectTask3Right(2)" class="t3-right-del hidden w-6 h-6 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-600 font-bold flex items-center justify-center text-xs">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback banner -->
+            <div id="feedback-3" class="hidden p-4 rounded-2xl mb-6 font-medium text-sm sm:text-base"></div>
+
+            <div class="flex flex-wrap gap-3">
+                <button onclick="checkTask3()" class="font-fredoka bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-semibold px-6 py-3 rounded-2xl shadow-md transition-all">
+                    Перевірити завдання 3
+                </button>
+                <button onclick="resetTask3()" class="font-fredoka bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 font-semibold px-5 py-3 rounded-2xl transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 4: TRUE OR FALSE FLASHCARDS -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100">
+            <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 font-fredoka font-bold text-lg flex items-center justify-center shadow-sm">
+                        4
+                    </div>
+                    <h3 class="font-fredoka text-xl text-slate-800 font-bold">Вікторина: Вірно чи Невірно?</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-amber-50 text-amber-600 rounded-full border border-amber-100">
+                    Правда чи міф
+                </span>
+            </div>
+
+            <p class="text-slate-700 text-base md:text-lg mb-6 font-medium leading-relaxed">
+                Прочитай твердження на картках та визнач, які з них є правильними:
+            </p>
+
+            <div class="space-y-4 mb-6">
+                <!-- Card 1 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <p class="text-slate-800 font-medium">1. Пароль від свого акаунту можна розповідати лише найкращим друзям у класі.</p>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button onclick="setTask4(0, true)" id="t4-btn-0-true" class="t4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-emerald-50 text-slate-700 transition-all">
+                            👍 Так / Правда
+                        </button>
+                        <button onclick="setTask4(0, false)" id="t4-btn-0-false" class="t4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-rose-50 text-slate-700 transition-all">
+                            👎 Ні / Неправда
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <p class="text-slate-800 font-medium">2. Якщо ти побачиш грубе або неприємне повідомлення в мережі, краще одразу розповісти дорослим.</p>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button onclick="setTask4(1, true)" id="t4-btn-1-true" class="t4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-emerald-50 text-slate-700 transition-all">
+                            👍 Так / Правда
+                        </button>
+                        <button onclick="setTask4(1, false)" id="t4-btn-1-false" class="t4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-rose-50 text-slate-700 transition-all">
+                            👎 Ні / Неправда
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <p class="text-slate-800 font-medium">3. В Інтернеті слід завжди спілкуватися ввічливо, доброзичливо та з повагою.</p>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button onclick="setTask4(2, true)" id="t4-btn-2-true" class="t4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-emerald-50 text-slate-700 transition-all">
+                            👍 Так / Правда
+                        </button>
+                        <button onclick="setTask4(2, false)" id="t4-btn-2-false" class="t4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-rose-50 text-slate-700 transition-all">
+                            👎 Ні / Неправда
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback banner -->
+            <div id="feedback-4" class="hidden p-4 rounded-2xl mb-6 font-medium text-sm sm:text-base"></div>
+
+            <div class="flex flex-wrap gap-3">
+                <button onclick="checkTask4()" class="font-fredoka bg-amber-600 hover:bg-amber-700 active:scale-95 text-white font-semibold px-6 py-3 rounded-2xl shadow-md transition-all">
+                    Перевірити завдання 4
+                </button>
+                <button onclick="resetTask4()" class="font-fredoka bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 font-semibold px-5 py-3 rounded-2xl transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 5: CATEGORY BUCKET SORTING -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100">
+            <div class="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 font-fredoka font-bold text-lg flex items-center justify-center shadow-sm">
+                        5
+                    </div>
+                    <h3 class="font-fredoka text-xl text-slate-800 font-bold">Сортування по кошиках</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
+                    Категорії
+                </span>
+            </div>
+
+            <p class="text-slate-700 text-base md:text-lg mb-6 font-medium leading-relaxed">
+                Розподіли дії за категоріями, обираючи відповідний кошик для кожної картки:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <!-- Action Card 0 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col justify-between gap-3">
+                    <span class="font-medium text-slate-800">1. Створити складний пароль із літер і цифр</span>
+                    <div class="flex gap-2">
+                        <button onclick="assignBucket(0, 'safe')" id="t5-btn-0-safe" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-emerald-100 text-slate-700 transition-all">
+                            🟢 Безпечна дія
+                        </button>
+                        <button onclick="assignBucket(0, 'danger')" id="t5-btn-0-danger" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-rose-100 text-slate-700 transition-all">
+                            🔴 Небезпечна дія
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Card 1 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col justify-between gap-3">
+                    <span class="font-medium text-slate-800">2. Повідомити батьків про підозрілий лист від невідомого</span>
+                    <div class="flex gap-2">
+                        <button onclick="assignBucket(1, 'safe')" id="t5-btn-1-safe" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-emerald-100 text-slate-700 transition-all">
+                            🟢 Безпечна дія
+                        </button>
+                        <button onclick="assignBucket(1, 'danger')" id="t5-btn-1-danger" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-rose-100 text-slate-700 transition-all">
+                            🔴 Небезпечна дія
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Card 2 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col justify-between gap-3">
+                    <span class="font-medium text-slate-800">3. Надіслати фото власної геолокації незнайомцю</span>
+                    <div class="flex gap-2">
+                        <button onclick="assignBucket(2, 'safe')" id="t5-btn-2-safe" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-emerald-100 text-slate-700 transition-all">
+                            🟢 Безпечна дія
+                        </button>
+                        <button onclick="assignBucket(2, 'danger')" id="t5-btn-2-danger" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-rose-100 text-slate-700 transition-all">
+                            🔴 Небезпечна дія
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Card 3 -->
+                <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col justify-between gap-3">
+                    <span class="font-medium text-slate-800">4. Відкрити невідоме посилання від незнайомого контакту</span>
+                    <div class="flex gap-2">
+                        <button onclick="assignBucket(3, 'safe')" id="t5-btn-3-safe" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-emerald-100 text-slate-700 transition-all">
+                            🟢 Безпечна дія
+                        </button>
+                        <button onclick="assignBucket(3, 'danger')" id="t5-btn-3-danger" class="t5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-rose-100 text-slate-700 transition-all">
+                            🔴 Небезпечна дія
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback banner -->
+            <div id="feedback-5" class="hidden p-4 rounded-2xl mb-6 font-medium text-sm sm:text-base"></div>
+
+            <div class="flex flex-wrap gap-3">
+                <button onclick="checkTask5()" class="font-fredoka bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-semibold px-6 py-3 rounded-2xl shadow-md transition-all">
+                    Перевірити завдання 5
+                </button>
+                <button onclick="resetTask5()" class="font-fredoka bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 font-semibold px-5 py-3 rounded-2xl transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- PRACTICAL CREATIVE TASK -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🚀</span>
+                <h2 class="font-fredoka text-2xl text-indigo-950 font-bold">Практична місія: Створи свій "Секретний Кібер-Щит"!</h2>
+            </div>
+            <p class="text-slate-600 mb-6 font-medium leading-relaxed">
+                Склади власні супер-правила кібербезпеки! Придумай супергеройський нікнейм та перевір свій супер-пароль.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nickname Generator -->
+                <div class="p-5 rounded-2xl bg-indigo-50 border border-indigo-100 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-fredoka text-indigo-900 font-bold text-lg mb-2">1. Твій безпечний Нікнейм 🦸‍♂️</h4>
+                        <p class="text-xs text-indigo-700 mb-4">Ніколи не використовуй справжнє ім'я чи прізвище!</p>
+                        <input type="text" id="user-nickname" placeholder="Наприклад: CyberNinja2026" class="w-full px-4 py-3 rounded-xl border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-slate-800 bg-white mb-3">
+                    </div>
+                    <div id="nickname-output" class="text-xs font-semibold text-indigo-600 min-h-[20px]"></div>
+                </div>
+
+                <!-- Password Checklist -->
+                <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-fredoka text-purple-900 font-bold text-lg mb-2">2. Перевірка Надійного Пароля 🔑</h4>
+                        <p class="text-xs text-purple-700 mb-4">Спробуй ввести свій придуманий супер-пароль:</p>
+                        <input type="text" id="user-password" oninput="checkPasswordStrength()" placeholder="Приклад: Super#Kiber2026" class="w-full px-4 py-3 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium text-slate-800 bg-white mb-3">
+                    </div>
+                    <div id="password-feedback" class="text-xs font-bold text-purple-700">
+                        Введи пароль для перевірки надійності...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL RESULT & BADGE SECTION -->
+        <section class="bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-600 rounded-3xl p-8 text-white text-center shadow-xl relative overflow-hidden">
+            <canvas id="confetti-canvas" class="absolute inset-0 pointer-events-none w-full h-full"></canvas>
+
+            <h2 class="font-fredoka text-3xl md:text-4xl font-extrabold mb-3">
+                Підсумки та Нагорода 🏆
+            </h2>
+            <p class="text-white/90 text-base md:text-lg max-w-xl mx-auto mb-6">
+                Виконай усі завдання вище та натисни кнопку, щоб підрахувати свої бали й отримати почесний значок!
+            </p>
+
+            <button onclick="calculateFinalResult()" class="pulse-btn font-fredoka bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-lg active:scale-95 transition-all mb-6">
+                🌟 Отримати свій значок! 🌟
+            </button>
+
+            <!-- Results Display Container -->
+            <div id="final-result-box" class="hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 max-w-xl mx-auto mt-4 text-center">
+                <div id="badge-icon" class="text-6xl mb-3">🏆</div>
+                <h3 id="badge-title" class="font-fredoka text-2xl md:text-3xl font-extrabold text-amber-300 mb-2"></h3>
+                <p id="badge-score" class="font-bold text-xl mb-3"></p>
+                <p id="badge-desc" class="text-white/90 text-sm sm:text-base leading-relaxed"></p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-slate-500 text-sm font-medium pt-4">
+            © 2026 | Інформатика — 3 клас | Автор: Юрій Шроль
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State management
+        const state = {
+            t1: null,
+            t2: [false, false, false, false],
+            t3Left: null,
+            t3Pairs: {}, // leftIdx -> rightIdx
+            t4: [null, null, null],
+            t5: [null, null, null, null] // actionIdx -> 'safe' | 'danger'
+        };
+
+        // --- TASK 1 LOGIC ---
+        function selectTask1(index) {
+            state.t1 = index;
+            const buttons = document.querySelectorAll('.t1-opt');
+            buttons.forEach((btn, idx) => {
+                const radio = btn.querySelector('.t1-radio');
+                if (idx === index) {
+                    btn.classList.remove('border-slate-200', 'bg-slate-50');
+                    btn.classList.add('border-indigo-600', 'bg-indigo-50/50');
+                    radio.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+                } else {
+                    btn.classList.remove('border-indigo-600', 'bg-indigo-50/50');
+                    btn.classList.add('border-slate-200');
+                    radio.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+                }
+            });
+        }
+
+        function checkTask1() {
+            const fb = document.getElementById('feedback-1');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            if (state.t1 === null) {
+                fb.classList.add('bg-amber-100', 'text-amber-800');
+                fb.innerHTML = '⚠️ будь ласка, вибери один із варіантів відповіді!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+
+            if (state.t1 === 0) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                fb.innerHTML = '🎉 **Чудово! Абсолютно правильно!** Незнайомцям ніколи не можна повідомляти свої особисті дані. Завжди кажи батькам або вчителю!';
+                fb.classList.remove('hidden');
+                return true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800');
+                fb.innerHTML = '🤔 **Подумай ще!** Розголошувати домашню адресу чи прізвище незнайомцям у мережі небезпечно.';
+                fb.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        function resetTask1() {
+            state.t1 = null;
+            document.querySelectorAll('.t1-opt').forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'bg-indigo-50/50');
+                btn.classList.add('border-slate-200');
+                const radio = btn.querySelector('.t1-radio');
+                radio.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+            });
+            const fb = document.getElementById('feedback-1');
+            fb.classList.add('hidden');
+        }
+
+        // --- TASK 2 LOGIC ---
+        function toggleTask2(index) {
+            state.t2[index] = !state.t2[index];
+            const btn = document.getElementById(`t2-btn-${index}`);
+            const box = btn.querySelector('.t2-box');
+
+            if (state.t2[index]) {
+                btn.classList.remove('border-slate-200', 'bg-slate-50');
+                btn.classList.add('border-cyan-600', 'bg-cyan-50/60');
+                box.classList.remove('bg-white', 'border-slate-300');
+                box.classList.add('bg-cyan-600', 'border-cyan-600');
+            } else {
+                btn.classList.remove('border-cyan-600', 'bg-cyan-50/60');
+                btn.classList.add('border-slate-200', 'bg-slate-50');
+                box.classList.remove('bg-cyan-600', 'border-cyan-600');
+                box.classList.add('bg-white', 'border-slate-300');
+            }
+        }
+
+        function checkTask2() {
+            const fb = document.getElementById('feedback-2');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            const selected = state.t2;
+            // Correct indices: 0 (password), 1 (address/phone), 3 (schedule)
+            // Incorrect: 2 (book photo is generally safe, not secret)
+            const isCorrect = selected[0] && selected[1] && !selected[2] && selected[3];
+            const anySelected = selected.some(v => v);
+
+            if (!anySelected) {
+                fb.classList.add('bg-amber-100', 'text-amber-800');
+                fb.innerHTML = '⚠️ Познач хоча б кілька варіантів!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                fb.innerHTML = '🌟 **Супер! Все вірно!** Паролі, адреса, телефон та твій щоденний розклад — це секретна інформація, яку не можна відкривати стороннім!';
+                fb.classList.remove('hidden');
+                return true;
+            } else if (selected[2]) {
+                fb.classList.add('bg-rose-100', 'text-rose-800');
+                fb.innerHTML = '💡 **Майже!** Фото книги не є секретними особистими даними, а от пароль, адреса та розклад гуртків — секрети!';
+                fb.classList.remove('hidden');
+                return false;
+            } else {
+                fb.classList.add('bg-amber-100', 'text-amber-800');
+                fb.innerHTML = '🧩 **Залишилося трошки подумати!** Перевір, чи всі небезпечні для розголошення речі ти відмітив.';
+                fb.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        function resetTask2() {
+            state.t2 = [false, false, false, false];
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`t2-btn-${i}`);
+                const box = btn.querySelector('.t2-box');
+                btn.classList.remove('border-cyan-600', 'bg-cyan-50/60');
+                btn.classList.add('border-slate-200', 'bg-slate-50');
+                box.classList.remove('bg-cyan-600', 'border-cyan-600');
+                box.classList.add('bg-white', 'border-slate-300');
+            }
+            document.getElementById('feedback-2').classList.add('hidden');
+        }
+
+        // --- TASK 3 LOGIC ---
+        // Right correct matches mapping:
+        // Left 0 (🔑 Надійний пароль) -> Right 2 (Складний набір букв, цифр і знаків)
+        // Left 1 (🦸 Нікнейм) -> Right 0 (Вигадане ім'я для безпечного спілкування)
+        // Left 2 (👤 Незнайомець в чаті) -> Right 1 (Не спілкуватися та не ділитися секретами)
+        const t3CorrectMap = { 0: 2, 1: 0, 2: 1 };
+
+        function clickTask3Left(leftIdx) {
+            // Highlight selected left item
+            state.t3Left = leftIdx;
+            renderTask3UI();
+        }
+
+        function clickTask3Right(rightIdx) {
+            if (state.t3Left !== null) {
+                // Remove existing pairing for this left or right
+                for (let l in state.t3Pairs) {
+                    if (state.t3Pairs[l] === rightIdx || parseInt(l) === state.t3Left) {
+                        delete state.t3Pairs[l];
+                    }
+                }
+                state.t3Pairs[state.t3Left] = rightIdx;
+                state.t3Left = null;
+                renderTask3UI();
+            }
+        }
+
+        function disconnectTask3Right(rightIdx) {
+            for (let l in state.t3Pairs) {
+                if (state.t3Pairs[l] === rightIdx) {
+                    delete state.t3Pairs[l];
+                }
+            }
+            renderTask3UI();
+        }
+
+        function renderTask3UI() {
+            // Left elements
+            for (let i = 0; i < 3; i++) {
+                const el = document.getElementById(`t3-left-${i}`);
+                const badge = el.querySelector('.t3-left-badge');
+                const isSelected = state.t3Left === i;
+                const isPaired = state.t3Pairs.hasOwnProperty(i);
+
+                el.className = 't3-left p-4 rounded-2xl border-2 cursor-pointer font-medium text-slate-700 transition-all flex items-center justify-between ';
+                if (isSelected) {
+                    el.className += 'border-purple-600 bg-purple-100 ring-2 ring-purple-300';
+                } else if (isPaired) {
+                    el.className += 'border-purple-400 bg-purple-50/70';
+                } else {
+                    el.className += 'border-slate-200 bg-slate-50 hover:border-purple-300';
+                }
+
+                if (isPaired) badge.classList.remove('hidden');
+                else badge.classList.add('hidden');
+            }
+
+            // Right elements
+            const pairedRights = Object.values(state.t3Pairs);
+            for (let j = 0; j < 3; j++) {
+                const el = document.getElementById(`t3-right-${j}`);
+                const delBtn = el.querySelector('.t3-right-del');
+                const isPaired = pairedRights.includes(j);
+
+                el.className = 't3-right p-4 rounded-2xl border-2 cursor-pointer font-medium text-slate-700 transition-all flex items-center justify-between ';
+                if (isPaired) {
+                    el.className += 'border-purple-400 bg-purple-50/70';
+                    delBtn.classList.remove('hidden');
+                } else {
+                    el.className += 'border-slate-200 bg-slate-50 hover:border-purple-300';
+                    delBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        function checkTask3() {
+            const fb = document.getElementById('feedback-3');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            const pairsCount = Object.keys(state.t3Pairs).length;
+
+            if (pairsCount < 3) {
+                fb.classList.add('bg-amber-100', 'text-amber-800');
+                fb.innerHTML = '⚠️ З’єднай усі 3 пари об’єктів перед перевіркою!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+
+            let correctCount = 0;
+            for (let l in t3CorrectMap) {
+                if (state.t3Pairs[l] === t3CorrectMap[l]) {
+                    correctCount++;
+                }
+            }
+
+            if (correctCount === 3) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                fb.innerHTML = '✨ **Чудова робота! Усі пари правильні!** Ти добре знаєш поняття безпеки в Інтернеті!';
+                fb.classList.remove('hidden');
+                return true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800');
+                fb.innerHTML = '👀 **Є помилочки!** Натисни хрестик "✕", щоб роз’єднати неправильну пару і спробуй ще раз!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        function resetTask3() {
+            state.t3Left = null;
+            state.t3Pairs = {};
+            renderTask3UI();
+            document.getElementById('feedback-3').classList.add('hidden');
+        }
+
+        // --- TASK 4 LOGIC ---
+        // Card 0: False
+        // Card 1: True
+        // Card 2: True
+        const t4Answers = [false, true, true];
+
+        function setTask4(cardIdx, val) {
+            state.t4[cardIdx] = val;
+            const btnTrue = document.getElementById(`t4-btn-${cardIdx}-true`);
+            const btnFalse = document.getElementById(`t4-btn-${cardIdx}-false`);
+
+            if (val === true) {
+                btnTrue.className = 't4-btn px-4 py-2 rounded-xl border-2 border-emerald-600 bg-emerald-600 text-white font-fredoka font-semibold text-sm transition-all';
+                btnFalse.className = 't4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-rose-50 text-slate-700 transition-all';
+            } else {
+                btnFalse.className = 't4-btn px-4 py-2 rounded-xl border-2 border-rose-600 bg-rose-600 text-white font-fredoka font-semibold text-sm transition-all';
+                btnTrue.className = 't4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-emerald-50 text-slate-700 transition-all';
+            }
+        }
+
+        function checkTask4() {
+            const fb = document.getElementById('feedback-4');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            if (state.t4.includes(null)) {
+                fb.classList.add('bg-amber-100', 'text-amber-800');
+                fb.innerHTML = '⚠️ Будь ласка, дай відповідь на кожне з 3 тверджень!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+
+            const allCorrect = state.t4.every((val, idx) => val === t4Answers[idx]);
+
+            if (allCorrect) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                fb.innerHTML = '🏆 **Молодець! Усі відповіді правильні!** Пароль — це секрет, про неприємності розказуй дорослим і зажди будь ввічливим у мережі!';
+                fb.classList.remove('hidden');
+                return true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800');
+                fb.innerHTML = '🤔 **Дещо не зовсім так.** Згадай: чи можна ділитися паролем навіть із найкращими друзями? Перевір відповіді!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        function resetTask4() {
+            state.t4 = [null, null, null];
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`t4-btn-${i}-true`).className = 't4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-emerald-50 text-slate-700 transition-all';
+                document.getElementById(`t4-btn-${i}-false`).className = 't4-btn px-4 py-2 rounded-xl border border-slate-300 font-fredoka font-semibold text-sm hover:bg-rose-50 text-slate-700 transition-all';
+            }
+            document.getElementById('feedback-4').classList.add('hidden');
+        }
+
+        // --- TASK 5 LOGIC ---
+        // Correct buckets:
+        // Item 0: 'safe'
+        // Item 1: 'safe'
+        // Item 2: 'danger'
+        // Item 3: 'danger'
+        const t5Correct = ['safe', 'safe', 'danger', 'danger'];
+
+        function assignBucket(itemIdx, type) {
+            state.t5[itemIdx] = type;
+
+            const btnSafe = document.getElementById(`t5-btn-${itemIdx}-safe`);
+            const btnDanger = document.getElementById(`t5-btn-${itemIdx}-danger`);
+
+            if (type === 'safe') {
+                btnSafe.className = 't5-b-btn flex-1 py-2 px-3 rounded-xl border-2 border-emerald-600 bg-emerald-600 text-white font-fredoka text-xs sm:text-sm font-semibold transition-all shadow-sm';
+                btnDanger.className = 't5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-rose-100 text-slate-700 transition-all';
+            } else {
+                btnDanger.className = 't5-b-btn flex-1 py-2 px-3 rounded-xl border-2 border-rose-600 bg-rose-600 text-white font-fredoka text-xs sm:text-sm font-semibold transition-all shadow-sm';
+                btnSafe.className = 't5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-emerald-100 text-slate-700 transition-all';
+            }
+        }
+
+        function checkTask5() {
+            const fb = document.getElementById('feedback-5');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            if (state.t5.includes(null)) {
+                fb.classList.add('bg-amber-100', 'text-amber-800');
+                fb.innerHTML = '⚠️ Розподіли всі 4 дії за кошиками!';
+                fb.classList.remove('hidden');
+                return false;
+            }
+
+            const isAllCorrect = state.t5.every((val, idx) => val === t5Correct[idx]);
+
+            if (isAllCorrect) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                fb.innerHTML = '🎯 **Відмінно! Категорії визначено правильно!** Передати геолокацію чи відкривати підозрілі посилання — небезпечно!';
+                fb.classList.remove('hidden');
+                return true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800');
+                fb.innerHTML = '🧐 **Є помилки у сортуванні.** Подумай, які дії захищають тебе, а які створюють загрозу.';
+                fb.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        function resetTask5() {
+            state.t5 = [null, null, null, null];
+            for (let i = 0; i < 4; i++) {
+                document.getElementById(`t5-btn-${i}-safe`).className = 't5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-emerald-100 text-slate-700 transition-all';
+                document.getElementById(`t5-btn-${i}-danger`).className = 't5-b-btn flex-1 py-2 px-3 rounded-xl border border-slate-300 font-fredoka text-xs sm:text-sm font-semibold hover:bg-rose-100 text-slate-700 transition-all';
+            }
+            document.getElementById('feedback-5').classList.add('hidden');
+        }
+
+        // --- CREATIVE TASK PASSWORD STRENGTH CHECK ---
+        function checkPasswordStrength() {
+            const val = document.getElementById('user-password').value;
+            const fb = document.getElementById('password-feedback');
+
+            if (!val) {
+                fb.className = 'text-xs font-bold text-purple-700';
+                fb.textContent = 'Введи пароль для перевірки надійності...';
+                return;
+            }
+
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (/[A-ZА-ЯІЇЄ]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^a-zA-Z0-9а-яА-ЯіїєІЇЄ]/.test(val)) score++;
+
+            if (score <= 1) {
+                fb.className = 'text-xs font-bold text-rose-600';
+                fb.textContent = '🔴 Слабий пароль. Додай цифри, великі літери та знаки (!@#)!';
+            } else if (score === 2 || score === 3) {
+                fb.className = 'text-xs font-bold text-amber-600';
+                fb.textContent = '🟡 Хороший пароль! Зроби його ще довшим або додай спеціальний символ (!).';
+            } else {
+                fb.className = 'text-xs font-bold text-emerald-600';
+                fb.textContent = '🟢 Супер! Це дуже надійний кібер-пароль! 💪';
+            }
+        }
+
+        // --- FINAL RESULTS CALCULATOR ---
+        function calculateFinalResult() {
+            // Run all checks
+            const res1 = checkTask1();
+            const res2 = checkTask2();
+            const res3 = checkTask3();
+            const res4 = checkTask4();
+            const res5 = checkTask5();
+
+            const score = [res1, res2, res3, res4, res5].filter(Boolean).length;
+
+            const box = document.getElementById('final-result-box');
+            const icon = document.getElementById('badge-icon');
+            const title = document.getElementById('badge-title');
+            const scoreEl = document.getElementById('badge-score');
+            const desc = document.getElementById('badge-desc');
+
+            box.classList.remove('hidden');
+            scoreEl.textContent = `Твій результат: ${score} з 5 балів!`;
+
+            if (score === 5) {
+                icon.textContent = '🏆';
+                title.textContent = 'Гранд-майстер кібербезпеки!';
+                desc.textContent = 'Вітаємо! Ти показав найвищий рівень знань безпеки в Інтернеті. Твій кібер-щит міцний та надійний!';
+                
+                // Trigger Confetti
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+            } else if (score >= 3) {
+                icon.textContent = '🔍';
+                title.textContent = 'Дослідник мережі!';
+                desc.textContent = 'Чудовий результат! Ти знаєш основні правила кібербезпеки. Спробуй виправити дрібні помилки, щоб стати Гранд-майстром!';
+            } else {
+                icon.textContent = '🌟';
+                title.textContent = 'Юний учень!';
+                desc.textContent = 'Ти на правильному шляху! Повтори правила з навчальної презентації та спробуй пройти завдання ще раз.';
+            }
+
+            // Smooth scroll to results
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
