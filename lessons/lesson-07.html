@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтерактивний аркуш: Перетворення інформації (3 клас)</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        .font-fredoka {
+            font-family: 'Fredoka', cursive, sans-serif !important;
+        }
+
+        @keyframes customPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px -5px rgba(234, 179, 8, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 20px 30px -5px rgba(234, 179, 8, 0.8);
+            }
+        }
+
+        .pulse-btn {
+            animation: customPulse 2s infinite ease-in-out;
+        }
+
+        /* Smooth Drag & Drop styles */
+        .drag-over {
+            border-color: #8b5cf6 !important;
+            background-color: #f3e8ff !important;
+        }
+    </style>
+</head>
+<body class="bg-purple-50/40 font-sans text-slate-800 antialiased min-h-screen pb-16">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8">
+        
+        <!-- HEADER -->
+        <header class="rounded-3xl shadow-xl py-10 px-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 text-center flex flex-col items-center relative overflow-hidden">
+            <!-- Decorative light effects -->
+            <div class="absolute -top-12 -left-12 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-pink-400/20 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <!-- Badge -->
+            <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1.5 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+                <span>💻</span> Інформатика • 3 клас
+            </div>
+            
+            <!-- Title -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-wide drop-shadow-sm font-fredoka max-w-3xl leading-tight">
+                Перетворення інформації з одного виду в інший 🔄🎨
+            </h1>
+            
+            <!-- Description -->
+            <p class="text-white/90 text-base md:text-lg max-w-xl mt-3 leading-relaxed font-normal">
+                Вітаємо у космічній лабораторії знань! Досліди разом із нами, як слова, малюнки, звуки та коди можуть чарівно перетворюватися один в одного.
+            </p>
+        </header>
+
+        <!-- SECTION: PRESENTATION / THEORY -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100 relative">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl font-bold">
+                    📷
+                </div>
+                <h2 class="text-2xl font-bold font-fredoka text-purple-900">Навчальна презентація</h2>
+            </div>
+            <p class="text-slate-600 mb-6 text-sm sm:text-base">Переглянь навчальні матеріали перед виконанням інтерактивних завдань:</p>
+            
+            <!-- Embedded Canva Presentation Container -->
+            <div class="relative w-full pb-[56.25%] h-0 rounded-2xl overflow-hidden shadow-inner border border-slate-200 bg-slate-100">
+                <iframe loading="lazy" 
+                        class="absolute inset-0 w-full h-full border-0 m-0 p-0"
+                        src="https://www.canva.com/design/DAGX-example/view?embed" 
+                        allowfullscreen="allowfullscreen" 
+                        allow="fullscreen">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- MAIN INTERACTIVE TASKS SECTION -->
+        <main class="space-y-8">
+
+            <!-- TASK 1: SINGLE CHOICE -->
+            <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100 relative transition-all">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-700 font-bold font-fredoka flex items-center justify-center text-lg">1</div>
+                        <h3 class="text-xl font-bold font-fredoka text-slate-800">Читаємо та слухаємо 📻</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Вибір однієї відповіді</span>
+                </div>
+
+                <p class="text-slate-700 font-medium mb-6 text-base sm:text-lg">
+                    Як диктор по радіо перетворює інформацію, коли вголос читає підручник для слухачів?
+                </p>
+
+                <div id="t1-options" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <button onclick="selectTask1(0)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-left font-medium transition text-slate-700 flex items-center gap-3 active:scale-95">
+                        <span class="w-8 h-8 rounded-xl bg-purple-200 text-purple-800 flex items-center justify-center font-bold text-sm shrink-0">А</span>
+                        <span>З текстової у звукову</span>
+                    </button>
+                    <button onclick="selectTask1(1)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-left font-medium transition text-slate-700 flex items-center gap-3 active:scale-95">
+                        <span class="w-8 h-8 rounded-xl bg-purple-200 text-purple-800 flex items-center justify-center font-bold text-sm shrink-0">Б</span>
+                        <span>Зі звукової у графічну</span>
+                    </button>
+                    <button onclick="selectTask1(2)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-left font-medium transition text-slate-700 flex items-center gap-3 active:scale-95">
+                        <span class="w-8 h-8 rounded-xl bg-purple-200 text-purple-800 flex items-center justify-center font-bold text-sm shrink-0">В</span>
+                        <span>З графічної у числову</span>
+                    </button>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="checkTask1()" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-2xl shadow-lg active:scale-95 transition">
+                        Перевірити завдання 1
+                    </button>
+                    <button onclick="resetTask1()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold font-fredoka rounded-2xl shadow active:scale-95 transition">
+                        Спочатку 🔄
+                    </button>
+                </div>
+                <div id="feedback-1" class="hidden mt-4 p-4 rounded-2xl border text-sm font-semibold transition"></div>
+            </article>
+
+            <!-- TASK 2: MULTIPLE SELECT -->
+            <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100 relative transition-all">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 font-bold font-fredoka flex items-center justify-center text-lg">2</div>
+                        <h3 class="text-xl font-bold font-fredoka text-slate-800">Помічники комп'ютера 🖥️</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full">Вибір кількох відповідей</span>
+                </div>
+
+                <p class="text-slate-700 font-medium mb-6 text-base sm:text-lg">
+                    Які пристрої допомагають перетворити звуки або зображення з довкілля у <b>числовий (цифровий) код</b> для комп'ютера? <i>(Обери всі правильні)</i>
+                </p>
+
+                <div id="t2-options" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <button onclick="toggleTask2(0)" class="t2-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left font-medium transition text-slate-700 flex items-center justify-between active:scale-95">
+                        <span class="flex items-center gap-3">
+                            <span class="text-2xl">🎙️</span>
+                            <span>Мікрофон</span>
+                        </span>
+                        <span class="t2-check text-indigo-600 font-bold text-lg opacity-0">✓</span>
+                    </button>
+
+                    <button onclick="toggleTask2(1)" class="t2-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left font-medium transition text-slate-700 flex items-center justify-between active:scale-95">
+                        <span class="flex items-center gap-3">
+                            <span class="text-2xl">🖨️</span>
+                            <span>Цифровий сканер</span>
+                        </span>
+                        <span class="t2-check text-indigo-600 font-bold text-lg opacity-0">✓</span>
+                    </button>
+
+                    <button onclick="toggleTask2(2)" class="t2-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left font-medium transition text-slate-700 flex items-center justify-between active:scale-95">
+                        <span class="flex items-center gap-3">
+                            <span class="text-2xl">🔊</span>
+                            <span>Звукові колонки</span>
+                        </span>
+                        <span class="t2-check text-indigo-600 font-bold text-lg opacity-0">✓</span>
+                    </button>
+
+                    <button onclick="toggleTask2(3)" class="t2-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left font-medium transition text-slate-700 flex items-center justify-between active:scale-95">
+                        <span class="flex items-center gap-3">
+                            <span class="text-2xl">📷</span>
+                            <span>Веб-камера</span>
+                        </span>
+                        <span class="t2-check text-indigo-600 font-bold text-lg opacity-0">✓</span>
+                    </button>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="checkTask2()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold font-fredoka rounded-2xl shadow-lg active:scale-95 transition">
+                        Перевірити завдання 2
+                    </button>
+                    <button onclick="resetTask2()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold font-fredoka rounded-2xl shadow active:scale-95 transition">
+                        Спочатку 🔄
+                    </button>
+                </div>
+                <div id="feedback-2" class="hidden mt-4 p-4 rounded-2xl border text-sm font-semibold transition"></div>
+            </article>
+
+            <!-- TASK 3: MATCHING PAIRS -->
+            <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100 relative transition-all">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-pink-100 text-pink-700 font-bold font-fredoka flex items-center justify-center text-lg">3</div>
+                        <h3 class="text-xl font-bold font-fredoka text-slate-800">Знайди відповідність 🔗</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-pink-100 text-pink-700 rounded-full">З'єднання пар</span>
+                </div>
+
+                <p class="text-slate-700 font-medium mb-6 text-base sm:text-lg">
+                    Клацни спочатку на елемент у лівому стовпчику, а потім на відповідну результат-пару в правому:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Left Column -->
+                    <div class="space-y-3" id="t3-left-col">
+                        <!-- Items rendered by JS or template -->
+                        <div onclick="selectLeftT3(0)" id="t3-left-0" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">1. Нотна грамота</span>
+                            <span id="t3-left-badge-0" class="hidden text-xs bg-pink-500 text-white font-bold px-2 py-1 rounded-lg">З'єднано</span>
+                        </div>
+                        <div onclick="selectLeftT3(1)" id="t3-left-1" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">2. Розповідь диктора</span>
+                            <span id="t3-left-badge-1" class="hidden text-xs bg-pink-500 text-white font-bold px-2 py-1 rounded-lg">З'єднано</span>
+                        </div>
+                        <div onclick="selectLeftT3(2)" id="t3-left-2" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">3. Словесний опис</span>
+                            <span id="t3-left-badge-2" class="hidden text-xs bg-pink-500 text-white font-bold px-2 py-1 rounded-lg">З'єднано</span>
+                        </div>
+                        <div onclick="selectLeftT3(3)" id="t3-left-3" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">4. Таблиця термометра</span>
+                            <span id="t3-left-badge-3" class="hidden text-xs bg-pink-500 text-white font-bold px-2 py-1 rounded-lg">З'єднано</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="space-y-3" id="t3-right-col">
+                        <div onclick="selectRightT3(0)" id="t3-right-0" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">А) Текст у збірнику казок</span>
+                            <button onclick="event.stopPropagation(); unpairT3Right(0);" id="t3-right-btn-0" class="hidden w-6 h-6 rounded-full bg-rose-500 text-white font-bold text-xs flex items-center justify-center hover:bg-rose-600">✕</button>
+                        </div>
+                        <div onclick="selectRightT3(1)" id="t3-right-1" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">Б) Звучання пісні на фортепіано</span>
+                            <button onclick="event.stopPropagation(); unpairT3Right(1);" id="t3-right-btn-1" class="hidden w-6 h-6 rounded-full bg-rose-500 text-white font-bold text-xs flex items-center justify-center hover:bg-rose-600">✕</button>
+                        </div>
+                        <div onclick="selectRightT3(2)" id="t3-right-2" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">В) Графік температур</span>
+                            <button onclick="event.stopPropagation(); unpairT3Right(2);" id="t3-right-btn-2" class="hidden w-6 h-6 rounded-full bg-rose-500 text-white font-bold text-xs flex items-center justify-center hover:bg-rose-600">✕</button>
+                        </div>
+                        <div onclick="selectRightT3(3)" id="t3-right-3" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95">
+                            <span class="font-semibold text-slate-700">Г) Малюнок пейзажу</span>
+                            <button onclick="event.stopPropagation(); unpairT3Right(3);" id="t3-right-btn-3" class="hidden w-6 h-6 rounded-full bg-rose-500 text-white font-bold text-xs flex items-center justify-center hover:bg-rose-600">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="checkTask3()" class="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-bold font-fredoka rounded-2xl shadow-lg active:scale-95 transition">
+                        Перевірити завдання 3
+                    </button>
+                    <button onclick="resetTask3()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold font-fredoka rounded-2xl shadow active:scale-95 transition">
+                        Спочатку 🔄
+                    </button>
+                </div>
+                <div id="feedback-3" class="hidden mt-4 p-4 rounded-2xl border text-sm font-semibold transition"></div>
+            </article>
+
+            <!-- TASK 4: TRUE OR FALSE FLASHCARDS -->
+            <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100 relative transition-all">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 font-bold font-fredoka flex items-center justify-center text-lg">4</div>
+                        <h3 class="text-xl font-bold font-fredoka text-slate-800">Детективи істини 🕵️‍♂️</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full">Правда чи Неправда</span>
+                </div>
+
+                <p class="text-slate-700 font-medium mb-6 text-base sm:text-lg">
+                    Прочитай твердження та дай відповідь: <b>Правильно (Так)</b> чи <b>Ні (Неправда)</b>?
+                </p>
+
+                <div class="space-y-4 mb-6">
+                    <!-- Card 1 -->
+                    <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <p class="text-slate-800 font-medium text-base">
+                            1. Шифрування слова за допомогою азбуки Морзе або QR-коду — це перетворення інформації.
+                        </p>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="setT4Answer(0, true)" id="t4-btn-0-yes" class="px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-emerald-50 hover:text-emerald-700 transition active:scale-95">
+                                Так 👍
+                            </button>
+                            <button onclick="setT4Answer(0, false)" id="t4-btn-0-no" class="px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-rose-50 hover:text-rose-700 transition active:scale-95">
+                                Ні 👎
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <p class="text-slate-800 font-medium text-base">
+                            2. Під час перекладу тексту з англійської на українську мову відбувається перетворення інформації.
+                        </p>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="setT4Answer(1, true)" id="t4-btn-1-yes" class="px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-emerald-50 hover:text-emerald-700 transition active:scale-95">
+                                Так 👍
+                            </button>
+                            <button onclick="setT4Answer(1, false)" id="t4-btn-1-no" class="px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-rose-50 hover:text-rose-700 transition active:scale-95">
+                                Ні 👎
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <p class="text-slate-800 font-medium text-base">
+                            3. Фотографування малюнка на смартфон перетворює текстову інформацію у числову.
+                        </p>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="setT4Answer(2, true)" id="t4-btn-2-yes" class="px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-emerald-50 hover:text-emerald-700 transition active:scale-95">
+                                Так 👍
+                            </button>
+                            <button onclick="setT4Answer(2, false)" id="t4-btn-2-no" class="px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-rose-50 hover:text-rose-700 transition active:scale-95">
+                                Ні 👎
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="checkTask4()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-fredoka rounded-2xl shadow-lg active:scale-95 transition">
+                        Перевірити завдання 4
+                    </button>
+                    <button onclick="resetTask4()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold font-fredoka rounded-2xl shadow active:scale-95 transition">
+                        Спочатку 🔄
+                    </button>
+                </div>
+                <div id="feedback-4" class="hidden mt-4 p-4 rounded-2xl border text-sm font-semibold transition"></div>
+            </article>
+
+            <!-- TASK 5: CATEGORY SORTING -->
+            <article class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100 relative transition-all">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 font-bold font-fredoka flex items-center justify-center text-lg">5</div>
+                        <h3 class="text-xl font-bold font-fredoka text-slate-800">Розподіли по кошиках 🧺</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-amber-100 text-amber-700 rounded-full">Сортування за категоріями</span>
+                </div>
+
+                <p class="text-slate-700 font-medium mb-4 text-base sm:text-lg">
+                    Розподіли картки дій у правильні кошики (перетягни мишкою або натисни на картку, а потім на потрібний кошик):
+                </p>
+
+                <!-- Source Items Pool -->
+                <div class="mb-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">Картки для розсортування:</span>
+                    <div id="t5-source-pool" class="flex flex-wrap gap-3 p-4 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 min-h-[70px]">
+                        <!-- Items rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Target Buckets -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Bucket A -->
+                    <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'bucketA')" onclick="assignSelectedToBucket('bucketA')" class="bucket-zone p-5 rounded-2xl border-2 border-purple-300 bg-purple-50/50 min-h-[160px] flex flex-col transition">
+                        <h4 class="font-bold text-purple-900 font-fredoka text-lg mb-3 flex items-center gap-2">
+                            <span>📝</span> Кошик А: З текстової в інший вид
+                        </h4>
+                        <div id="t5-bucketA" class="space-y-2 flex-grow">
+                            <!-- Items placed inside -->
+                        </div>
+                    </div>
+
+                    <!-- Bucket B -->
+                    <div ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'bucketB')" onclick="assignSelectedToBucket('bucketB')" class="bucket-zone p-5 rounded-2xl border-2 border-pink-300 bg-pink-50/50 min-h-[160px] flex flex-col transition">
+                        <h4 class="font-bold text-pink-900 font-fredoka text-lg mb-3 flex items-center gap-2">
+                            <span>🎨</span> Кошик Б: З графічної в інший вид
+                        </h4>
+                        <div id="t5-bucketB" class="space-y-2 flex-grow">
+                            <!-- Items placed inside -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="checkTask5()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold font-fredoka rounded-2xl shadow-lg active:scale-95 transition">
+                        Перевірити завдання 5
+                    </button>
+                    <button onclick="resetTask5()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold font-fredoka rounded-2xl shadow active:scale-95 transition">
+                        Спочатку 🔄
+                    </button>
+                </div>
+                <div id="feedback-5" class="hidden mt-4 p-4 rounded-2xl border text-sm font-semibold transition"></div>
+            </article>
+
+        </main>
+
+        <!-- SUMMARY & FINAL BADGE SECTION -->
+        <section class="rounded-3xl shadow-xl py-10 px-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 text-center flex flex-col items-center text-white relative overflow-hidden">
+            <h2 class="text-3xl font-extrabold font-fredoka mb-2">Підсумок уроку 🎉</h2>
+            <p class="text-white/90 text-base max-w-md mb-6">
+                Виконай усі 5 завдань вище та натисни кнопку, щоб підрахувати свої бали й отримати почесний значок!
+            </p>
+
+            <button id="btn-final" onclick="calculateFinalResult()" class="pulse-btn text-xl font-bold font-fredoka px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-purple-950 rounded-2xl shadow-xl transition transform active:scale-95 cursor-pointer">
+                🌟 Отримати свій значок! 🌟
+            </button>
+
+            <!-- Result Card (Hidden until generated) -->
+            <div id="final-score-card" class="hidden mt-8 w-full max-w-xl bg-white text-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl border border-white/40 animate-fade-in">
+                <div id="final-badge-icon" class="text-6xl mb-3">🏆</div>
+                <h3 id="final-title" class="text-2xl font-bold font-fredoka text-purple-900 mb-2">Гранд-майстер перетворень!</h3>
+                <p id="final-stars" class="text-amber-400 text-2xl font-bold mb-3">⭐⭐⭐⭐⭐</p>
+                <div id="final-score-text" class="text-slate-600 text-lg font-medium mb-4">Результат: 5 / 5 завдань виконано вірно!</div>
+                <p id="final-message" class="text-slate-500 text-sm">Ти справжній експерт з інформатики! Продовжуй у тому ж дусі!</p>
+            </div>
+        </section>
+
+        <!-- CREATIVE PRACTICAL TASK SECTION -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-purple-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 text-white flex items-center justify-center text-xl font-bold">
+                    🕵️‍♂️
+                </div>
+                <h3 class="text-2xl font-bold font-fredoka text-purple-950">
+                    Секретна лабораторія кодувальників: Створи власний комікс з тексту!
+                </h3>
+            </div>
+            
+            <p class="text-slate-600 mb-6 text-sm sm:text-base leading-relaxed">
+                Твоє творче завдання: уяви, що ти перетворюєш короткий <b>текстовий</b> фрагмент історії у <b>графічний</b> комікс! Напиши речення про пригоду котика або робота та опиши, які 3 малюнки ти б до нього надрукував чи намалював.
+            </p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1">1. Текстова історія (1-2 речення):</label>
+                    <input type="text" placeholder="Наприклад: Маленький робот знайшов на даху яскраву зірочку та посміхнувся..." class="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1">2. Опис графічних кадрів коміксу (перетворення у малюнки):</label>
+                    <textarea rows="3" placeholder="Кадр 1: Робот дивиться вгору. Кадр 2: Малюнок зірочки. Кадр 3: Робот тримає зірочку..." class="w-full p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm"></textarea>
+                </div>
+                <button onclick="saveCreativeTask()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-xl shadow transition active:scale-95">
+                    Зберегти практичну роботу 🚀
+                </button>
+                <div id="creative-feedback" class="hidden text-emerald-600 text-sm font-semibold">
+                    ✓ Твоя творча ідея чудово збережена у лабораторії!
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-slate-400 text-xs sm:text-sm pt-4 pb-2">
+            © 2026 | Інформатика — 3 клас | Автор: Юрій Шроль
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Store user state for 5 tasks
+        const state = {
+            t1: null, // index chosen
+            t2: [false, false, false, false], // choices
+            t3: { leftSelected: null, pairs: {} }, // leftIndex -> rightIndex
+            t4: [null, null, null], // boolean values for 3 flashcards
+            t5: {
+                selectedPoolItem: null,
+                items: [
+                    { id: 'i1', text: 'Читання вголос вірша', target: 'bucketA', current: 'pool' },
+                    { id: 'i2', text: 'Малювання схеми за описом', target: 'bucketA', current: 'pool' },
+                    { id: 'i3', text: 'Опис картини словами', target: 'bucketB', current: 'pool' },
+                    { id: 'i4', text: 'Виконання мелодії за нотами', target: 'bucketB', current: 'pool' }
+                ]
+            }
+        };
+
+        // --- TASK 1 LOGIC ---
+        function selectTask1(index) {
+            state.t1 = index;
+            const buttons = document.querySelectorAll('.t1-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx === index) {
+                    btn.className = 't1-btn p-4 rounded-2xl border-2 border-purple-600 bg-purple-100 text-left font-medium transition text-purple-900 flex items-center gap-3 active:scale-95 shadow-md';
+                } else {
+                    btn.className = 't1-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-left font-medium transition text-slate-700 flex items-center gap-3 active:scale-95';
+                }
+            });
+        }
+
+        function checkTask1() {
+            const fb = document.getElementById('feedback-1');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-800', 'bg-rose-50', 'border-rose-300', 'text-rose-800', 'bg-amber-50', 'border-amber-300', 'text-amber-800');
+            
+            if (state.t1 === null) {
+                fb.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-800');
+                fb.innerText = '⚠️ Будь ласка, обри один із варіантів відповіді!';
+                return false;
+            }
+
+            if (state.t1 === 0) { // A is correct (З текстової у звукову)
+                fb.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+                fb.innerText = '🎉 Абсолютно вірно! Читання вголос перетворює текст на звуки!';
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
+                fb.innerText = 'Подумай ще! Коли диктор читає текст з книжки в мікрофон, він створює звук.';
+                return false;
+            }
+        }
+
+        function resetTask1() {
+            state.t1 = null;
+            const buttons = document.querySelectorAll('.t1-btn');
+            buttons.forEach((btn) => {
+                btn.className = 't1-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-left font-medium transition text-slate-700 flex items-center gap-3 active:scale-95';
+            });
+            const fb = document.getElementById('feedback-1');
+            fb.classList.add('hidden');
+        }
+
+        // --- TASK 2 LOGIC ---
+        function toggleTask2(index) {
+            state.t2[index] = !state.t2[index];
+            const buttons = document.querySelectorAll('.t2-btn');
+            const checks = document.querySelectorAll('.t2-check');
+            
+            if (state.t2[index]) {
+                buttons[index].className = 't2-btn p-4 rounded-2xl border-2 border-indigo-600 bg-indigo-100 text-left font-medium transition text-indigo-900 flex items-center justify-between active:scale-95 shadow-md';
+                checks[index].classList.remove('opacity-0');
+            } else {
+                buttons[index].className = 't2-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left font-medium transition text-slate-700 flex items-center justify-between active:scale-95';
+                checks[index].classList.add('opacity-0');
+            }
+        }
+
+        function checkTask2() {
+            const fb = document.getElementById('feedback-2');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-800', 'bg-rose-50', 'border-rose-300', 'text-rose-800', 'bg-amber-50', 'border-amber-300', 'text-amber-800');
+
+            const [mic, scanner, speakers, webcam] = state.t2;
+
+            if (!mic && !scanner && !speakers && !webcam) {
+                fb.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-800');
+                fb.innerText = '⚠️ Обери хоча б один пристрій!';
+                return false;
+            }
+
+            // Correct: Mic (0), Scanner (1), Webcam (3). Incorrect: Speakers (2)
+            if (mic && scanner && webcam && !speakers) {
+                fb.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+                fb.innerText = '🎉 Відмінно! Мікрофон, сканер та веб-камера — це пристрої введення, які кодують інформацію у цифри!';
+                return true;
+            } else if (speakers) {
+                fb.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
+                fb.innerText = 'Подумай ще! Колонки навпаки виводять звук із цифрового коду назовні.';
+                return false;
+            } else {
+                fb.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-800');
+                fb.innerText = 'Майже вдалося! Залишилося знайти ще пристрої введення інформації.';
+                return false;
+            }
+        }
+
+        function resetTask2() {
+            state.t2 = [false, false, false, false];
+            const buttons = document.querySelectorAll('.t2-btn');
+            const checks = document.querySelectorAll('.t2-check');
+            buttons.forEach((btn, idx) => {
+                btn.className = 't2-btn p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left font-medium transition text-slate-700 flex items-center justify-between active:scale-95';
+                checks[idx].classList.add('opacity-0');
+            });
+            document.getElementById('feedback-2').classList.add('hidden');
+        }
+
+        // --- TASK 3 LOGIC (MATCHING PAIRS) ---
+        // Correct pairs mapping:
+        // Left 0 (Нотна грамота) -> Right 1 (Звучання пісні на фортепіано)
+        // Left 1 (Розповідь диктора) -> Right 0 (Текст у збірнику казок)
+        // Left 2 (Словесний опис) -> Right 3 (Малюнок пейзажу)
+        // Left 3 (Таблиця термометра) -> Right 2 (Графік температур)
+        const correctT3Pairs = { 0: 1, 1: 0, 2: 3, 3: 2 };
+
+        function selectLeftT3(index) {
+            state.t3.leftSelected = index;
+            renderT3();
+        }
+
+        function selectRightT3(rightIndex) {
+            if (state.t3.leftSelected !== null) {
+                // If this right item was paired with another left item, remove previous
+                Object.keys(state.t3.pairs).forEach(lIdx => {
+                    if (state.t3.pairs[lIdx] === rightIndex) {
+                        delete state.t3.pairs[lIdx];
+                    }
+                });
+                state.t3.pairs[state.t3.leftSelected] = rightIndex;
+                state.t3.leftSelected = null;
+                renderT3();
+            }
+        }
+
+        function unpairT3Right(rightIndex) {
+            Object.keys(state.t3.pairs).forEach(lIdx => {
+                if (state.t3.pairs[lIdx] === rightIndex) {
+                    delete state.t3.pairs[lIdx];
+                }
+            });
+            renderT3();
+        }
+
+        function renderT3() {
+            // Update left cards
+            for (let i = 0; i < 4; i++) {
+                const el = document.getElementById(`t3-left-${i}`);
+                const badge = document.getElementById(`t3-left-badge-${i}`);
+                const isSelected = state.t3.leftSelected === i;
+                const isPaired = state.t3.pairs.hasOwnProperty(i);
+
+                if (isSelected) {
+                    el.className = 'p-4 rounded-2xl border-2 border-pink-500 bg-pink-100 cursor-pointer transition flex items-center justify-between relative shadow-md ring-2 ring-pink-300';
+                } else if (isPaired) {
+                    el.className = 'p-4 rounded-2xl border-2 border-emerald-400 bg-emerald-50 cursor-pointer transition flex items-center justify-between relative';
+                } else {
+                    el.className = 'p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95';
+                }
+
+                if (isPaired) {
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+
+            // Update right cards
+            const rightPaired = {};
+            Object.keys(state.t3.pairs).forEach(lIdx => {
+                rightPaired[state.t3.pairs[lIdx]] = lIdx;
+            });
+
+            for (let j = 0; j < 4; j++) {
+                const el = document.getElementById(`t3-right-${j}`);
+                const btn = document.getElementById(`t3-right-btn-${j}`);
+                const isPaired = rightPaired.hasOwnProperty(j);
+
+                if (isPaired) {
+                    el.className = 'p-4 rounded-2xl border-2 border-emerald-400 bg-emerald-50 cursor-pointer transition flex items-center justify-between relative';
+                    btn.classList.remove('hidden');
+                } else {
+                    el.className = 'p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-pink-400 cursor-pointer transition flex items-center justify-between relative active:scale-95';
+                    btn.classList.add('hidden');
+                }
+            }
+        }
+
+        function checkTask3() {
+            const fb = document.getElementById('feedback-3');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-800', 'bg-rose-50', 'border-rose-300', 'text-rose-800', 'bg-amber-50', 'border-amber-300', 'text-amber-800');
+
+            const pairedCount = Object.keys(state.t3.pairs).length;
+            if (pairedCount < 4) {
+                fb.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-800');
+                fb.innerText = `⚠️ Залишилося утворити ще парам (з'єднано ${pairedCount} із 4)!`;
+                return false;
+            }
+
+            let correctCount = 0;
+            Object.keys(correctT3Pairs).forEach(lIdx => {
+                if (state.t3.pairs[lIdx] === correctT3Pairs[lIdx]) {
+                    correctCount++;
+                }
+            });
+
+            if (correctCount === 4) {
+                fb.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+                fb.innerText = "🎉 Супер! Усі пари утворено бездоганно вірно!";
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
+                fb.innerText = `Подумай ще! Вірно з'єднано: ${correctCount} з 4 пара(и). Натисни "X", щоб роз'єднати невірно утворену пару.`;
+                return false;
+            }
+        }
+
+        function resetTask3() {
+            state.t3.leftSelected = null;
+            state.t3.pairs = {};
+            renderT3();
+            document.getElementById('feedback-3').classList.add('hidden');
+        }
+
+        // --- TASK 4 LOGIC ---
+        function setT4Answer(cardIdx, value) {
+            state.t4[cardIdx] = value;
+            const btnYes = document.getElementById(`t4-btn-${cardIdx}-yes`);
+            const btnNo = document.getElementById(`t4-btn-${cardIdx}-no`);
+
+            if (value === true) {
+                btnYes.className = 'px-4 py-2 rounded-xl border-2 border-emerald-500 font-bold text-sm bg-emerald-50 text-emerald-800 transition active:scale-95 shadow-sm';
+                btnNo.className = 'px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-rose-50 hover:text-rose-700 transition active:scale-95';
+            } else {
+                btnYes.className = 'px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-emerald-50 hover:text-emerald-700 transition active:scale-95';
+                btnNo.className = 'px-4 py-2 rounded-xl border-2 border-rose-500 font-bold text-sm bg-rose-50 text-rose-800 transition active:scale-95 shadow-sm';
+            }
+        }
+
+        function checkTask4() {
+            const fb = document.getElementById('feedback-4');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-800', 'bg-rose-50', 'border-rose-300', 'text-rose-800', 'bg-amber-50', 'border-amber-300', 'text-amber-800');
+
+            if (state.t4.includes(null)) {
+                fb.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-800');
+                fb.innerText = '⚠️ Будь ласка, дай відповідь на всі 3 твердження!';
+                return false;
+            }
+
+            // Correct answers: Card 0 -> true, Card 1 -> true, Card 2 -> false
+            const [a0, a1, a2] = state.t4;
+            if (a0 === true && a1 === true && a2 === false) {
+                fb.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+                fb.innerText = '🎉 Бліскуче! Усі 3 рішення абсолютно правильні!';
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
+                fb.innerText = 'Є помилка! Зверни увагу на 3-тє твердження: фотографія малюнка — це перетворення з графічної інформації у числову!';
+                return false;
+            }
+        }
+
+        function resetTask4() {
+            state.t4 = [null, null, null];
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`t4-btn-${i}-yes`).className = 'px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-emerald-50 hover:text-emerald-700 transition active:scale-95';
+                document.getElementById(`t4-btn-${i}-no`).className = 'px-4 py-2 rounded-xl border border-slate-300 font-bold text-sm bg-white hover:bg-rose-50 hover:text-rose-700 transition active:scale-95';
+            }
+            document.getElementById('feedback-4').classList.add('hidden');
+        }
+
+        // --- TASK 5 LOGIC (SORTING) ---
+        function renderT5() {
+            const pool = document.getElementById('t5-source-pool');
+            const bucketA = document.getElementById('t5-bucketA');
+            const bucketB = document.getElementById('t5-bucketB');
+
+            pool.innerHTML = '';
+            bucketA.innerHTML = '';
+            bucketB.innerHTML = '';
+
+            state.t5.items.forEach(item => {
+                const card = document.createElement('div');
+                const isSelected = state.t5.selectedPoolItem === item.id;
+
+                card.id = item.id;
+                card.draggable = true;
+                card.ondragstart = (e) => e.dataTransfer.setData('text/plain', item.id);
+                card.onclick = (e) => {
+                    e.stopPropagation();
+                    selectPoolItemT5(item.id);
+                };
+
+                let cardStyle = 'p-3 rounded-xl bg-white border-2 text-slate-700 font-semibold text-sm cursor-pointer shadow-sm hover:shadow transition flex items-center justify-between select-none ';
+                if (isSelected) {
+                    cardStyle += 'border-purple-600 bg-purple-100 ring-2 ring-purple-300';
+                } else {
+                    cardStyle += 'border-slate-200 hover:border-purple-300';
+                }
+                card.className = cardStyle;
+
+                card.innerHTML = `
+                    <span>${item.text}</span>
+                    ${item.current !== 'pool' ? `<span onclick="event.stopPropagation(); returnToPoolT5('${item.id}')" class="text-xs bg-slate-200 hover:bg-rose-200 text-slate-600 px-2 py-0.5 rounded-md ml-2">✕</span>` : ''}
+                `;
+
+                if (item.current === 'pool') {
+                    pool.appendChild(card);
+                } else if (item.current === 'bucketA') {
+                    bucketA.appendChild(card);
+                } else if (item.current === 'bucketB') {
+                    bucketB.appendChild(card);
+                }
+            });
+        }
+
+        function selectPoolItemT5(id) {
+            state.t5.selectedPoolItem = (state.t5.selectedPoolItem === id) ? null : id;
+            renderT5();
+        }
+
+        function assignSelectedToBucket(targetBucket) {
+            if (state.t5.selectedPoolItem) {
+                const item = state.t5.items.find(i => i.id === state.t5.selectedPoolItem);
+                if (item) {
+                    item.current = targetBucket;
+                }
+                state.t5.selectedPoolItem = null;
+                renderT5();
+            }
+        }
+
+        function returnToPoolT5(id) {
+            const item = state.t5.items.find(i => i.id === id);
+            if (item) {
+                item.current = 'pool';
+            }
+            renderT5();
+        }
+
+        // Drag & drop handlers
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e, targetBucket) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const itemId = e.dataTransfer.getData('text/plain');
+            const item = state.t5.items.find(i => i.id === itemId);
+            if (item) {
+                item.current = targetBucket;
+                renderT5();
+            }
+        }
+
+        function checkTask5() {
+            const fb = document.getElementById('feedback-5');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-800', 'bg-rose-50', 'border-rose-300', 'text-rose-800', 'bg-amber-50', 'border-amber-300', 'text-amber-800');
+
+            const unassigned = state.t5.items.some(i => i.current === 'pool');
+            if (unassigned) {
+                fb.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-800');
+                fb.innerText = '⚠️ Залишилися нерозсортовані картки!';
+                return false;
+            }
+
+            const allCorrect = state.t5.items.every(i => i.current === i.target);
+            if (allCorrect) {
+                fb.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+                fb.innerText = '🎉 Неймовірно! Усі картки розсортовано влучно і правильно!';
+                return true;
+            } else {
+                fb.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
+                fb.innerText = 'Є помилка в сортуванні. Наприклад: "Виконання мелодії за нотами" — це перетворення з нотної (графічної) інформації у звуки!';
+                return false;
+            }
+        }
+
+        function resetTask5() {
+            state.t5.selectedPoolItem = null;
+            state.t5.items.forEach(i => i.current = 'pool');
+            renderT5();
+            document.getElementById('feedback-5').classList.add('hidden');
+        }
+
+        // --- FINAL SUMMARY LOGIC ---
+        function calculateFinalResult() {
+            const r1 = checkTask1();
+            const r2 = checkTask2();
+            const r3 = checkTask3();
+            const r4 = checkTask4();
+            const r5 = checkTask5();
+
+            const totalScore = [r1, r2, r3, r4, r5].filter(Boolean).length;
+
+            const card = document.getElementById('final-score-card');
+            const badgeIcon = document.getElementById('final-badge-icon');
+            const title = document.getElementById('final-title');
+            const stars = document.getElementById('final-stars');
+            const scoreText = document.getElementById('final-score-text');
+            const message = document.getElementById('final-message');
+
+            card.classList.remove('hidden');
+
+            scoreText.innerText = `Результат: ${totalScore} з 5 завдань виконано вірно!`;
+
+            if (totalScore === 5) {
+                badgeIcon.innerText = '🥇';
+                title.innerText = 'Рівень: Гранд-майстер Перетворень!';
+                stars.innerText = '⭐⭐⭐⭐⭐';
+                message.innerText = 'Чудова робота! Ти досконало володієш знаннями про перетворення інформації!';
+                
+                // Launch Confetti
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+            } else if (totalScore >= 3) {
+                badgeIcon.innerText = '🥈';
+                title.innerText = 'Рівень: Дослідник Інформатики!';
+                stars.innerText = '⭐⭐⭐⭐☆';
+                message.innerText = 'Гарний результат! Переглянь помилки у завданнях і спробуй досягти 5/5!';
+            } else {
+                badgeIcon.innerText = '🥉';
+                title.innerText = 'Рівень: Юний Учень!';
+                stars.innerText = '⭐⭐☆☆☆';
+                message.innerText = 'Не засмучуйся! Переглянь навчальну презентацію вище та спробуй ще раз!';
+            }
+
+            card.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveCreativeTask() {
+            const fb = document.getElementById('creative-feedback');
+            fb.classList.remove('hidden');
+            setTimeout(() => {
+                fb.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Initialize Task 5 UI on page load
+        window.onload = function() {
+            renderT5();
+        };
+    </script>
+</body>
+</html>
