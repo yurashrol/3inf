@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Складені алгоритми. Поділ завдання на кроки — Інформатика 3 клас</title>
+  
+  <!-- Google Fonts: Fredoka & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .font-fredoka {
+      font-family: 'Fredoka', cursive, sans-serif !important;
+    }
+    
+    /* Pulse animation for main CTA button */
+    @keyframes pulseBtn {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.4), 0 8px 10px -6px rgba(244, 63, 94, 0.2);
+      }
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 20px 30px -5px rgba(244, 63, 94, 0.6), 0 10px 12px -5px rgba(244, 63, 94, 0.3);
+      }
+    }
+    
+    .pulse-btn {
+      animation: pulseBtn 2.2s infinite ease-in-out;
+    }
+
+    .option-card {
+      transition: all 0.2s ease-in-out;
+    }
+    .option-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Drag and Drop styling */
+    .drag-item {
+      cursor: grab;
+      user-select: none;
+      touch-action: manipulation;
+    }
+    .drag-item:active {
+      cursor: grabbing;
+    }
+    .drag-over {
+      border-color: #f43f5e !important;
+      background-color: #fff1f2 !important;
+      transform: scale(1.01);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-rose-50 via-orange-50 to-amber-50 min-h-screen text-slate-800 font-sans antialiased pb-12 selection:bg-rose-200">
+
+  <!-- MAIN CONTAINER -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8">
+
+    <!-- 1. HEADER SECTION (Sunset Coral & Amber Palette) -->
+    <header class="bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white text-center flex flex-col items-center rounded-3xl py-10 px-6 shadow-xl relative overflow-hidden">
+      <!-- Decorative circles -->
+      <div class="absolute -top-12 -left-12 w-44 h-44 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -right-12 w-44 h-44 bg-amber-300/20 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Badge -->
+      <div class="bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+        <span>💻</span> Інформатика • 3 клас
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl md:text-4xl text-white font-extrabold tracking-wide drop-shadow-sm font-fredoka">
+        Складені алгоритми. Поділ завдання на кроки 🧩✨
+      </h1>
+
+      <!-- Description -->
+      <p class="text-white/90 text-base md:text-lg max-w-xl mt-3 leading-relaxed">
+        Навчися розбивати складні завдання на прості кроки та створювати власні алгоритми!
+      </p>
+    </header>
+
+    <!-- 2. PRESENTATION / THEORY SECTION -->
+    <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-4">
+      <div class="flex items-center gap-3 border-b border-rose-100 pb-4">
+        <span class="text-2xl">📷</span>
+        <div>
+          <h2 class="text-xl md:text-2xl font-bold font-fredoka text-slate-800">Навчальна презентація</h2>
+          <p class="text-sm text-slate-500">Переглянь навчальні матеріали перед виконанням завдань</p>
+        </div>
+      </div>
+
+      <!-- Canva Embed Placeholder Container -->
+      <div class="relative w-full pt-[56.25%] rounded-2xl overflow-hidden shadow-inner bg-slate-100 border border-slate-200">
+        <iframe loading="lazy" 
+                class="absolute inset-0 w-full h-full border-0 m-0 p-0"
+                src="https://www.canva.com/design/заглушка/view?embed" 
+                allowfullscreen="allowfullscreen" 
+                allow="fullscreen">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- 3. MAIN TASKS SECTION -->
+    <main class="space-y-8">
+
+      <!-- TASK 1: Single Choice -->
+      <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-6" id="task1-card">
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-rose-100 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 font-bold flex items-center justify-center font-fredoka text-lg">
+              1
+            </div>
+            <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">
+              Що таке складений алгоритм?
+            </h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full">
+            Один вибір
+          </span>
+        </div>
+
+        <p class="text-slate-600 text-sm md:text-base">
+          Уважно прочитай питання та обери один правильний варіант відповіді:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="task1-options">
+          <button onclick="selectTask1(this, 'A')" class="option-card p-5 rounded-2xl border-2 border-slate-200 hover:border-rose-400 text-left transition-all focus:outline-none flex flex-col justify-between h-full bg-slate-50/50">
+            <span class="text-2xl mb-2">⚡</span>
+            <span class="font-medium text-slate-700">Алгоритм, що містить тільки одну миттєву команду.</span>
+          </button>
+          
+          <button onclick="selectTask1(this, 'B')" class="option-card p-5 rounded-2xl border-2 border-slate-200 hover:border-rose-400 text-left transition-all focus:outline-none flex flex-col justify-between h-full bg-slate-50/50">
+            <span class="text-2xl mb-2">🧩</span>
+            <span class="font-medium text-slate-700">Алгоритм, у якому складне завдання поділено на декілька послідовних кроків.</span>
+          </button>
+          
+          <button onclick="selectTask1(this, 'C')" class="option-card p-5 rounded-2xl border-2 border-slate-200 hover:border-rose-400 text-left transition-all focus:outline-none flex flex-col justify-between h-full bg-slate-50/50">
+            <span class="text-2xl mb-2">🎮</span>
+            <span class="font-medium text-slate-700">Назва нової комп'ютерної гри для планшетів.</span>
+          </button>
+        </div>
+
+        <div id="feedback-1" class="hidden p-4 rounded-2xl text-sm font-medium transition-all"></div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="checkTask1()" class="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white font-fredoka font-semibold rounded-2xl shadow-md active:scale-95 transition-all">
+            Перевірити завдання 1
+          </button>
+          <button onclick="resetTask1()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-fredoka font-semibold rounded-2xl shadow active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+      </section>
+
+      <!-- TASK 2: Multiple Select -->
+      <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-6" id="task2-card">
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-rose-100 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 font-bold flex items-center justify-center font-fredoka text-lg">
+              2
+            </div>
+            <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">
+              Приклади складних процесів
+            </h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full">
+            Кілька відповідей
+          </span>
+        </div>
+
+        <p class="text-slate-600 text-sm md:text-base">
+          Обери <strong>УСІ</strong> справи, які є складними процесами та потребують поділу на кроки:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="task2-options">
+          <div onclick="toggleTask2(this, 1)" class="option-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50/50 flex items-center gap-3 transition-all">
+            <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center text-white checkbox-icon"></div>
+            <span class="font-medium text-slate-700 text-sm">🎒 Збирання шкільного рюкзака</span>
+          </div>
+
+          <div onclick="toggleTask2(this, 2)" class="option-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50/50 flex items-center gap-3 transition-all">
+            <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center text-white checkbox-icon"></div>
+            <span class="font-medium text-slate-700 text-sm">🔔 Одиночний дзвінок у дзвоник</span>
+          </div>
+
+          <div onclick="toggleTask2(this, 3)" class="option-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50/50 flex items-center gap-3 transition-all">
+            <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center text-white checkbox-icon"></div>
+            <span class="font-medium text-slate-700 text-sm">🍰 Випікання святкового торта</span>
+          </div>
+
+          <div onclick="toggleTask2(this, 4)" class="option-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50/50 flex items-center gap-3 transition-all">
+            <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center text-white checkbox-icon"></div>
+            <span class="font-medium text-slate-700 text-sm">💻 Підготовка та випуск комп'ютерної гри</span>
+          </div>
+
+          <div onclick="toggleTask2(this, 5)" class="option-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 bg-slate-50/50 flex items-center gap-3 transition-all">
+            <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center text-white checkbox-icon"></div>
+            <span class="font-medium text-slate-700 text-sm">👋 Одне моргання очима</span>
+          </div>
+        </div>
+
+        <div id="feedback-2" class="hidden p-4 rounded-2xl text-sm font-medium transition-all"></div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="checkTask2()" class="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white font-fredoka font-semibold rounded-2xl shadow-md active:scale-95 transition-all">
+            Перевірити завдання 2
+          </button>
+          <button onclick="resetTask2()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-fredoka font-semibold rounded-2xl shadow active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+      </section>
+
+      <!-- TASK 3: Matching Pairs -->
+      <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-6" id="task3-card">
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-rose-100 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 font-bold flex items-center justify-center font-fredoka text-lg">
+              3
+            </div>
+            <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">
+              З'єднай початок дії з її результатом
+            </h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full">
+            З'єднання пар
+          </span>
+        </div>
+
+        <p class="text-slate-600 text-sm md:text-base">
+          Натисни спочатку на картку в лівому стовпчику, а потім на відповідну картку у правому стовпчику:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Left Column -->
+          <div class="space-y-3" id="task3-left">
+            <div data-left="1" onclick="clickTask3Left(this, 1)" class="relative p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-rose-400 cursor-pointer transition-all flex items-center justify-between">
+              <span class="font-semibold text-slate-700">1️⃣ Увімкнути системний блок ПК</span>
+              <span class="connected-badge hidden text-xs font-bold text-emerald-600 bg-emerald-100 px-2.5 py-1 rounded-full">З'єднано</span>
+            </div>
+            <div data-left="2" onclick="clickTask3Left(this, 2)" class="relative p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-rose-400 cursor-pointer transition-all flex items-center justify-between">
+              <span class="font-semibold text-slate-700">2️⃣ Запустити графічний редактор</span>
+              <span class="connected-badge hidden text-xs font-bold text-emerald-600 bg-emerald-100 px-2.5 py-1 rounded-full">З'єднано</span>
+            </div>
+            <div data-left="3" onclick="clickTask3Left(this, 3)" class="relative p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-rose-400 cursor-pointer transition-all flex items-center justify-between">
+              <span class="font-semibold text-slate-700">3️⃣ Натиснути кнопку «Зберегти»</span>
+              <span class="connected-badge hidden text-xs font-bold text-emerald-600 bg-emerald-100 px-2.5 py-1 rounded-full">З'єднано</span>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="space-y-3" id="task3-right">
+            <div data-right="A" onclick="clickTask3Right(this, 'A')" class="relative p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-rose-400 cursor-pointer transition-all flex items-center justify-between">
+              <span class="font-medium text-slate-700 text-sm">Комп'ютер почне завантажувати систему 🖥️</span>
+              <button onclick="event.stopPropagation(); disconnectTask3('A')" class="disconnect-btn hidden w-6 h-6 rounded-full bg-rose-100 text-rose-600 hover:bg-rose-200 font-bold text-xs flex items-center justify-center">✕</button>
+            </div>
+            <div data-right="B" onclick="clickTask3Right(this, 'B')" class="relative p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-rose-400 cursor-pointer transition-all flex items-center justify-between">
+              <span class="font-medium text-slate-700 text-sm">Малюнок запишеться в пам'ять ПК 💾</span>
+              <button onclick="event.stopPropagation(); disconnectTask3('B')" class="disconnect-btn hidden w-6 h-6 rounded-full bg-rose-100 text-rose-600 hover:bg-rose-200 font-bold text-xs flex items-center justify-center">✕</button>
+            </div>
+            <div data-right="C" onclick="clickTask3Right(this, 'C')" class="relative p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-rose-400 cursor-pointer transition-all flex items-center justify-between">
+              <span class="font-medium text-slate-700 text-sm">На екрані з'явиться полотно для малювання 🎨</span>
+              <button onclick="event.stopPropagation(); disconnectTask3('C')" class="disconnect-btn hidden w-6 h-6 rounded-full bg-rose-100 text-rose-600 hover:bg-rose-200 font-bold text-xs flex items-center justify-center">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="feedback-3" class="hidden p-4 rounded-2xl text-sm font-medium transition-all"></div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="checkTask3()" class="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white font-fredoka font-semibold rounded-2xl shadow-md active:scale-95 transition-all">
+            Перевірити завдання 3
+          </button>
+          <button onclick="resetTask3()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-fredoka font-semibold rounded-2xl shadow active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+      </section>
+
+      <!-- TASK 4: True / False Flashcards -->
+      <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-6" id="task4-card">
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-rose-100 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 font-bold flex items-center justify-center font-fredoka text-lg">
+              4
+            </div>
+            <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">
+              Вікторина «Вірно / Невірно»
+            </h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full">
+            Правда / Неправда
+          </span>
+        </div>
+
+        <p class="text-slate-600 text-sm md:text-base">
+          Прочитай твердження та обери відповідну кнопку для кожного з них:
+        </p>
+
+        <div class="space-y-4" id="task4-flashcards">
+          <!-- Card 1 -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4" data-card="1">
+            <span class="font-medium text-slate-700 text-sm md:text-base">1. Будь-який складений алгоритм можна виконувати в довільному порядку без втрати результату.</span>
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="setTask4(1, true, this)" class="tf-btn-true px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-emerald-50 hover:border-emerald-300 transition-all">
+                👍 Так / Правда
+              </button>
+              <button onclick="setTask4(1, false, this)" class="tf-btn-false px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-rose-50 hover:border-rose-300 transition-all">
+                👎 Ні / Неправда
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4" data-card="2">
+            <span class="font-medium text-slate-700 text-sm md:text-base">2. Поділ складного завдання на прості кроки робить його виконання простішим і зрозумілішим.</span>
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="setTask4(2, true, this)" class="tf-btn-true px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-emerald-50 hover:border-emerald-300 transition-all">
+                👍 Так / Правда
+              </button>
+              <button onclick="setTask4(2, false, this)" class="tf-btn-false px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-rose-50 hover:border-rose-300 transition-all">
+                👎 Ні / Неправда
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4" data-card="3">
+            <span class="font-medium text-slate-700 text-sm md:text-base">3. Роботи та комп'ютери виконують алгоритми чітко так, як їх запрограмував людина.</span>
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="setTask4(3, true, this)" class="tf-btn-true px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-emerald-50 hover:border-emerald-300 transition-all">
+                👍 Так / Правда
+              </button>
+              <button onclick="setTask4(3, false, this)" class="tf-btn-false px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-rose-50 hover:border-rose-300 transition-all">
+                👎 Ні / Неправда
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="feedback-4" class="hidden p-4 rounded-2xl text-sm font-medium transition-all"></div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="checkTask4()" class="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white font-fredoka font-semibold rounded-2xl shadow-md active:scale-95 transition-all">
+            Перевірити завдання 4
+          </button>
+          <button onclick="resetTask4()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-fredoka font-semibold rounded-2xl shadow active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+      </section>
+
+      <!-- TASK 5: Drag & Drop Ordering -->
+      <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-6" id="task5-card">
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-rose-100 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 font-bold flex items-center justify-center font-fredoka text-lg">
+              5
+            </div>
+            <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">
+              Алгоритм «Запуск навчальної програми на ПК» 💻
+            </h3>
+          </div>
+          <span class="text-xs font-semibold px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full">
+            Drag & Drop Сортування
+          </span>
+        </div>
+
+        <p class="text-slate-600 text-sm md:text-base">
+          Перетягни картки мишкою або пальцем, щоб розставити кроки у правильному порядку від 1 до 4:
+        </p>
+
+        <!-- Drag & Drop Container -->
+        <div class="space-y-3" id="task5-drag-container">
+          <!-- Rendered dynamically with Drag & Drop events -->
+        </div>
+
+        <div id="feedback-5" class="hidden p-4 rounded-2xl text-sm font-medium transition-all"></div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="checkTask5()" class="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white font-fredoka font-semibold rounded-2xl shadow-md active:scale-95 transition-all">
+            Перевірити завдання 5
+          </button>
+          <button onclick="resetTask5()" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-fredoka font-semibold rounded-2xl shadow active:scale-95 transition-all">
+            Спочатку 🔄
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 4. FINAL SCORE & BADGE SECTION (Sunset Palette Header Matched) -->
+    <section class="bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white rounded-3xl p-8 shadow-xl text-center flex flex-col items-center space-y-6 relative overflow-hidden">
+      
+      <div class="max-w-xl space-y-3">
+        <h2 class="text-2xl md:text-3xl font-extrabold font-fredoka">Твій результат виконання робочого аркуша</h2>
+        <p class="text-white/90 text-sm md:text-base">
+          Натисни кнопку нижче, щоб автоматично перевірити всі завдання та отримати свій іменний значок!
+        </p>
+      </div>
+
+      <!-- Action pulse button -->
+      <button onclick="calculateFinalResult()" class="pulse-btn px-8 py-4 bg-white text-rose-600 hover:bg-rose-50 font-fredoka text-lg font-bold rounded-2xl shadow-2xl transition-all">
+        🌟 Отримати свій значок! 🌟
+      </button>
+
+      <!-- Result Card Container -->
+      <div id="final-result-card" class="hidden w-full max-w-lg bg-white/10 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-white space-y-4">
+        <div class="text-4xl" id="final-emoji">🏆</div>
+        <h3 class="text-2xl font-extrabold font-fredoka" id="final-title">Гранд-майстер алгоритмів!</h3>
+        
+        <div class="flex items-center justify-center gap-2 text-xl font-bold font-fredoka" id="final-score-stars">
+          <!-- Dynamic Stars -->
+        </div>
+
+        <p class="text-white/90 text-sm md:text-base leading-relaxed" id="final-desc">
+          Чудова робота! Ти бездоганно розумієш, як розбивати складні завдання на маленькі кроки.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. PRACTICAL CREATIVE TASK BLOCK -->
+    <section class="bg-white rounded-3xl shadow-lg border border-rose-100 p-6 md:p-8 space-y-4">
+      <div class="flex items-center gap-3 border-b border-rose-100 pb-4">
+        <span class="text-3xl">🚀</span>
+        <div>
+          <h2 class="text-xl md:text-2xl font-bold font-fredoka text-slate-800">
+            🚀 Місія: Алгоритм для Супергероя!
+          </h2>
+          <p class="text-sm text-slate-500">Творче практичне завдання для закріплення теми</p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-rose-50 via-orange-50 to-amber-50 border border-rose-200/80 rounded-2xl p-5 text-slate-700 text-sm md:text-base leading-relaxed space-y-3">
+        <p>
+          Уяви, що тобі потрібно запрограмувати робота-супергероя для виконання важливої рятувальної місії (наприклад: <i>«Врятувати кошеня з високого дерева»</i> або <i>«Зібрати зошити у класі»</i>).
+        </p>
+        <p class="font-semibold text-rose-900">
+          Завдання: Придумай і запиши у зошит (або розкажи вчителю) послідовність із 4-5 обов'язкових кроків, які супергерой має виконати один за одним.
+        </p>
+        <div class="bg-white/80 rounded-xl p-4 border border-rose-200/50 text-xs md:text-sm text-slate-600">
+          💡 <strong>Підказка:</strong> Переконайся, що жоден важливий крок не пропущено, адже без підготовки супергерой не зможе виконати місію! 😉
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="text-center text-slate-400 text-xs md:text-sm font-medium py-4">
+      © 2026 | Інформатика — 3 клас | Автор: Юрій Шроль
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    /* ==========================================
+       TASK 1 LOGIC (Single Choice)
+       ========================================== */
+    let task1Answer = null;
+    const task1Correct = 'B';
+
+    function selectTask1(btn, choice) {
+      task1Answer = choice;
+      const options = document.querySelectorAll('#task1-options button');
+      options.forEach(b => {
+        b.classList.remove('border-rose-500', 'bg-rose-50', 'ring-2', 'ring-rose-300');
+        b.classList.add('border-slate-200', 'bg-slate-50/50');
+      });
+      btn.classList.remove('border-slate-200', 'bg-slate-50/50');
+      btn.classList.add('border-rose-500', 'bg-rose-50', 'ring-2', 'ring-rose-300');
+    }
+
+    function checkTask1() {
+      const fb = document.getElementById('feedback-1');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+      fb.classList.add('border');
+
+      if (!task1Answer) {
+        fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+        fb.innerHTML = '⚠️ Ой, ти ще не обрав(ла) варіант відповіді! Натисни на один із блоків вище.';
+        return false;
+      }
+
+      if (task1Answer === task1Correct) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+        fb.innerHTML = '🎉 **Правильно!** Складений алгоритм — це саме той, у якому складне завдання поділено на послідовні кроки!';
+        return true;
+      } else {
+        fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+        fb.innerHTML = '🤔 **Подумай ще!** Пригадай, що означає слово «складений».';
+        return false;
+      }
+    }
+
+    function resetTask1() {
+      task1Answer = null;
+      const options = document.querySelectorAll('#task1-options button');
+      options.forEach(b => {
+        b.classList.remove('border-rose-500', 'bg-rose-50', 'ring-2', 'ring-rose-300');
+        b.classList.add('border-slate-200', 'bg-slate-50/50');
+      });
+      const fb = document.getElementById('feedback-1');
+      fb.classList.add('hidden');
+    }
+
+
+    /* ==========================================
+       TASK 2 LOGIC (Multiple Select)
+       ========================================== */
+    const task2Selected = new Set();
+    const task2Correct = [1, 3, 4]; // Correct options: Backpack, Cake, Game
+
+    function toggleTask2(card, id) {
+      const checkbox = card.querySelector('.checkbox-icon');
+      if (task2Selected.has(id)) {
+        task2Selected.delete(id);
+        card.classList.remove('border-rose-500', 'bg-rose-50');
+        card.classList.add('border-slate-200', 'bg-slate-50/50');
+        checkbox.classList.remove('bg-rose-500', 'border-rose-500');
+        checkbox.classList.add('border-slate-300');
+        checkbox.innerHTML = '';
+      } else {
+        task2Selected.add(id);
+        card.classList.remove('border-slate-200', 'bg-slate-50/50');
+        card.classList.add('border-rose-500', 'bg-rose-50');
+        checkbox.classList.remove('border-slate-300');
+        checkbox.classList.add('bg-rose-500', 'border-rose-500');
+        checkbox.innerHTML = '✓';
+      }
+    }
+
+    function checkTask2() {
+      const fb = document.getElementById('feedback-2');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+      fb.classList.add('border');
+
+      if (task2Selected.size === 0) {
+        fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+        fb.innerHTML = '⚠️ Оберіть хоча б одну картку зі складним процесом!';
+        return false;
+      }
+
+      const selectedArr = Array.from(task2Selected).sort();
+      const isExactMatch = selectedArr.length === task2Correct.length && selectedArr.every((val, index) => val === task2Correct[index]);
+
+      if (isExactMatch) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+        fb.innerHTML = '🌟 **Чудово!** Збирання рюкзака, випікання торта та створення гри — це дійсно складні процеси!';
+        return true;
+      } else {
+        const hasWrong = selectedArr.some(id => !task2Correct.includes(id));
+        if (hasWrong) {
+          fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+          fb.innerHTML = '❌ Деякі з обраних дій є миттєвими й не потребують поділу на кроки. Спробуй ще раз!';
+        } else {
+          fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+          fb.innerHTML = '⚠️ **Залишилося трошки подумати!** Ти знайшов(ла) не всі складні процеси.';
+        }
+        return false;
+      }
+    }
+
+    function resetTask2() {
+      task2Selected.clear();
+      const cards = document.querySelectorAll('#task2-options > div');
+      cards.forEach(card => {
+        const checkbox = card.querySelector('.checkbox-icon');
+        card.classList.remove('border-rose-500', 'bg-rose-50');
+        card.classList.add('border-slate-200', 'bg-slate-50/50');
+        checkbox.classList.remove('bg-rose-500', 'border-rose-500');
+        checkbox.classList.add('border-slate-300');
+        checkbox.innerHTML = '';
+      });
+      const fb = document.getElementById('feedback-2');
+      fb.classList.add('hidden');
+    }
+
+
+    /* ==========================================
+       TASK 3 LOGIC (Matching Pairs)
+       ========================================== */
+    let task3ActiveLeft = null;
+    const task3Pairs = {}; 
+    const task3CorrectPairs = { 1: 'A', 2: 'C', 3: 'B' };
+
+    function clickTask3Left(el, leftId) {
+      if (task3Pairs[leftId]) return;
+
+      document.querySelectorAll('#task3-left > div').forEach(d => d.classList.remove('ring-2', 'ring-rose-500', 'bg-rose-50'));
+      task3ActiveLeft = leftId;
+      el.classList.add('ring-2', 'ring-rose-500', 'bg-rose-50');
+    }
+
+    function clickTask3Right(el, rightId) {
+      if (!task3ActiveLeft) return;
+
+      const existingLeftKey = Object.keys(task3Pairs).find(k => task3Pairs[k] === rightId);
+      if (existingLeftKey) return;
+
+      task3Pairs[task3ActiveLeft] = rightId;
+
+      const leftEl = document.querySelector(`[data-left="${task3ActiveLeft}"]`);
+      leftEl.classList.remove('ring-2', 'ring-rose-500', 'bg-rose-50');
+      leftEl.classList.add('border-emerald-400', 'bg-emerald-50/50');
+      leftEl.querySelector('.connected-badge').classList.remove('hidden');
+
+      el.classList.add('border-emerald-400', 'bg-emerald-50/50');
+      el.querySelector('.disconnect-btn').classList.remove('hidden');
+
+      task3ActiveLeft = null;
+    }
+
+    function disconnectTask3(rightId) {
+      const leftKey = Object.keys(task3Pairs).find(k => task3Pairs[k] === rightId);
+      if (leftKey) {
+        delete task3Pairs[leftKey];
+
+        const leftEl = document.querySelector(`[data-left="${leftKey}"]`);
+        leftEl.classList.remove('border-emerald-400', 'bg-emerald-50/50');
+        leftEl.querySelector('.connected-badge').classList.add('hidden');
+
+        const rightEl = document.querySelector(`[data-right="${rightId}"]`);
+        rightEl.classList.remove('border-emerald-400', 'bg-emerald-50/50');
+        rightEl.querySelector('.disconnect-btn').classList.add('hidden');
+      }
+    }
+
+    function checkTask3() {
+      const fb = document.getElementById('feedback-3');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+      fb.classList.add('border');
+
+      const pairedCount = Object.keys(task3Pairs).length;
+      if (pairedCount < 3) {
+        fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+        fb.innerHTML = '⚠️ Залишилося трошки подумати! З\'єднай усі 3 пари кроків та результатів.';
+        return false;
+      }
+
+      let isCorrect = true;
+      for (const key in task3CorrectPairs) {
+        if (task3Pairs[key] !== task3CorrectPairs[key]) {
+          isCorrect = false;
+          break;
+        }
+      }
+
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+        fb.innerHTML = '🎉 **Супер!** Усі дії та результати з\'єднано абсолютно правильно!';
+        return true;
+      } else {
+        fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+        fb.innerHTML = '🤔 Деякі пари утворено невірно. Натисни «✕», щоб роз\'єднати їх та спробувати ще раз.';
+        return false;
+      }
+    }
+
+    function resetTask3() {
+      task3ActiveLeft = null;
+      for (const k in task3Pairs) {
+        delete task3Pairs[k];
+      }
+
+      document.querySelectorAll('#task3-left > div').forEach(el => {
+        el.classList.remove('border-emerald-400', 'bg-emerald-50/50', 'ring-2', 'ring-rose-500', 'bg-rose-50');
+        el.querySelector('.connected-badge').classList.add('hidden');
+      });
+
+      document.querySelectorAll('#task3-right > div').forEach(el => {
+        el.classList.remove('border-emerald-400', 'bg-emerald-50/50');
+        el.querySelector('.disconnect-btn').classList.add('hidden');
+      });
+
+      const fb = document.getElementById('feedback-3');
+      fb.classList.add('hidden');
+    }
+
+
+    /* ==========================================
+       TASK 4 LOGIC (True / False Flashcards)
+       ========================================== */
+    const task4Answers = { 1: null, 2: null, 3: null };
+    const task4Correct = { 1: false, 2: true, 3: true };
+
+    function setTask4(cardId, val, btn) {
+      task4Answers[cardId] = val;
+      const cardEl = document.querySelector(`[data-card="${cardId}"]`);
+      const btnTrue = cardEl.querySelector('.tf-btn-true');
+      const btnFalse = cardEl.querySelector('.tf-btn-false');
+
+      btnTrue.className = 'tf-btn-true px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-emerald-50 hover:border-emerald-300 transition-all';
+      btnFalse.className = 'tf-btn-false px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-rose-50 hover:border-rose-300 transition-all';
+
+      if (val === true) {
+        btnTrue.className = 'tf-btn-true px-4 py-2 rounded-xl border-2 border-emerald-500 font-bold text-sm bg-emerald-100 text-emerald-800 transition-all';
+      } else {
+        btnFalse.className = 'tf-btn-false px-4 py-2 rounded-xl border-2 border-rose-500 font-bold text-sm bg-rose-100 text-rose-800 transition-all';
+      }
+    }
+
+    function checkTask4() {
+      const fb = document.getElementById('feedback-4');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+      fb.classList.add('border');
+
+      if (Object.values(task4Answers).includes(null)) {
+        fb.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+        fb.innerHTML = '⚠️ Будь ласка, дай відповідь на всі три картки в цьому завданні!';
+        return false;
+      }
+
+      let isCorrect = true;
+      for (const k in task4Correct) {
+        if (task4Answers[k] !== task4Correct[k]) {
+          isCorrect = false;
+          break;
+        }
+      }
+
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+        fb.innerHTML = '🎉 **Ідеально!** Ти добре розумієш правила виконання алгоритмів!';
+        return true;
+      } else {
+        fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+        fb.innerHTML = '🤔 Пам’ятай: Порядок дій дуже важливий! Не можна змінювати порядок кроків як заманеться.';
+        return false;
+      }
+    }
+
+    function resetTask4() {
+      for (const k in task4Answers) {
+        task4Answers[k] = null;
+      }
+      document.querySelectorAll('#task4-flashcards > div').forEach((cardEl, idx) => {
+        const btnTrue = cardEl.querySelector('.tf-btn-true');
+        const btnFalse = cardEl.querySelector('.tf-btn-false');
+        btnTrue.className = 'tf-btn-true px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-emerald-50 hover:border-emerald-300 transition-all';
+        btnFalse.className = 'tf-btn-false px-4 py-2 rounded-xl border border-slate-300 font-semibold text-sm bg-white hover:bg-rose-50 hover:border-rose-300 transition-all';
+      });
+      const fb = document.getElementById('feedback-4');
+      fb.classList.add('hidden');
+    }
+
+
+    /* ==========================================
+       TASK 5 LOGIC (Pure Drag & Drop Ordering)
+       ========================================== */
+    const task5InitialSteps = [
+      { id: 3, text: 'Відкрити ярлик навчальної програми 🚀' },
+      { id: 1, text: 'Увімкнути монітор та комп\'ютер 🔌' },
+      { id: 4, text: 'Виконати завдання в програмі та закрити її 🎯' },
+      { id: 2, text: 'Ввести свій пароль для входу 🔑' }
+    ];
+
+    let task5Items = [...task5InitialSteps];
+    let draggedIndex = null;
+
+    function renderTask5DragAndDrop() {
+      const container = document.getElementById('task5-drag-container');
+      container.innerHTML = '';
+
+      task5Items.forEach((item, index) => {
+        const el = document.createElement('div');
+        el.draggable = true;
+        el.className = 'drag-item p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 flex items-center justify-between gap-3 transition-all duration-150 hover:border-rose-300';
+        el.dataset.index = index;
+
+        el.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 font-bold flex items-center justify-center text-sm font-fredoka shrink-0">
+              ${index + 1}
+            </span>
+            <span class="font-medium text-slate-700 text-sm md:text-base">${item.text}</span>
+          </div>
+          <div class="text-slate-400 font-bold text-lg cursor-grab hover:text-rose-500 shrink-0">
+            ⠿
+          </div>
+        `;
+
+        // HTML5 Drag Events
+        el.addEventListener('dragstart', (e) => {
+          draggedIndex = index;
+          e.dataTransfer.effectAllowed = 'move';
+          el.classList.add('opacity-40');
+        });
+
+        el.addEventListener('dragend', () => {
+          draggedIndex = null;
+          el.classList.remove('opacity-40');
+          document.querySelectorAll('.drag-item').forEach(i => i.classList.remove('drag-over'));
+        });
+
+        el.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          el.classList.add('drag-over');
+        });
+
+        el.addEventListener('dragleave', () => {
+          el.classList.remove('drag-over');
+        });
+
+        el.addEventListener('drop', (e) => {
+          e.preventDefault();
+          el.classList.remove('drag-over');
+          if (draggedIndex !== null && draggedIndex !== index) {
+            const movedItem = task5Items.splice(draggedIndex, 1)[0];
+            task5Items.splice(index, 0, movedItem);
+            renderTask5DragAndDrop();
+          }
+        });
+
+        container.appendChild(el);
+      });
+    }
+
+    function checkTask5() {
+      const fb = document.getElementById('feedback-5');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+      fb.classList.add('border');
+
+      const isCorrectOrder = task5Items.every((item, idx) => item.id === idx + 1);
+
+      if (isCorrectOrder) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200');
+        fb.innerHTML = '🎉 **Неймовірно!** Ти розставив(ла) кроки у бездоганному порядку!';
+        return true;
+      } else {
+        fb.classList.add('bg-rose-50', 'text-rose-800', 'border-rose-200');
+        fb.innerHTML = '🤔 Порядок кроків не зовсім правильний. Подумай, що потрібно зробити до того, як вводити пароль!';
+        return false;
+      }
+    }
+
+    function resetTask5() {
+      task5Items = [...task5InitialSteps];
+      renderTask5DragAndDrop();
+      const fb = document.getElementById('feedback-5');
+      fb.classList.add('hidden');
+    }
+
+    renderTask5DragAndDrop();
+
+
+    /* ==========================================
+       FINAL EVALUATION & CONFETTI
+       ========================================== */
+    function calculateFinalResult() {
+      const res1 = checkTask1();
+      const res2 = checkTask2();
+      const res3 = checkTask3();
+      const res4 = checkTask4();
+      const res5 = checkTask5();
+
+      const score = [res1, res2, res3, res4, res5].filter(Boolean).length;
+
+      const card = document.getElementById('final-result-card');
+      const emojiEl = document.getElementById('final-emoji');
+      const titleEl = document.getElementById('final-title');
+      const starsEl = document.getElementById('final-score-stars');
+      const descEl = document.getElementById('final-desc');
+
+      card.classList.remove('hidden');
+
+      let starsHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        starsHTML += i <= score ? '<span class="text-amber-300">★</span>' : '<span class="text-white/30">★</span>';
+      }
+      starsEl.innerHTML = `Бали: ${score} / 5 (${starsHTML})`;
+
+      if (score === 5) {
+        emojiEl.innerText = '🏆';
+        titleEl.innerText = 'Рівень: Гранд-майстер Алгоритмів!';
+        descEl.innerText = 'Неймовірно! Ти бездоганно виконав(ла) всі завдання і довів(ла), що справді знаєшся на складених алгоритмах!';
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        }
+      } else if (score >= 3) {
+        emojiEl.innerText = '🌟';
+        titleEl.innerText = 'Рівень: Дослідник!';
+        descEl.innerText = 'Гарна робота! Ти дуже близький(а) до ідеалу. Спробуй виправити помилки в завданнях, щоб отримати найвищий значок!';
+      } else {
+        emojiEl.innerText = '🌱';
+        titleEl.innerText = 'Рівень: Юний учень!';
+        descEl.innerText = 'Не засмучуйся! Переглянь ще раз презентацію та спробуй виконати завдання знову!';
+      }
+
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>
