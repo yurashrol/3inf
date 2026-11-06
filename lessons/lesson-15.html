@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="uk" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інформатика 3 клас • Лінійні алгоритми</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Inter -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tailwind CSS Extension Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Fixes & Pulse Animations -->
+    <style>
+        .font-fredoka {
+            font-family: 'Fredoka', cursive, sans-serif !important;
+        }
+
+        @keyframes pulseBtn {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        .pulse-btn {
+            animation: pulseBtn 2s infinite ease-in-out;
+        }
+        
+        /* Smooth transition for interactivity */
+        .interactive-card {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-full font-sans text-slate-800 pb-12 antialiased selection:bg-purple-200">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8">
+
+        <!-- HEADER SECTION -->
+        <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl py-10 px-6 shadow-xl text-center flex flex-col items-center text-white relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- Subject Badge -->
+            <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+                <span>💻</span>
+                <span>Інформатика • 3 клас</span>
+            </div>
+
+            <!-- Header Title -->
+            <h1 class="text-3xl md:text-4xl text-white font-extrabold tracking-wide font-fredoka drop-shadow-sm">
+                Лінійні алгоритми: Крок за кроком! 🤖✨
+            </h1>
+
+            <!-- Description -->
+            <p class="text-white/90 text-base md:text-lg max-w-xl mt-3 leading-relaxed">
+                Дізнайся, як алгоритми допомагають виконувати команди строго по порядку, виконаий 5 цікавих завдань та отримай свій космічний значок майстра!
+            </p>
+        </header>
+
+        <!-- PRESENTATION / THEORY SECTION -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 space-y-4">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <span class="text-2xl">📷</span>
+                <div>
+                    <h2 class="text-xl font-bold font-fredoka text-slate-800">Навчальна презентація</h2>
+                    <p class="text-sm text-slate-500">Переглянь навчальні матеріали перед виконанням завдань</p>
+                </div>
+            </div>
+
+            <!-- Canva Embed Frame Container -->
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-inner border border-slate-200">
+                <iframe loading="lazy" 
+                        class="absolute inset-0 w-full h-full border-0 m-0 p-0"
+                        src="https://www.canva.com/design/DAG.../view?embed" 
+                        allowfullscreen="allowfullscreen" 
+                        allow="fullscreen">
+                </iframe>
+                <!-- Fallback Info overlay if embed standard placeholder is viewed -->
+                <div class="absolute inset-0 bg-indigo-900/90 flex flex-col items-center justify-center text-white p-6 text-center pointer-events-none">
+                    <div class="text-4xl mb-2">🚀</div>
+                    <h3 class="text-xl font-bold font-fredoka mb-1">Інтерактивна презентація теми</h3>
+                    <p class="text-sm text-indigo-200 max-w-md">Лінійний алгоритм — це послідовність дій, де кожна команда виконується строго один раз і послідовно від початку до кінця!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TASK 1: Single Choice -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 relative space-y-5" id="task-1-container">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                        1
+                    </div>
+                    <h3 class="text-lg font-bold font-fredoka text-slate-800">Що таке лінійний алгоритм?</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Вибір 1 відповіді</span>
+            </div>
+
+            <p class="text-slate-600">Прочитай питання та обери тільки один правильний варіант відповіді:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="t1-options">
+                <button onclick="selectTask1Option(0)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 text-left transition-all flex flex-col justify-between space-y-2">
+                    <span class="font-semibold text-slate-800">Варіант A</span>
+                    <span class="text-sm text-slate-600">Алгоритм, у якому всі команди виконуються строго по черзі, одна за одною.</span>
+                </button>
+                <button onclick="selectTask1Option(1)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 text-left transition-all flex flex-col justify-between space-y-2">
+                    <span class="font-semibold text-slate-800">Варіант B</span>
+                    <span class="text-sm text-slate-600">Алгоритм, у якому одна й та сама команда повторюється 100 разів без зупинки.</span>
+                </button>
+                <button onclick="selectTask1Option(2)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50 hover:bg-indigo-50/50 text-left transition-all flex flex-col justify-between space-y-2">
+                    <span class="font-semibold text-slate-800">Варіант C</span>
+                    <span class="text-sm text-slate-600">Алгоритм, де робот обирає випадкові дії залежно від свого настрою.</span>
+                </button>
+            </div>
+
+            <div id="feedback-1" class="hidden p-4 rounded-2xl text-sm font-medium"></div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkTask1()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-fredoka font-semibold px-6 py-2.5 rounded-2xl shadow-md hover:shadow-lg active:scale-95 transition-all">
+                    Перевірити завдання 1
+                </button>
+                <button onclick="resetTask1()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-2xl active:scale-95 transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 2: Multiple Select -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 relative space-y-5" id="task-2-container">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                        2
+                    </div>
+                    <h3 class="text-lg font-bold font-fredoka text-slate-800">Приклади лінійних процесів</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Кілька відповідей</span>
+            </div>
+
+            <p class="text-slate-600">Вибери <b>УСІ</b> приклади лінійних алгоритмів, де дії йдуть послідовно одна за одною:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="t2-options">
+                <div onclick="toggleTask2Option(0)" class="t2-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-300 bg-slate-50 transition-all flex items-start gap-3">
+                    <input type="checkbox" id="t2-cb-0" class="mt-1 w-5 h-5 accent-indigo-600 rounded pointer-events-none">
+                    <div>
+                        <span class="font-bold text-slate-800 block text-sm">Приготування бутерброда 🥪</span>
+                        <span class="text-xs text-slate-600">Взяти шматочок хліба ➔ намастити масло ➔ покласти сир.</span>
+                    </div>
+                </div>
+
+                <div onclick="toggleTask2Option(1)" class="t2-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-300 bg-slate-50 transition-all flex items-start gap-3">
+                    <input type="checkbox" id="t2-cb-1" class="mt-1 w-5 h-5 accent-indigo-600 rounded pointer-events-none">
+                    <div>
+                        <span class="font-bold text-slate-800 block text-sm">Поливання квітки 🪴</span>
+                        <span class="text-xs text-slate-600">Налити води у лійку ➔ підійти до вазона ➔ полити ґрунт.</span>
+                    </div>
+                </div>
+
+                <div onclick="toggleTask2Option(2)" class="t2-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-300 bg-slate-50 transition-all flex items-start gap-3">
+                    <input type="checkbox" id="t2-cb-2" class="mt-1 w-5 h-5 accent-indigo-600 rounded pointer-events-none">
+                    <div>
+                        <span class="font-bold text-slate-800 block text-sm">Гра в хованки 🙈</span>
+                        <span class="text-xs text-slate-600">Якщо знайшов друга — переміг, А ЯКЩО НІ — шукаєш далі.</span>
+                    </div>
+                </div>
+
+                <div onclick="toggleTask2Option(3)" class="t2-card cursor-pointer p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-300 bg-slate-50 transition-all flex items-start gap-3">
+                    <input type="checkbox" id="t2-cb-3" class="mt-1 w-5 h-5 accent-indigo-600 rounded pointer-events-none">
+                    <div>
+                        <span class="font-bold text-slate-800 block text-sm">Ввімкнення комп'ютера 🖥️</span>
+                        <span class="text-xs text-slate-600">Увімкнути розетку ➔ натиснути кнопку "Power" ➔ дочекатися завантаження.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-2" class="hidden p-4 rounded-2xl text-sm font-medium"></div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkTask2()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-fredoka font-semibold px-6 py-2.5 rounded-2xl shadow-md hover:shadow-lg active:scale-95 transition-all">
+                    Перевірити завдання 2
+                </button>
+                <button onclick="resetTask2()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-2xl active:scale-95 transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 3: True / False Flashcards -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 relative space-y-5" id="task-3-container">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                        3
+                    </div>
+                    <h3 class="text-lg font-bold font-fredoka text-slate-800">Правда чи Неправда?</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Вірно / Невірно</span>
+            </div>
+
+            <p class="text-slate-600">Оціни кожне твердження: обери «Так 👍» якщо це правда, або «Ні 👎» якщо це помилка:</p>
+
+            <div class="space-y-4" id="t3-cards">
+                <!-- Card 1 -->
+                <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <span class="text-sm font-medium text-slate-800">1. У лінійному алгоритмі порядок команд можна довільно змінювати, і результат завжди буде одинаковим.</span>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="setTask3Answer(0, true)" id="t3-btn-0-true" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-emerald-50 hover:border-emerald-500 transition-all">Так 👍</button>
+                        <button onclick="setTask3Answer(0, false)" id="t3-btn-0-false" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-rose-50 hover:border-rose-500 transition-all">Ні 👎</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <span class="text-sm font-medium text-slate-800">2. Кожна команда в лінійному алгоритмі виконується строго один раз.</span>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="setTask3Answer(1, true)" id="t3-btn-1-true" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-emerald-50 hover:border-emerald-500 transition-all">Так 👍</button>
+                        <button onclick="setTask3Answer(1, false)" id="t3-btn-1-false" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-rose-50 hover:border-rose-500 transition-all">Ні 👎</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <span class="text-sm font-medium text-slate-800">3. Алгоритм — це чітка послідовність команд для виконавця.</span>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="setTask3Answer(2, true)" id="t3-btn-2-true" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-emerald-50 hover:border-emerald-500 transition-all">Так 👍</button>
+                        <button onclick="setTask3Answer(2, false)" id="t3-btn-2-false" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-rose-50 hover:border-rose-500 transition-all">Ні 👎</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-3" class="hidden p-4 rounded-2xl text-sm font-medium"></div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkTask3()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-fredoka font-semibold px-6 py-2.5 rounded-2xl shadow-md hover:shadow-lg active:scale-95 transition-all">
+                    Перевірити завдання 3
+                </button>
+                <button onclick="resetTask3()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-2xl active:scale-95 transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 4: Matching Pairs -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 relative space-y-5" id="task-4-container">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                        4
+                    </div>
+                    <h3 class="text-lg font-bold font-fredoka text-slate-800">З'єднай пари: Завдання та перша дія</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Відповідність</span>
+            </div>
+
+            <p class="text-slate-600">Клацни спочатку на ліву картку (Завдання), а потім на відповідну правильну праву картку (Дія):</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Left Column -->
+                <div class="space-y-3" id="t4-left-col">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Завдання для виконавця</h4>
+                    <!-- Dynamic rendering -->
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-3" id="t4-right-col">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Правильна дія</h4>
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+            <div id="feedback-4" class="hidden p-4 rounded-2xl text-sm font-medium"></div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkTask4()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-fredoka font-semibold px-6 py-2.5 rounded-2xl shadow-md hover:shadow-lg active:scale-95 transition-all">
+                    Перевірити завдання 4
+                </button>
+                <button onclick="resetTask4()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-2xl active:scale-95 transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- TASK 5: Ordering / Sequencing -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 relative space-y-5" id="task-5-container">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center font-fredoka text-lg">
+                        5
+                    </div>
+                    <h3 class="text-lg font-bold font-fredoka text-slate-800">Алгоритм «Заварювання чаю роботом»</h3>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">Впорядкування</span>
+            </div>
+
+            <p class="text-slate-600">Розстав кроки у правильній послідовності від 1 до 4 за допомогою кнопок ⬆️ та ⬇️:</p>
+
+            <div class="space-y-3" id="t5-list">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <div id="feedback-5" class="hidden p-4 rounded-2xl text-sm font-medium"></div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkTask5()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-fredoka font-semibold px-6 py-2.5 rounded-2xl shadow-md hover:shadow-lg active:scale-95 transition-all">
+                    Перевірити завдання 5
+                </button>
+                <button onclick="resetTask5()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-2xl active:scale-95 transition-all">
+                    Спочатку 🔄
+                </button>
+            </div>
+        </section>
+
+        <!-- FINAL SCORE BLOCK -->
+        <section class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 sm:p-10 text-center text-white shadow-xl space-y-6">
+            <h2 class="text-2xl sm:text-3xl font-extrabold font-fredoka">Твій підсумковий результат 🏆</h2>
+            <p class="text-white/90 text-sm sm:text-base max-w-lg mx-auto">
+                Натисни кнопку нижче, щоб перевірити всі завдання та дізнатися свій рівень майстерності в алгоритмах!
+            </p>
+
+            <button onclick="calculateFinalResult()" class="pulse-btn inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-indigo-950 font-bold font-fredoka text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-2xl transition-all transform active:scale-95">
+                <span>🌟 Отримати свій значок! 🌟</span>
+            </button>
+
+            <!-- Results area -->
+            <div id="final-results-card" class="hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 max-w-md mx-auto space-y-4">
+                <div id="final-badge-icon" class="text-5xl">🌱</div>
+                <div>
+                    <div id="final-score-text" class="text-2xl font-bold font-fredoka">0 з 5 балів</div>
+                    <div id="final-title-text" class="text-lg font-semibold text-yellow-300 mt-1">Юний учень</div>
+                    <p id="final-desc-text" class="text-xs text-white/80 mt-2">Продовжуй тренуватися, і ти обов'язково станеш майстром алгоритмів!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIVE CHALLENGE SECTION -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 space-y-4">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">🚀</span>
+                <h3 class="text-xl font-bold font-fredoka text-slate-800">Творчий челендж: Алгоритм для робота-помічника!</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+                Уяви, що у тебе з'явився хатній робот. Напиши коротку послідовність із 3-4 кроків, яку він має виконати, щоб прибрати іграшки в кімнаті:
+            </p>
+
+            <div class="space-y-3 pt-2">
+                <textarea placeholder="1. Знайти всі іграшки на підлозі...&#10;2. ...&#10;3. ..." class="w-full p-4 rounded-2xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm text-slate-700 outline-none transition-all" rows="4"></textarea>
+                <div class="flex justify-end">
+                    <button onclick="alertModal('👍 Чудова робота! Твій алгоритм збережено у зошиті розумника.')" class="bg-purple-600 hover:bg-purple-700 text-white font-fredoka font-semibold px-5 py-2 rounded-xl shadow active:scale-95 transition-all text-sm">
+                        Зберегти ідею 💡
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-xs text-slate-400 py-4">
+            <p>© 2026 | Інформатика — 3 клас | Автор: Юрій Шроль</p>
+        </footer>
+
+    </div>
+
+    <!-- CUSTOM MODAL COMPONENT (Replaces alert) -->
+    <div id="custom-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-slate-100 text-center space-y-4 transform transition-all">
+            <div class="text-4xl">🌟</div>
+            <p id="modal-text" class="text-slate-700 font-medium text-sm"></p>
+            <button onclick="closeModal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-fredoka font-semibold py-2.5 rounded-xl transition-all">
+                Зрозуміло!
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ==========================================================================
+           STATE MANAGEMENT
+           ========================================================================== */
+        // Task 1
+        let task1Selected = null;
+        const task1Correct = 0; // Variant A
+
+        // Task 2
+        let task2Selected = [false, false, false, false];
+        const task2Correct = [true, true, false, true]; // 0, 1, 3 are linear
+
+        // Task 3
+        let task3Answers = [null, null, null];
+        const task3Correct = [false, true, true]; // Statement 1 is False, 2 & 3 are True
+
+        // Task 4
+        const task4LeftItems = [
+            { id: 'l1', text: 'Увімкнути робота' },
+            { id: 'l2', text: 'Почистити зуби' },
+            { id: 'l3', text: 'Посадити квіточку' }
+        ];
+        const task4RightItems = [
+            { id: 'r2', text: 'Взяти зубну щітку та пасту' },
+            { id: 'r1', text: 'Натиснути кнопку "Старт"' },
+            { id: 'r3', text: 'Викопати ямку та полити воду' }
+        ];
+        // Correct matches: l1->r1, l2->r2, l3->r3
+        const task4CorrectMap = { 'l1': 'r1', 'l2': 'r2', 'l3': 'r3' };
+        let task4SelectedLeft = null;
+        let task4Pairs = {}; // leftId -> rightId
+
+        // Task 5
+        let task5Order = [
+            { id: 2, text: 'Покласти пакетик чаю у чашку' },
+            { id: 1, text: 'Налити воду в чайник та увімкнути його' },
+            { id: 4, text: 'Додати ложечку цукру та перемішати' },
+            { id: 3, text: 'Залити пакетик гарячою водою з чайника' }
+        ];
+        const task5CorrectOrderIds = [1, 2, 3, 4];
+
+
+        /* ==========================================================================
+           MODAL HELPER
+           ========================================================================== */
+        function alertModal(msg) {
+            document.getElementById('modal-text').innerText = msg;
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+
+        /* ==========================================================================
+           TASK 1 LOGIC (Single Choice)
+           ========================================================================== */
+        function selectTask1Option(index) {
+            task1Selected = index;
+            const buttons = document.querySelectorAll('#t1-options .t1-btn');
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-200');
+                    btn.classList.remove('border-slate-200', 'bg-slate-50');
+                } else {
+                    btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-200');
+                    btn.classList.add('border-slate-200', 'bg-slate-50');
+                }
+            });
+        }
+
+        function checkTask1(silent = false) {
+            const feedback = document.getElementById('feedback-1');
+            let isCorrect = (task1Selected === task1Correct);
+
+            if (!silent) {
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+                if (task1Selected === null) {
+                    feedback.classList.add('bg-amber-100', 'text-amber-800');
+                    feedback.innerText = '⚠️ Будь ласка, обери один із варіантів відповіді!';
+                } else if (isCorrect) {
+                    feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                    feedback.innerText = '🎉 Чудово! Лінійний алгоритм виконує команди чітко одна за одною!';
+                } else {
+                    feedback.classList.add('bg-rose-100', 'text-rose-800');
+                    feedback.innerText = 'Подумай ще 🧐 Подивися, в якому алгоритмі немає повторень або вибору!';
+                }
+            }
+
+            return isCorrect;
+        }
+
+        function resetTask1() {
+            task1Selected = null;
+            const buttons = document.querySelectorAll('#t1-options .t1-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-200');
+                btn.classList.add('border-slate-200', 'bg-slate-50');
+            });
+            document.getElementById('feedback-1').classList.add('hidden');
+        }
+
+
+        /* ==========================================================================
+           TASK 2 LOGIC (Multiple Choice)
+           ========================================================================== */
+        function toggleTask2Option(index) {
+            task2Selected[index] = !task2Selected[index];
+            const checkbox = document.getElementById(`t2-cb-${index}`);
+            checkbox.checked = task2Selected[index];
+            
+            const cards = document.querySelectorAll('#t2-options .t2-card');
+            if (task2Selected[index]) {
+                cards[index].classList.add('border-indigo-600', 'bg-indigo-50/70');
+                cards[index].classList.remove('border-slate-200', 'bg-slate-50');
+            } else {
+                cards[index].classList.remove('border-indigo-600', 'bg-indigo-50/70');
+                cards[index].classList.add('border-slate-200', 'bg-slate-50');
+            }
+        }
+
+        function checkTask2(silent = false) {
+            const feedback = document.getElementById('feedback-2');
+            let isCorrect = task2Selected.every((val, i) => val === task2Correct[i]);
+            let hasSelection = task2Selected.some(val => val === true);
+
+            if (!silent) {
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+                if (!hasSelection) {
+                    feedback.classList.add('bg-amber-100', 'text-amber-800');
+                    feedback.innerText = '⚠️ Потрібно обрати принаймні один варіант!';
+                } else if (isCorrect) {
+                    feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                    feedback.innerText = '🌟 Молодець! Бутерброд, квітка та комп\'ютер мають чіткі послідовні кроки!';
+                } else {
+                    feedback.classList.add('bg-rose-100', 'text-rose-800');
+                    feedback.innerText = 'Залишилося трошки подумати 🤔 Гра в хованки містить умову (якщо), тому вона не є лінійною!';
+                }
+            }
+
+            return isCorrect;
+        }
+
+        function resetTask2() {
+            task2Selected = [false, false, false, false];
+            const cards = document.querySelectorAll('#t2-options .t2-card');
+            cards.forEach((card, i) => {
+                card.classList.remove('border-indigo-600', 'bg-indigo-50/70');
+                card.classList.add('border-slate-200', 'bg-slate-50');
+                document.getElementById(`t2-cb-${i}`).checked = false;
+            });
+            document.getElementById('feedback-2').classList.add('hidden');
+        }
+
+
+        /* ==========================================================================
+           TASK 3 LOGIC (True/False Flashcards)
+           ========================================================================== */
+        function setTask3Answer(cardIndex, val) {
+            task3Answers[cardIndex] = val;
+            
+            const btnTrue = document.getElementById(`t3-btn-${cardIndex}-true`);
+            const btnFalse = document.getElementById(`t3-btn-${cardIndex}-false`);
+
+            if (val === true) {
+                btnTrue.className = "px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-600 shadow transition-all";
+                btnFalse.className = "px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-rose-50 hover:border-rose-500 text-slate-700 transition-all";
+            } else {
+                btnFalse.className = "px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 text-white border border-rose-600 shadow transition-all";
+                btnTrue.className = "px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-emerald-50 hover:border-emerald-500 text-slate-700 transition-all";
+            }
+        }
+
+        function checkTask3(silent = false) {
+            const feedback = document.getElementById('feedback-3');
+            let allAnswered = task3Answers.every(ans => ans !== null);
+            let isCorrect = allAnswered && task3Answers.every((ans, i) => ans === task3Correct[i]);
+
+            if (!silent) {
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+                if (!allAnswered) {
+                    feedback.classList.add('bg-amber-100', 'text-amber-800');
+                    feedback.innerText = '⚠️ Дай відповідь на всі 3 твердження!';
+                } else if (isCorrect) {
+                    feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                    feedback.innerText = '✨ Правильно! Порядок команд у лінійному алгоритмі міняти місцями не можна!';
+                } else {
+                    feedback.classList.add('bg-rose-100', 'text-rose-800');
+                    feedback.innerText = 'Перевір перше твердження: якщо змінити порядок команд, чайник закипить до того, як туди налюють воду! 😉';
+                }
+            }
+
+            return isCorrect;
+        }
+
+        function resetTask3() {
+            task3Answers = [null, null, null];
+            for (let i = 0; i < 3; i++) {
+                const btnTrue = document.getElementById(`t3-btn-${i}-true`);
+                const btnFalse = document.getElementById(`t3-btn-${i}-false`);
+                btnTrue.className = "px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-emerald-50 hover:border-emerald-500 text-slate-700 transition-all";
+                btnFalse.className = "px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 hover:bg-rose-50 hover:border-rose-500 text-slate-700 transition-all";
+            }
+            document.getElementById('feedback-3').classList.add('hidden');
+        }
+
+
+        /* ==========================================================================
+           TASK 4 LOGIC (Matching Pairs)
+           ========================================================================== */
+        function renderTask4() {
+            const leftCol = document.getElementById('t4-left-col');
+            const rightCol = document.getElementById('t4-right-col');
+
+            leftCol.innerHTML = '<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Завдання для виконавця</h4>';
+            rightCol.innerHTML = '<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Правильна дія</h4>';
+
+            task4LeftItems.forEach(item => {
+                const isSelected = (task4SelectedLeft === item.id);
+                const isPaired = (item.id in task4Pairs);
+                
+                const div = document.createElement('div');
+                div.className = `p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between ${
+                    isSelected ? 'border-indigo-600 bg-indigo-50 shadow' : 
+                    isPaired ? 'border-purple-400 bg-purple-50' : 'border-slate-200 bg-slate-50 hover:border-indigo-300'
+                }`;
+                div.onclick = () => selectTask4Left(item.id);
+
+                div.innerHTML = `
+                    <span class="text-sm font-semibold text-slate-800">${item.text}</span>
+                    ${isPaired ? '<span class="text-xs font-semibold px-2 py-0.5 bg-purple-200 text-purple-800 rounded-md">З’єднано</span>' : ''}
+                `;
+                leftCol.appendChild(div);
+            });
+
+            task4RightItems.forEach(item => {
+                // Find if this right item is paired
+                const pairedLeftId = Object.keys(task4Pairs).find(key => task4Pairs[key] === item.id);
+                
+                const div = document.createElement('div');
+                div.className = `p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${
+                    pairedLeftId ? 'border-purple-400 bg-purple-50' : 'border-slate-200 bg-slate-50 hover:border-indigo-300 cursor-pointer'
+                }`;
+                if (!pairedLeftId) {
+                    div.onclick = () => selectTask4Right(item.id);
+                }
+
+                div.innerHTML = `
+                    <span class="text-sm font-semibold text-slate-800">${item.text}</span>
+                    ${pairedLeftId ? `<button onclick="unpairTask4('${pairedLeftId}', event)" class="text-rose-500 hover:text-rose-700 font-bold px-2 py-0.5 text-xs bg-rose-100 rounded-md">✕</button>` : ''}
+                `;
+                rightCol.appendChild(div);
+            });
+        }
+
+        function selectTask4Left(id) {
+            task4SelectedLeft = id;
+            renderTask4();
+        }
+
+        function selectTask4Right(rId) {
+            if (task4SelectedLeft) {
+                task4Pairs[task4SelectedLeft] = rId;
+                task4SelectedLeft = null;
+                renderTask4();
+            } else {
+                alertModal('Спочатку натисни на картку в лівому стовпчику!');
+            }
+        }
+
+        function unpairTask4(lId, e) {
+            e.stopPropagation();
+            delete task4Pairs[lId];
+            renderTask4();
+        }
+
+        function checkTask4(silent = false) {
+            const feedback = document.getElementById('feedback-4');
+            const pairedCount = Object.keys(task4Pairs).length;
+            let isCorrect = (pairedCount === 3);
+
+            if (isCorrect) {
+                for (let lId in task4CorrectMap) {
+                    if (task4Pairs[lId] !== task4CorrectMap[lId]) {
+                        isCorrect = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!silent) {
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+                if (pairedCount < 3) {
+                    feedback.classList.add('bg-amber-100', 'text-amber-800');
+                    feedback.innerText = '⚠️ З\'єднай усі 3 пари карток!';
+                } else if (isCorrect) {
+                    feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                    feedback.innerText = '🎉 Супер! Усі пари утворено абсолютно правильно!';
+                } else {
+                    feedback.classList.add('bg-rose-100', 'text-rose-800');
+                    feedback.innerText = 'Деякі пари утворено невірно. Натисни "✕", щоб змінити вибір!';
+                }
+            }
+
+            return isCorrect;
+        }
+
+        function resetTask4() {
+            task4SelectedLeft = null;
+            task4Pairs = {};
+            renderTask4();
+            document.getElementById('feedback-4').classList.add('hidden');
+        }
+
+
+        /* ==========================================================================
+           TASK 5 LOGIC (Ordering / Sequencing)
+           ========================================================================== */
+        function renderTask5() {
+            const list = document.getElementById('t5-list');
+            list.innerHTML = '';
+
+            task5Order.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "p-4 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-4 shadow-sm";
+                
+                div.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-full bg-purple-200 text-purple-800 font-bold flex items-center justify-center text-xs font-fredoka">${index + 1}</span>
+                        <span class="text-sm font-medium text-slate-800">${item.text}</span>
+                    </div>
+                    <div class="flex gap-1 shrink-0">
+                        <button onclick="moveTask5(${index}, -1)" ${index === 0 ? 'disabled class="opacity-30 p-2 text-slate-400"' : 'class="p-2 text-indigo-600 hover:bg-indigo-100 rounded-xl transition-all font-bold"'}>⬆️</button>
+                        <button onclick="moveTask5(${index}, 1)" ${index === task5Order.length - 1 ? 'disabled class="opacity-30 p-2 text-slate-400"' : 'class="p-2 text-indigo-600 hover:bg-indigo-100 rounded-xl transition-all font-bold"'}>⬇️</button>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function moveTask5(index, direction) {
+            const targetIndex = index + direction;
+            if (targetIndex >= 0 && targetIndex < task5Order.length) {
+                const temp = task5Order[index];
+                task5Order[index] = task5Order[targetIndex];
+                task5Order[targetIndex] = temp;
+                renderTask5();
+            }
+        }
+
+        function checkTask5(silent = false) {
+            const feedback = document.getElementById('feedback-5');
+            let isCorrect = task5Order.every((item, i) => item.id === task5CorrectOrderIds[i]);
+
+            if (!silent) {
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+                if (isCorrect) {
+                    feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                    feedback.innerText = '☕ Чудово! Тепер наш робот зможе приготувати найсмачніший чай!';
+                } else {
+                    feedback.classList.add('bg-rose-100', 'text-rose-800');
+                    feedback.innerText = 'Порядок кроків порушено! Залити пакетик можна тільки після того, як вода закипить 😉';
+                }
+            }
+
+            return isCorrect;
+        }
+
+        function resetTask5() {
+            task5Order = [
+                { id: 2, text: 'Покласти пакетик чаю у чашку' },
+                { id: 1, text: 'Налити воду в чайник та увімкнути його' },
+                { id: 4, text: 'Додати ложечку цукру та перемішати' },
+                { id: 3, text: 'Залити пакетик гарячою водою з чайника' }
+            ];
+            renderTask5();
+            document.getElementById('feedback-5').classList.add('hidden');
+        }
+
+
+        /* ==========================================================================
+           FINAL RESULT CALCULATION
+           ========================================================================== */
+        function calculateFinalResult() {
+            const res1 = checkTask1(true);
+            const res2 = checkTask2(true);
+            const res3 = checkTask3(true);
+            const res4 = checkTask4(true);
+            const res5 = checkTask5(true);
+
+            // Also trigger visible feedbacks on each card
+            checkTask1(false);
+            checkTask2(false);
+            checkTask3(false);
+            checkTask4(false);
+            checkTask5(false);
+
+            const totalScore = (res1 ? 1 : 0) + (res2 ? 1 : 0) + (res3 ? 1 : 0) + (res4 ? 1 : 0) + (res5 ? 1 : 0);
+
+            const card = document.getElementById('final-results-card');
+            const icon = document.getElementById('final-badge-icon');
+            const scoreText = document.getElementById('final-score-text');
+            const titleText = document.getElementById('final-title-text');
+            const descText = document.getElementById('final-desc-text');
+
+            card.classList.remove('hidden');
+            scoreText.innerText = `${totalScore} з 5 балів`;
+
+            if (totalScore === 5) {
+                icon.innerText = '🏆';
+                titleText.innerText = 'Гранд-майстер алгоритмів!';
+                descText.innerText = 'Неймовірно! Ти ідеально розумієш лінійні алгоритми!';
+                
+                // Trigger celebratory confetti
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            } else if (totalScore >= 3) {
+                icon.innerText = '🚀';
+                titleText.innerText = 'Дослідник команд!';
+                descText.innerText = 'Гарний результат! У тебе добре виходить, спробуй виправити помилки для ідеалу!';
+            } else {
+                icon.innerText = '🌱';
+                titleText.innerText = 'Юний учень';
+                descText.innerText = 'Не засмучуйся! Переглянь ще раз презентацію та спробуй виконати завдання знову!';
+            }
+
+            // Scroll gently to results card
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+
+        /* ==========================================================================
+           INITIALIZATION ON LOAD
+           ========================================================================== */
+        window.onload = function() {
+            renderTask4();
+            renderTask5();
+        };
+    </script>
+</body>
+</html>
