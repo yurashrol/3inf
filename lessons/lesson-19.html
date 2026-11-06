@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="uk" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інформатика 3 клас | Істинні та хибні висловлювання</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Fredoka & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Overrides & Animations -->
+    <style>
+        .font-fredoka {
+            font-family: 'Fredoka', cursive, sans-serif !important;
+        }
+
+        /* Pulse animation for CTA button */
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 25px -5px rgba(234, 179, 8, 0.5); }
+            50% { transform: scale(1.04); box-shadow: 0 20px 35px -5px rgba(234, 179, 8, 0.8); }
+        }
+        .pulse-btn {
+            animation: pulse-subtle 2.5s infinite ease-in-out;
+        }
+
+        /* Touch drag handle styles */
+        .draggable-item {
+            cursor: grab;
+            user-select: none;
+            touch-action: manipulation;
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #9333ea;
+            background-color: #f3e8ff;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-full font-sans text-slate-800 antialiased selection:bg-purple-200">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 pb-12">
+
+        <!-- 1. HEADER SECTION -->
+        <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-3xl shadow-2xl py-10 px-6 text-center flex flex-col items-center text-white">
+            <!-- Badge -->
+            <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-4 flex items-center gap-2 shadow-inner">
+                <span>💻</span> Інформатика • 3 клас
+            </div>
+            
+            <!-- Title -->
+            <h1 class="text-3xl md:text-5xl text-white font-extrabold tracking-wide drop-shadow-sm font-fredoka mb-3">
+                Істинні та хибні висловлювання 🤔💡
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-white/95 text-base md:text-lg font-normal max-w-xl leading-relaxed">
+                Привіт, юний досліднику! Сьогодні ми дізнаємося, як розрізняти правду та вигадку в інформатиці. Виконуй цікаві завдання та виборюй свій значок майстра!
+            </p>
+        </header>
+
+        <!-- 2. PRESENTATION / THEORY SECTION -->
+        <section class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-4">
+            <div class="flex items-center gap-3 border-b border-purple-100 pb-4">
+                <span class="text-2xl">📷</span>
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold font-fredoka text-purple-900">Навчальна презентація</h2>
+                    <p class="text-sm text-slate-500">Переглянь навчальні матеріали перед виконанням завдань</p>
+                </div>
+            </div>
+
+            <!-- Canva Embed Container (16:9 Aspect Ratio) -->
+            <div class="relative w-full pt-[56.25%] rounded-2xl overflow-hidden shadow-md bg-slate-900 border border-slate-200">
+                <iframe loading="lazy" 
+                        class="absolute inset-0 w-full h-full border-0 m-0 p-0"
+                        src="https://www.canva.com/design/DAGXxxxxxx/view?embed" 
+                        allowfullscreen="allowfullscreen" 
+                        allow="fullscreen">
+                </iframe>
+            </div>
+
+            <!-- Quick Rule Hint -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-start gap-3">
+                    <span class="text-2xl">✅</span>
+                    <div>
+                        <h4 class="font-bold text-emerald-900 font-fredoka">Істинне висловлювання</h4>
+                        <p class="text-sm text-emerald-700">Це твердження, яке відповідає дійсності (правдиве). <i>Наприклад: "Сонце дає світло."</i></p>
+                    </div>
+                </div>
+                <div class="p-4 bg-rose-50 border border-rose-200 rounded-2xl flex items-start gap-3">
+                    <span class="text-2xl">❌</span>
+                    <div>
+                        <h4 class="font-bold text-rose-900 font-fredoka">Хибне висловлювання</h4>
+                        <p class="text-sm text-rose-700">Це твердження, яке НЕ відповідає дійсності (неправдиве). <i>Наприклад: "Сніг гарячий."</i></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TASKS SECTION -->
+        <main class="space-y-8">
+
+            <!-- TASK 1: SINGLE CHOICE -->
+            <article class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-6 relative transition-all duration-300">
+                <!-- Header of task -->
+                <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 font-bold font-fredoka flex items-center justify-center text-lg shadow-sm">1</div>
+                        <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">Що таке "істинне висловлювання"?</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-600 rounded-full border border-purple-200 shrink-0">Вибір відповіді</span>
+                </div>
+
+                <!-- Description -->
+                <p class="text-slate-600">Обери один правильний варіант відповіді серед запропонованих ниже:</p>
+
+                <!-- Options -->
+                <div id="t1-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="selectTask1(0)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-300 text-left transition-all duration-150 flex items-center gap-3 font-medium text-slate-700">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-slate-500 shrink-0">А</span>
+                        <span>Висловлювання, у якому є помилка або брехня</span>
+                    </button>
+                    <button onclick="selectTask1(1)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-300 text-left transition-all duration-150 flex items-center gap-3 font-medium text-slate-700">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-slate-500 shrink-0">Б</span>
+                        <span>Висловлювання, яке є правильним і відповідає правді</span>
+                    </button>
+                    <button onclick="selectTask1(2)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-300 text-left transition-all duration-150 flex items-center gap-3 font-medium text-slate-700">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-slate-500 shrink-0">В</span>
+                        <span>Будь-яке запитання, на яке немає відповіді</span>
+                    </button>
+                    <button onclick="selectTask1(3)" class="t1-btn p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-300 text-left transition-all duration-150 flex items-center gap-3 font-medium text-slate-700">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-slate-500 shrink-0">Г</span>
+                        <span>Покликувальне речення зі знаком оклику</span>
+                    </button>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div class="flex gap-3">
+                        <button onclick="checkTask1()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-2xl shadow-md active:scale-95 transition-all">Перевірити завдання 1</button>
+                        <button onclick="resetTask1()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">Спочатку 🔄</button>
+                    </div>
+                </div>
+                <div id="feedback-1" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+            </article>
+
+            <!-- TASK 2: TRUE / FALSE FLASHCARDS -->
+            <article class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-6 relative transition-all duration-300">
+                <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 font-bold font-fredoka flex items-center justify-center text-lg shadow-sm">2</div>
+                        <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">Вікторина: Істинно чи Хибно?</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-600 rounded-full border border-purple-200 shrink-0">Картки «Правда / Неправда»</span>
+                </div>
+
+                <p class="text-slate-600">Прочитай твердження на кожній картці та познач, чи воно істинне, чи хибне:</p>
+
+                <!-- Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card 1 -->
+                    <div class="t2-card p-5 rounded-2xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">☀️</span>
+                            <p class="font-medium text-slate-800">"Сонце яскраво світить удень."</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="setTask2Answer(0, true)" id="t2-btn-0-true" class="flex-1 py-2 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👍 Істинно
+                            </button>
+                            <button onclick="setTask2Answer(0, false)" id="t2-btn-0-false" class="flex-1 py-2 px-3 rounded-xl border border-rose-300 bg-white hover:bg-rose-50 text-rose-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👎 Хибно
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="t2-card p-5 rounded-2xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">⌨️</span>
+                            <p class="font-medium text-slate-800">"Клавіатура служить для введення тексту в комп'ютер."</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="setTask2Answer(1, true)" id="t2-btn-1-true" class="flex-1 py-2 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👍 Істинно
+                            </button>
+                            <button onclick="setTask2Answer(1, false)" id="t2-btn-1-false" class="flex-1 py-2 px-3 rounded-xl border border-rose-300 bg-white hover:bg-rose-50 text-rose-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👎 Хибно
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="t2-card p-5 rounded-2xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🏠</span>
+                            <p class="font-medium text-slate-800">"Водостічна ринва — це головний пристрій введення даних."</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="setTask2Answer(2, true)" id="t2-btn-2-true" class="flex-1 py-2 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👍 Істинно
+                            </button>
+                            <button onclick="setTask2Answer(2, false)" id="t2-btn-2-false" class="flex-1 py-2 px-3 rounded-xl border border-rose-300 bg-white hover:bg-rose-50 text-rose-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👎 Хибно
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="t2-card p-5 rounded-2xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🐕</span>
+                            <p class="font-medium text-slate-800">"Звичайна домашня собака вміє літати в хмарах."</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="setTask2Answer(3, true)" id="t2-btn-3-true" class="flex-1 py-2 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👍 Істинно
+                            </button>
+                            <button onclick="setTask2Answer(3, false)" id="t2-btn-3-false" class="flex-1 py-2 px-3 rounded-xl border border-rose-300 bg-white hover:bg-rose-50 text-rose-700 font-bold text-sm transition-all flex items-center justify-center gap-1">
+                                👎 Хибно
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div class="flex gap-3">
+                        <button onclick="checkTask2()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-2xl shadow-md active:scale-95 transition-all">Перевірити завдання 2</button>
+                        <button onclick="resetTask2()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">Спочатку 🔄</button>
+                    </div>
+                </div>
+                <div id="feedback-2" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+            </article>
+
+            <!-- TASK 3: BUCKET SORTING -->
+            <article class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-6 relative transition-all duration-300">
+                <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 font-bold font-fredoka flex items-center justify-center text-lg shadow-sm">3</div>
+                        <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">Сортування по кошиках</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-600 rounded-full border border-purple-200 shrink-0">Категорії / Кошики</span>
+                </div>
+
+                <p class="text-slate-600">Перетягни картку або натисни на неї, а потім на потрібний кошик:</p>
+
+                <!-- Pool of items to sort -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 min-h-[90px]">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Нерозподілені картки:</div>
+                    <div id="t3-items-pool" class="flex flex-wrap gap-3">
+                        <!-- Items populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Buckets Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Bucket True -->
+                    <div onclick="clickBucket('true')" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'true')" class="drop-zone border-2 border-dashed border-emerald-300 bg-emerald-50/40 rounded-3xl p-5 min-h-[160px] flex flex-col transition-all">
+                        <div class="flex items-center justify-between pb-3 border-b border-emerald-200/60 mb-3">
+                            <span class="font-bold font-fredoka text-emerald-800 flex items-center gap-2 text-lg">
+                                🟢 Істинні висловлювання
+                            </span>
+                            <span id="t3-count-true" class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full">0</span>
+                        </div>
+                        <div id="bucket-true-items" class="flex-1 flex flex-col gap-2"></div>
+                    </div>
+
+                    <!-- Bucket False -->
+                    <div onclick="clickBucket('false')" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'false')" class="drop-zone border-2 border-dashed border-rose-300 bg-rose-50/40 rounded-3xl p-5 min-h-[160px] flex flex-col transition-all">
+                        <div class="flex items-center justify-between pb-3 border-b border-rose-200/60 mb-3">
+                            <span class="font-bold font-fredoka text-rose-800 flex items-center gap-2 text-lg">
+                                🔴 Хибні висловлювання
+                            </span>
+                            <span id="t3-count-false" class="text-xs font-bold px-2.5 py-1 bg-rose-100 text-rose-700 rounded-full">0</span>
+                        </div>
+                        <div id="bucket-false-items" class="flex-1 flex flex-col gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div class="flex gap-3">
+                        <button onclick="checkTask3()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-2xl shadow-md active:scale-95 transition-all">Перевірити завдання 3</button>
+                        <button onclick="resetTask3()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">Спочатку 🔄</button>
+                    </div>
+                </div>
+                <div id="feedback-3" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+            </article>
+
+            <!-- TASK 4: FILL IN THE BLANKS WITH SELECTS -->
+            <article class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-6 relative transition-all duration-300">
+                <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 font-bold font-fredoka flex items-center justify-center text-lg shadow-sm">4</div>
+                        <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">Заповни пропуски у тексті</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-600 rounded-full border border-purple-200 shrink-0">Випадаючий список</span>
+                </div>
+
+                <p class="text-slate-600">Обери правильні слова із випадаючих списків, щоб утворити правильні твердження:</p>
+
+                <!-- Sentences with Select Box -->
+                <div class="space-y-4 text-slate-800 leading-relaxed text-base md:text-lg">
+                    <!-- Sentence 1 -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+                        <span>1. Твердження "Зима — це пора року" є</span>
+                        <select id="t4-select-0" class="bg-white border-2 border-purple-200 focus:border-purple-500 rounded-xl px-3 py-1.5 font-semibold text-purple-900 outline-none transition-all cursor-pointer">
+                            <option value="">&lt;обрати&gt;</option>
+                            <option value="true">істинним</option>
+                            <option value="false">хибним</option>
+                            <option value="not_statement">запитанням</option>
+                        </select>
+                        <span>висловлюванням.</span>
+                    </div>
+
+                    <!-- Sentence 2 -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+                        <span>2. Твердження "Комп'ютерна мишка вміє варити суп" є</span>
+                        <select id="t4-select-1" class="bg-white border-2 border-purple-200 focus:border-purple-500 rounded-xl px-3 py-1.5 font-semibold text-purple-900 outline-none transition-all cursor-pointer">
+                            <option value="">&lt;обрати&gt;</option>
+                            <option value="true">істинним</option>
+                            <option value="false">хибним</option>
+                            <option value="not_statement">питальним</option>
+                        </select>
+                        <span>висловлюванням.</span>
+                    </div>
+
+                    <!-- Sentence 3 -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+                        <span>3. Речення "Котра зараз година?"</span>
+                        <select id="t4-select-2" class="bg-white border-2 border-purple-200 focus:border-purple-500 rounded-xl px-3 py-1.5 font-semibold text-purple-900 outline-none transition-all cursor-pointer">
+                            <option value="">&lt;обрати&gt;</option>
+                            <option value="is_true">є істинним</option>
+                            <option value="not_stat">не є висловлюванням</option>
+                            <option value="is_false">є хибним</option>
+                        </select>
+                        <span>, тому що воно ставить запитання.</span>
+                    </div>
+
+                    <!-- Sentence 4 -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-2">
+                        <span>4. Якщо висловлювання повністю відповідає дійсності, його називають</span>
+                        <select id="t4-select-3" class="bg-white border-2 border-purple-200 focus:border-purple-500 rounded-xl px-3 py-1.5 font-semibold text-purple-900 outline-none transition-all cursor-pointer">
+                            <option value="">&lt;обрати&gt;</option>
+                            <option value="true">істинним</option>
+                            <option value="false">хибним</option>
+                            <option value="secret">таємничим</option>
+                        </select>
+                        <span>.</span>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div class="flex gap-3">
+                        <button onclick="checkTask4()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-2xl shadow-md active:scale-95 transition-all">Перевірити завдання 4</button>
+                        <button onclick="resetTask4()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">Спочатку 🔄</button>
+                    </div>
+                </div>
+                <div id="feedback-4" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+            </article>
+
+            <!-- TASK 5: MATCHING PAIRS -->
+            <article class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-6 relative transition-all duration-300">
+                <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 font-bold font-fredoka flex items-center justify-center text-lg shadow-sm">5</div>
+                        <h3 class="text-lg md:text-xl font-bold font-fredoka text-slate-800">З'єднання пар</h3>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1 bg-purple-50 text-purple-600 rounded-full border border-purple-200 shrink-0">Відповідність</span>
+                </div>
+
+                <p class="text-slate-600">Натисни спочатку на категорію зліва, а потім на відповідне висловлювання справа, щоб з'єднати їх:</p>
+
+                <!-- Columns -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left Column -->
+                    <div class="space-y-3">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Категорія:</div>
+                        <div id="t5-left-0" onclick="clickTask5Left(0)" class="t5-left-card relative p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 cursor-pointer transition-all flex items-center justify-between">
+                            <span class="font-bold text-slate-700">1. Істинне висловлювання</span>
+                            <span id="t5-badge-left-0" class="hidden text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full">З'єднано</span>
+                        </div>
+                        <div id="t5-left-1" onclick="clickTask5Left(1)" class="t5-left-card relative p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 cursor-pointer transition-all flex items-center justify-between">
+                            <span class="font-bold text-slate-700">2. Хибне висловлювання</span>
+                            <span id="t5-badge-left-1" class="hidden text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full">З'єднано</span>
+                        </div>
+                        <div id="t5-left-2" onclick="clickTask5Left(2)" class="t5-left-card relative p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 cursor-pointer transition-all flex items-center justify-between">
+                            <span class="font-bold text-slate-700">3. Не є висловлюванням</span>
+                            <span id="t5-badge-left-2" class="hidden text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full">З'єднано</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="space-y-3">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Приклад:</div>
+                        <div id="t5-right-0" onclick="clickTask5Right(0)" class="t5-right-card relative p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 cursor-pointer transition-all flex items-center justify-between">
+                            <span class="font-medium text-slate-700 font-sans">"Риби живуть у воді."</span>
+                            <button id="t5-unlink-right-0" onclick="unlinkTask5Right(event, 0)" class="hidden w-7 h-7 rounded-full bg-rose-100 text-rose-600 font-bold flex items-center justify-center hover:bg-rose-200 text-sm">✕</button>
+                        </div>
+                        <div id="t5-right-1" onclick="clickTask5Right(1)" class="t5-right-card relative p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 cursor-pointer transition-all flex items-center justify-between">
+                            <span class="font-medium text-slate-700 font-sans">"Зараз котра година?"</span>
+                            <button id="t5-unlink-right-1" onclick="unlinkTask5Right(event, 1)" class="hidden w-7 h-7 rounded-full bg-rose-100 text-rose-600 font-bold flex items-center justify-center hover:bg-rose-200 text-sm">✕</button>
+                        </div>
+                        <div id="t5-right-2" onclick="clickTask5Right(2)" class="t5-right-card relative p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 cursor-pointer transition-all flex items-center justify-between">
+                            <span class="font-medium text-slate-700 font-sans">"Місяць зроблений із зеленого сиру."</span>
+                            <button id="t5-unlink-right-2" onclick="unlinkTask5Right(event, 2)" class="hidden w-7 h-7 rounded-full bg-rose-100 text-rose-600 font-bold flex items-center justify-center hover:bg-rose-200 text-sm">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Feedback -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div class="flex gap-3">
+                        <button onclick="checkTask5()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold font-fredoka rounded-2xl shadow-md active:scale-95 transition-all">Перевірити завдання 5</button>
+                        <button onclick="resetTask5()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-2xl active:scale-95 transition-all">Спочатку 🔄</button>
+                    </div>
+                </div>
+                <div id="feedback-5" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+            </article>
+
+        </main>
+
+        <!-- 4. FINAL RESULTS & BADGE SECTION -->
+        <section class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-3xl shadow-2xl p-8 md:p-10 text-center text-white space-y-6">
+            <h2 class="text-2xl md:text-3xl font-extrabold font-fredoka tracking-wide">
+                Готовий підбити підсумки? 🏆
+            </h2>
+            <p class="text-white/90 max-w-md mx-auto text-base">
+                Натисни кнопку нижче, щоб перевірити усі свої відповіді та дізнатися свій рівень досягнень!
+            </p>
+
+            <button onclick="calculateFinalResult()" class="pulse-btn font-fredoka text-lg md:text-xl px-8 py-4 bg-yellow-400 text-purple-950 font-bold rounded-2xl shadow-xl hover:bg-yellow-300 transform transition duration-200 hover:scale-105 active:scale-95 inline-flex items-center gap-3">
+                🌟 Отримати свій значок! 🌟
+            </button>
+
+            <!-- Results Display Card (Hidden until clicked) -->
+            <div id="final-result-card" class="hidden mt-6 bg-white text-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl space-y-4 max-w-xl mx-auto transform transition-all duration-300">
+                <div id="result-emoji" class="text-6xl animate-bounce">🏆</div>
+                <h3 id="result-title" class="text-2xl md:text-3xl font-extrabold font-fredoka text-purple-900"></h3>
+                <div id="result-score" class="inline-block px-6 py-2 bg-purple-100 text-purple-700 font-bold rounded-full text-lg font-fredoka"></div>
+                <p id="result-desc" class="text-slate-600 text-base leading-relaxed"></p>
+            </div>
+        </section>
+
+        <!-- 5. CREATIVE PRACTICAL TASK SECTION -->
+        <section class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-purple-100 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <span class="text-3xl">🚀</span>
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold font-fredoka text-purple-900">Лабораторія юного мислителя: Створи власні висловлювання!</h2>
+                    <p class="text-sm text-slate-500">Спробуй скласти свої речення про комп'ютер чи шкільне життя</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- True statement input -->
+                <div class="space-y-2">
+                    <label class="block font-bold text-emerald-800 font-fredoka flex items-center gap-2">
+                        <span>🟢</span> Склади 1 ІСТИННЕ висловлювання:
+                    </label>
+                    <textarea id="creative-true" rows="3" placeholder="Наприклад: Монітор показує зображення на екрані." class="w-full p-4 rounded-2xl border-2 border-emerald-200 focus:border-emerald-500 outline-none text-slate-700 transition-all shadow-sm focus:ring-2 focus:ring-emerald-200 resize-none"></textarea>
+                </div>
+
+                <!-- False statement input -->
+                <div class="space-y-2">
+                    <label class="block font-bold text-rose-800 font-fredoka flex items-center gap-2">
+                        <span>🔴</span> Склади 1 ХИБНЕ висловлювання:
+                    </label>
+                    <textarea id="creative-false" rows="3" placeholder="Наприклад: Мишка плаває у склянці з соком." class="w-full p-4 rounded-2xl border-2 border-rose-200 focus:border-rose-500 outline-none text-slate-700 transition-all shadow-sm focus:ring-2 focus:ring-rose-200 resize-none"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <button onclick="checkCreative()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold font-fredoka rounded-2xl shadow-md active:scale-95 transition-all">
+                    Зберегти мої висловлювання 📝
+                </button>
+            </div>
+            <div id="creative-feedback" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-medium text-sm"></div>
+        </section>
+
+        <!-- 6. FOOTER SECTION -->
+        <footer class="text-center py-6 text-slate-500 font-medium text-sm border-t border-purple-100">
+            <p>© 2026 | Інформатика — 3 клас | Автор: Юрій Шроль</p>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // GLOBAL SCORE TRACKING
+        let taskScores = {
+            1: false,
+            2: false,
+            3: false,
+            4: false,
+            5: false
+        };
+
+        /* ==========================================================================
+           TASK 1 LOGIC: SINGLE CHOICE
+           ========================================================================== */
+        let task1Selected = null;
+        const task1Correct = 1; // Option B (Index 1)
+
+        function selectTask1(index) {
+            task1Selected = index;
+            const buttons = document.querySelectorAll('.t1-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx === index) {
+                    btn.classList.add('border-purple-600', 'bg-purple-50', 'ring-2', 'ring-purple-200');
+                    btn.classList.remove('border-slate-200');
+                } else {
+                    btn.classList.remove('border-purple-600', 'bg-purple-50', 'ring-2', 'ring-purple-200');
+                    btn.classList.add('border-slate-200');
+                }
+            });
+        }
+
+        function checkTask1() {
+            const fb = document.getElementById('feedback-1');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-rose-100', 'text-rose-800', 'border-rose-300', 'bg-amber-100', 'text-amber-800', 'border-amber-300');
+            
+            if (task1Selected === null) {
+                fb.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+                fb.innerHTML = '⚠️ <b>Залишилося трошки подумати!</b> Будь ласка, обри один із варіантів відповіді.';
+                taskScores[1] = false;
+                return;
+            }
+
+            if (task1Selected === task1Correct) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                fb.innerHTML = '🎉 <b>Чудово і правильно!</b> Істинне висловлювання — це твердження, яке відповідає дійсності та є правильним!';
+                taskScores[1] = true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-300');
+                fb.innerHTML = '🤔 <b>Подумай ще!</b> Згадай: істинний означає "правдивий". Спробуй обрати ще раз!';
+                taskScores[1] = false;
+            }
+        }
+
+        function resetTask1() {
+            task1Selected = null;
+            const buttons = document.querySelectorAll('.t1-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-purple-600', 'bg-purple-50', 'ring-2', 'ring-purple-200');
+                btn.classList.add('border-slate-200');
+            });
+            const fb = document.getElementById('feedback-1');
+            fb.classList.add('hidden');
+            taskScores[1] = false;
+        }
+
+        /* ==========================================================================
+           TASK 2 LOGIC: TRUE/FALSE FLASHCARDS
+           ========================================================================== */
+        // Correct answers: Card 0: True, Card 1: True, Card 2: False, Card 3: False
+        const task2Answers = [null, null, null, null];
+        const task2Correct = [true, true, false, false];
+
+        function setTask2Answer(cardIdx, val) {
+            task2Answers[cardIdx] = val;
+            const btnTrue = document.getElementById(`t2-btn-${cardIdx}-true`);
+            const btnFalse = document.getElementById(`t2-btn-${cardIdx}-false`);
+
+            if (val === true) {
+                btnTrue.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+                btnTrue.classList.remove('bg-white', 'text-emerald-700');
+                btnFalse.classList.remove('bg-rose-600', 'text-white', 'border-rose-600');
+                btnFalse.classList.add('bg-white', 'text-rose-700');
+            } else {
+                btnFalse.classList.add('bg-rose-600', 'text-white', 'border-rose-600');
+                btnFalse.classList.remove('bg-white', 'text-rose-700');
+                btnTrue.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-600');
+                btnTrue.classList.add('bg-white', 'text-emerald-700');
+            }
+        }
+
+        function checkTask2() {
+            const fb = document.getElementById('feedback-2');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-rose-100', 'text-rose-800', 'border-rose-300', 'bg-amber-100', 'text-amber-800', 'border-amber-300');
+
+            const unanswered = task2Answers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                fb.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+                fb.innerHTML = `⚠️ <b>Залишилося трошки подумати!</b> Дай відповідь ще на ${unanswered} картку(-и).`;
+                taskScores[2] = false;
+                return;
+            }
+
+            let correctCount = 0;
+            for (let i = 0; i < 4; i++) {
+                if (task2Answers[i] === task2Correct[i]) correctCount++;
+            }
+
+            if (correctCount === 4) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                fb.innerHTML = '🌟 <b>Супер! Всі 4 картки оцінено вірно!</b> Ти чудово розрізняєш істину та хибність!';
+                taskScores[2] = true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-300');
+                fb.innerHTML = `🤔 <b>Правильно відповідних карток: ${correctCount} з 4.</b> Перевірте невірні відповіді і спробуй ще раз!`;
+                taskScores[2] = false;
+            }
+        }
+
+        function resetTask2() {
+            for (let i = 0; i < 4; i++) {
+                task2Answers[i] = null;
+                const btnTrue = document.getElementById(`t2-btn-${i}-true`);
+                const btnFalse = document.getElementById(`t2-btn-${i}-false`);
+                btnTrue.className = "flex-1 py-2 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-sm transition-all flex items-center justify-center gap-1";
+                btnFalse.className = "flex-1 py-2 px-3 rounded-xl border border-rose-300 bg-white hover:bg-rose-50 text-rose-700 font-bold text-sm transition-all flex items-center justify-center gap-1";
+            }
+            const fb = document.getElementById('feedback-2');
+            fb.classList.add('hidden');
+            taskScores[2] = false;
+        }
+
+        /* ==========================================================================
+           TASK 3 LOGIC: BUCKET SORTING
+           ========================================================================== */
+        const task3Data = [
+            { id: 't3-item-1', text: 'У тижні 7 днів 📅', correct: 'true' },
+            { id: 't3-item-2', text: 'Сніг гарячий ❄️🔥', correct: 'false' },
+            { id: 't3-item-3', text: 'Монітор показує відео 🖥️', correct: 'true' },
+            { id: 't3-item-4', text: 'Комп\'ютер працює без струму 🔌', correct: 'false' },
+            { id: 't3-item-5', text: '2 + 2 = 4 🧮', correct: 'true' }
+        ];
+
+        let t3State = {
+            selectedItemId: null,
+            pool: [...task3Data.map(d => d.id)],
+            bucketTrue: [],
+            bucketFalse: []
+        };
+
+        function initTask3() {
+            renderTask3();
+        }
+
+        function renderTask3() {
+            const poolEl = document.getElementById('t3-items-pool');
+            const bucketTrueEl = document.getElementById('bucket-true-items');
+            const bucketFalseEl = document.getElementById('bucket-false-items');
+
+            poolEl.innerHTML = '';
+            bucketTrueEl.innerHTML = '';
+            bucketFalseEl.innerHTML = '';
+
+            task3Data.forEach(item => {
+                const isSelected = t3State.selectedItemId === item.id;
+                const card = document.createElement('div');
+                card.id = item.id;
+                card.draggable = true;
+                card.ondragstart = (e) => handleDragStart(e, item.id);
+                card.onclick = (e) => { e.stopPropagation(); clickTask3Item(item.id); };
+
+                let cardStyles = "draggable-item p-3 rounded-2xl font-medium text-sm border shadow-sm transition-all flex items-center justify-between gap-2 ";
+                if (isSelected) {
+                    cardStyles += "bg-purple-100 border-purple-500 ring-2 ring-purple-300 text-purple-900";
+                } else {
+                    cardStyles += "bg-white border-slate-200 hover:border-purple-300 text-slate-800";
+                }
+                card.className = cardStyles;
+                card.innerHTML = `<span>${item.text}</span>`;
+
+                if (t3State.pool.includes(item.id)) {
+                    poolEl.appendChild(card);
+                } else if (t3State.bucketTrue.includes(item.id)) {
+                    bucketTrueEl.appendChild(card);
+                } else if (t3State.bucketFalse.includes(item.id)) {
+                    bucketFalseEl.appendChild(card);
+                }
+            });
+
+            document.getElementById('t3-count-true').innerText = t3State.bucketTrue.length;
+            document.getElementById('t3-count-false').innerText = t3State.bucketFalse.length;
+        }
+
+        function clickTask3Item(id) {
+            if (t3State.selectedItemId === id) {
+                t3State.selectedItemId = null;
+            } else {
+                t3State.selectedItemId = id;
+            }
+            renderTask3();
+        }
+
+        function clickBucket(bucketType) {
+            if (t3State.selectedItemId) {
+                moveItemToBucket(t3State.selectedItemId, bucketType);
+                t3State.selectedItemId = null;
+                renderTask3();
+            }
+        }
+
+        function handleDragStart(e, id) {
+            e.dataTransfer.setData('text/plain', id);
+        }
+
+        function allowDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDrop(e, bucketType) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const id = e.dataTransfer.getData('text/plain');
+            if (id) {
+                moveItemToBucket(id, bucketType);
+                t3State.selectedItemId = null;
+                renderTask3();
+            }
+        }
+
+        function moveItemToBucket(id, bucketType) {
+            t3State.pool = t3State.pool.filter(item => item !== id);
+            t3State.bucketTrue = t3State.bucketTrue.filter(item => item !== id);
+            t3State.bucketFalse = t3State.bucketFalse.filter(item => item !== id);
+
+            if (bucketType === 'true') {
+                t3State.bucketTrue.push(id);
+            } else if (bucketType === 'false') {
+                t3State.bucketFalse.push(id);
+            }
+        }
+
+        function checkTask3() {
+            const fb = document.getElementById('feedback-3');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-rose-100', 'text-rose-800', 'border-rose-300', 'bg-amber-100', 'text-amber-800', 'border-amber-300');
+
+            if (t3State.pool.length > 0) {
+                fb.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+                fb.innerHTML = `⚠️ <b>Залишилося трошки подумати!</b> Розподіли всі картки по кошиках (ще залишилося: ${t3State.pool.length}).`;
+                taskScores[3] = false;
+                return;
+            }
+
+            let correctCount = 0;
+            task3Data.forEach(item => {
+                if (item.correct === 'true' && t3State.bucketTrue.includes(item.id)) correctCount++;
+                if (item.correct === 'false' && t3State.bucketFalse.includes(item.id)) correctCount++;
+            });
+
+            if (correctCount === task3Data.length) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                fb.innerHTML = '🎉 <b>Бездоганно! Все розсортовано повністю вірно!</b> Ти справжній майстер логіки!';
+                taskScores[3] = true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-300');
+                fb.innerHTML = `🤔 <b>Подумай ще! Вірно розсортовано ${correctCount} з ${task3Data.length} карток.</b> Перевір і спробуй поміняти місцями.`;
+                taskScores[3] = false;
+            }
+        }
+
+        function resetTask3() {
+            t3State = {
+                selectedItemId: null,
+                pool: [...task3Data.map(d => d.id)],
+                bucketTrue: [],
+                bucketFalse: []
+            };
+            renderTask3();
+            const fb = document.getElementById('feedback-3');
+            fb.classList.add('hidden');
+            taskScores[3] = false;
+        }
+
+        /* ==========================================================================
+           TASK 4 LOGIC: FILL IN THE BLANKS (SELECTS)
+           ========================================================================== */
+        const task4Answers = ["true", "false", "not_stat", "true"];
+
+        function checkTask4() {
+            const fb = document.getElementById('feedback-4');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-rose-100', 'text-rose-800', 'border-rose-300', 'bg-amber-100', 'text-amber-800', 'border-amber-300');
+
+            let userVals = [];
+            let emptyCount = 0;
+            for (let i = 0; i < 4; i++) {
+                const val = document.getElementById(`t4-select-${i}`).value;
+                userVals.push(val);
+                if (!val) emptyCount++;
+            }
+
+            if (emptyCount > 0) {
+                fb.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+                fb.innerHTML = `⚠️ <b>Залишилося трошки подумати!</b> Вибери слова у всіх 4 пропусках.`;
+                taskScores[4] = false;
+                return;
+            }
+
+            let correctCount = 0;
+            for (let i = 0; i < 4; i++) {
+                if (userVals[i] === task4Answers[i]) correctCount++;
+            }
+
+            if (correctCount === 4) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                fb.innerHTML = '🎉 <b>Чудово! Усі пропуски заповнено правильно!</b> Ти добре знаєш правила.';
+                taskScores[4] = true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-300');
+                fb.innerHTML = `🤔 <b>Подумай ще! Вірно вибрано ${correctCount} з 4 слів.</b> Перечитай речення уважніше!`;
+                taskScores[4] = false;
+            }
+        }
+
+        function resetTask4() {
+            for (let i = 0; i < 4; i++) {
+                document.getElementById(`t4-select-${i}`).value = "";
+            }
+            const fb = document.getElementById('feedback-4');
+            fb.classList.add('hidden');
+            taskScores[4] = false;
+        }
+
+        /* ==========================================================================
+           TASK 5 LOGIC: MATCHING PAIRS
+           ========================================================================== */
+        // Pair matching logic
+        // Left index 0: "Істинне висловлювання" -> Right index 0: "Риби живуть у воді."
+        // Left index 1: "Хибне висловлювання"   -> Right index 2: "Місяць зроблений із зеленого сиру."
+        // Left index 2: "Не є висловлюванням"   -> Right index 1: "Зараз котра година?"
+        const task5CorrectPairs = {
+            0: 0,
+            1: 2,
+            2: 1
+        };
+
+        let t5SelectedLeft = null;
+        let t5Connections = {}; // leftIndex -> rightIndex
+
+        function clickTask5Left(leftIdx) {
+            t5SelectedLeft = leftIdx;
+            renderTask5();
+        }
+
+        function clickTask5Right(rightIdx) {
+            if (t5SelectedLeft !== null) {
+                // If right element is connected to another left, remove that connection
+                Object.keys(t5Connections).forEach(lKey => {
+                    if (t5Connections[lKey] === rightIdx) {
+                        delete t5Connections[lKey];
+                    }
+                });
+                t5Connections[t5SelectedLeft] = rightIdx;
+                t5SelectedLeft = null;
+                renderTask5();
+            }
+        }
+
+        function unlinkTask5Right(event, rightIdx) {
+            event.stopPropagation();
+            Object.keys(t5Connections).forEach(lKey => {
+                if (t5Connections[lKey] === rightIdx) {
+                    delete t5Connections[lKey];
+                }
+            });
+            renderTask5();
+        }
+
+        function renderTask5() {
+            // Colors for connected pairs
+            const pairColors = [
+                { bg: 'bg-indigo-50', border: 'border-indigo-400' },
+                { bg: 'bg-purple-50', border: 'border-purple-400' },
+                { bg: 'bg-pink-50', border: 'border-pink-400' }
+            ];
+
+            for (let i = 0; i < 3; i++) {
+                const leftCard = document.getElementById(`t5-left-${i}`);
+                const leftBadge = document.getElementById(`t5-badge-left-${i}`);
+                const isSelected = t5SelectedLeft === i;
+                const isConnected = t5Connections.hasOwnProperty(i);
+
+                leftCard.className = "t5-left-card relative p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center justify-between ";
+                if (isSelected) {
+                    leftCard.classList.add('border-purple-600', 'bg-purple-100', 'ring-2', 'ring-purple-300');
+                } else if (isConnected) {
+                    const colorScheme = pairColors[i % pairColors.length];
+                    leftCard.classList.add(colorScheme.border, colorScheme.bg);
+                } else {
+                    leftCard.classList.add('border-slate-200', 'bg-white', 'hover:border-purple-300');
+                }
+
+                if (isConnected) {
+                    leftBadge.classList.remove('hidden');
+                } else {
+                    leftBadge.classList.add('hidden');
+                }
+            }
+
+            for (let j = 0; j < 3; j++) {
+                const rightCard = document.getElementById(`t5-right-${j}`);
+                const unlinkBtn = document.getElementById(`t5-unlink-right-${j}`);
+                
+                // Find if connected to any left card
+                let connectedLeftIdx = null;
+                Object.keys(t5Connections).forEach(lKey => {
+                    if (t5Connections[lKey] === j) {
+                        connectedLeftIdx = parseInt(lKey);
+                    }
+                });
+
+                rightCard.className = "t5-right-card relative p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center justify-between ";
+
+                if (connectedLeftIdx !== null) {
+                    const colorScheme = pairColors[connectedLeftIdx % pairColors.length];
+                    rightCard.classList.add(colorScheme.border, colorScheme.bg);
+                    unlinkBtn.classList.remove('hidden');
+                } else {
+                    rightCard.classList.add('border-slate-200', 'bg-white', 'hover:border-purple-300');
+                    unlinkBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        function checkTask5() {
+            const fb = document.getElementById('feedback-5');
+            fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-rose-100', 'text-rose-800', 'border-rose-300', 'bg-amber-100', 'text-amber-800', 'border-amber-300');
+
+            const connectedCount = Object.keys(t5Connections).length;
+            if (connectedCount < 3) {
+                fb.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+                fb.innerHTML = `⚠️ <b>Залишилося трошки подумати!</b> Утвори всі 3 пари. Зараз з'єднано: ${connectedCount} з 3.`;
+                taskScores[5] = false;
+                return;
+            }
+
+            let correctPairs = 0;
+            Object.keys(task5CorrectPairs).forEach(lKey => {
+                if (t5Connections[lKey] === task5CorrectPairs[lKey]) {
+                    correctPairs++;
+                }
+            });
+
+            if (correctPairs === 3) {
+                fb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                fb.innerHTML = '🎉 <b>Чудово! Усі пари з\'єднано правильно!</b> Молодець!';
+                taskScores[5] = true;
+            } else {
+                fb.classList.add('bg-rose-100', 'text-rose-800', 'border', 'border-rose-300');
+                fb.innerHTML = `🤔 <b>Подумай ще! Вірно утворено пар: ${correctPairs} з 3.</b> Перевір зв'язки та спробуй ще раз!`;
+                taskScores[5] = false;
+            }
+        }
+
+        function resetTask5() {
+            t5SelectedLeft = null;
+            t5Connections = {};
+            renderTask5();
+            const fb = document.getElementById('feedback-5');
+            fb.classList.add('hidden');
+            taskScores[5] = false;
+        }
+
+        /* ==========================================================================
+           FINAL RESULT CALCULATION & BADGE DISPLAY
+           ========================================================================== */
+        function calculateFinalResult() {
+            // Trigger check functions to ensure state updated
+            checkTask1();
+            checkTask2();
+            checkTask3();
+            checkTask4();
+            checkTask5();
+
+            let totalScore = 0;
+            for (let i = 1; i <= 5; i++) {
+                if (taskScores[i]) totalScore++;
+            }
+
+            const resultCard = document.getElementById('final-result-card');
+            const resultEmoji = document.getElementById('result-emoji');
+            const resultTitle = document.getElementById('result-title');
+            const resultScore = document.getElementById('result-score');
+            const resultDesc = document.getElementById('result-desc');
+
+            resultCard.classList.remove('hidden');
+            resultScore.innerText = `Балів: ${totalScore} / 5`;
+
+            if (totalScore === 5) {
+                resultEmoji.innerText = '🏆';
+                resultTitle.innerText = 'Гранд-майстер Істини!';
+                resultDesc.innerText = 'Фантастично! Ти бездоганно впорався з усіма завданнями і довів, що легко відрізняєш істину від хибності!';
+                
+                // Launch Confetti animation
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+            } else if (totalScore >= 3) {
+                resultEmoji.innerText = '🔍';
+                resultTitle.innerText = 'Дослідник Знань!';
+                resultDesc.innerText = 'Чудова робота! Ти дуже близький до вищого бала. Переглянь завдання, де виникли труднощі, і виправ помилки!';
+            } else {
+                resultEmoji.innerText = '🌱';
+                resultTitle.innerText = 'Юний Учень!';
+                resultDesc.innerText = 'Гарний початок! Не засмучуйся, інформатика потребує практики. Переглянь презентацію ще раз і спробуй знову!';
+            }
+
+            // Smooth scroll to final results
+            resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        /* ==========================================================================
+           SECTION 5: CREATIVE TASK SAVING
+           ========================================================================== */
+        function checkCreative() {
+            const valTrue = document.getElementById('creative-true').value.trim();
+            const valFalse = document.getElementById('creative-false').value.trim();
+            const fb = document.getElementById('creative-feedback');
+
+            fb.classList.remove('hidden');
+            if (valTrue && valFalse) {
+                fb.innerHTML = '🌟 <b>Чудово сформульовано!</b> Твої висловлювання збережені. Показать їх вчителю на уроці!';
+            } else {
+                fb.innerHTML = '✍️ Будь ласка, напиши і істинне, і хибне висловлювання у двох віконцях вище.';
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            initTask3();
+        };
+    </script>
+</body>
+</html>
